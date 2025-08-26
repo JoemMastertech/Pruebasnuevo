@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Back Button - Master Technology Bar</title>
+    <link rel="stylesheet" href="Shared/styles/main.css">
+</head>
+<body>
+    <div id="app">
+        <div id="main-screen">
+            <div class="content-container-flex">
+                <div id="content-container">
+                    <!-- El back button debería aparecer aquí cuando se navega a una subcategoría -->
+                </div>
+                <div id="order-sidebar" class="order-sidebar">
+                    <h3>Pedido Actual</h3>
+                    <div id="order-items"></div>
+                    <div id="order-total">Total: $0.00</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts necesarios -->
+    <script type="module" src="Shared/utils/logger.js"></script>
+    <script type="module" src="Shared/utils/diUtils.js"></script>
+    <script type="module" src="Infraestructura/data-providers/product-data.js"></script>
+    <script type="module" src="Interfaces/web/ui-adapters/components/product-table.js"></script>
+    
+    <script type="module">
+        import ProductRenderer from './Interfaces/web/ui-adapters/components/product-table.js';
+        import Logger from './Shared/utils/logger.js';
+        
+        // Inicializar el sistema de eventos
+        ProductRenderer.initEventDelegation();
+        
+        // Función para probar el back button
+        async function testBackButton() {
+            const container = document.getElementById('content-container');
+            
+            console.log('=== INICIANDO TEST DEL BACK BUTTON ===');
+            
+            // 1. Primero renderizar la vista de licores
+            console.log('1. Renderizando vista de licores...');
+            await ProductRenderer.renderLicores(container);
+            
+            // Verificar que no hay back button en la vista principal
+            let backButton = document.querySelector('.back-button');
+            console.log('Back button en vista principal:', backButton ? 'PRESENTE (ERROR)' : 'AUSENTE (CORRECTO)');
+            
+            // 2. Simular clic en una subcategoría (Whisky)
+            console.log('2. Navegando a subcategoría Whisky...');
+            await ProductRenderer.renderLicorSubcategory(container, 'whisky');
+            
+            // 3. Verificar que el back button aparece
+            setTimeout(() => {
+                backButton = document.querySelector('.back-button');
+                const backButtonContainer = document.querySelector('.back-button-container');
+                
+                console.log('=== RESULTADOS DEL TEST ===');
+                console.log('Back button container:', backButtonContainer ? 'PRESENTE' : 'AUSENTE');
+                console.log('Back button:', backButton ? 'PRESENTE' : 'AUSENTE');
+                
+                if (backButton) {
+                    console.log('✅ ÉXITO: El back button se creó correctamente');
+                    console.log('Texto del botón:', backButton.innerHTML);
+                    console.log('Título del botón:', backButton.title);
+                    console.log('Clases CSS:', backButton.className);
+                    
+                    // Probar el clic del back button
+                    console.log('4. Probando clic en back button...');
+                    backButton.click();
+                    
+                    setTimeout(() => {
+                        const backButtonAfterClick = document.querySelector('.back-button');
+                        console.log('Back button después del clic:', backButtonAfterClick ? 'PRESENTE' : 'AUSENTE (CORRECTO)');
+                        
+                        if (!backButtonAfterClick) {
+                            console.log('✅ ÉXITO: El back button desapareció correctamente después del clic');
+                        } else {
+                            console.log('❌ ERROR: El back button no desapareció después del clic');
+                        }
+                    }, 500);
+                } else {
+                    console.log('❌ ERROR: El back button NO se creó');
+                    console.log('Contenido del container:', container.innerHTML.substring(0, 500));
+                }
+            }, 200);
+        }
+        
+        // Ejecutar el test cuando la página esté lista
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(testBackButton, 1000);
+        });
+    </script>
+</body>
+</html>

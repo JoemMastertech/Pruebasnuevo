@@ -1,0 +1,275 @@
+/* =================================================================
+   GRID SYSTEM UNIFICADO - FASE 5 IMPLEMENTACIÓN
+   Sistema consolidado de grids con metodología BEM
+   ================================================================= */
+
+/* =================================================================
+   VARIABLES DE GRID
+   ================================================================= */
+
+:root {
+  /* Grid Columns por Breakpoint */
+  --grid-columns-mobile: 1;
+  --grid-columns-mobile-large: 2;
+  --grid-columns-tablet: 2;
+  --grid-columns-tablet-large: 3;
+  --grid-columns-desktop: 3;
+  --grid-columns-desktop-large: 4;
+  
+  /* Grid Columns para Categorías */
+  --category-grid-columns-mobile: 2;
+  --category-grid-columns-tablet: 3;
+  --category-grid-columns-desktop: 5;
+  
+  /* Gaps y Padding */
+  --grid-gap-compact: clamp(10px, 2vw, 20px);
+  --grid-gap-standard: clamp(15px, 2.5vw, 25px);
+  --grid-gap-spacious: clamp(20px, 3vw, 30px);
+  
+  --grid-padding-compact: clamp(10px, 2vw, 20px);
+  --grid-padding-standard: clamp(15px, 2.5vw, 25px);
+  --grid-padding-spacious: clamp(20px, 3vw, 30px);
+}
+
+/* =================================================================
+   GRID BASE - Componente principal
+   ================================================================= */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), 1fr);
+  gap: var(--gap, var(--grid-gap-standard));
+  padding: var(--padding, var(--grid-padding-standard));
+  width: 100%;
+  max-width: var(--container-max, 1200px);
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* =================================================================
+   MODIFICADORES DE GRID - Tipos específicos
+   ================================================================= */
+
+/* GRID PARA PRODUCTOS */
+.grid--products,
+.product-grid {
+  grid-auto-rows: minmax(200px, auto);
+  gap: var(--grid-gap-standard);
+  padding: var(--grid-padding-standard);
+}
+
+/* GRID PARA CATEGORÍAS */
+.grid--categories,
+.category-grid {
+  grid-template-columns: repeat(var(--category-grid-columns-desktop), 1fr);
+  grid-auto-rows: minmax(120px, auto);
+  gap: var(--grid-gap-standard);
+  padding: var(--grid-padding-standard);
+}
+
+/* =================================================================
+   GRID TYPES - Aplicados dinámicamente por JavaScript
+   ================================================================= */
+
+/* GRID TYPE 1 - Grid estándar para productos */
+.grid-type-1,
+.product-grid.grid-type-1 {
+  grid-template-columns: repeat(var(--grid-columns), 1fr);
+  gap: var(--grid-gap-standard);
+  padding: var(--grid-padding-standard);
+}
+
+/* GRID TYPE 2 - Grid compacto para bebidas sin ingredientes */
+.grid-type-2,
+.product-grid.grid-type-2 {
+  grid-template-columns: repeat(var(--grid-columns), 1fr);
+  gap: var(--grid-gap-compact);
+  padding: var(--grid-padding-compact);
+}
+
+.grid-type-2 .product-card {
+  min-height: 180px; /* Más compacto para bebidas */
+}
+
+/* GRID TYPE 3 - Grid para categorías especiales */
+.grid-type-3,
+.category-grid.grid-type-3 {
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: clamp(12px, 2.2vw, 22px);
+  padding: clamp(12px, 2.2vw, 22px);
+}
+
+/* GRID TYPE 4 - Grid para categorías de licores (5 columnas desktop) */
+.grid-type-4,
+.category-grid.grid-type-4 {
+  grid-template-columns: repeat(var(--category-grid-columns-desktop), 1fr);
+  gap: var(--grid-gap-standard);
+  padding: var(--grid-padding-standard);
+}
+
+/* =================================================================
+   RESPONSIVE BREAKPOINTS
+   ================================================================= */
+
+/* Mobile Large (480px+) */
+@media (min-width: 480px) {
+  .grid {
+    --grid-columns: var(--grid-columns-mobile-large);
+  }
+  
+  .grid--categories {
+    grid-template-columns: repeat(var(--category-grid-columns-mobile), 1fr);
+  }
+}
+
+/* Tablet (768px+) */
+@media (min-width: 768px) {
+  .grid {
+    --grid-columns: var(--grid-columns-tablet);
+  }
+  
+  .grid--categories {
+    grid-template-columns: repeat(var(--category-grid-columns-tablet), 1fr);
+  }
+  
+  .grid-type-4 {
+    grid-template-columns: repeat(var(--category-grid-columns-tablet), 1fr);
+  }
+}
+
+/* Tablet Large (1024px+) */
+@media (min-width: 1024px) {
+  .grid {
+    --grid-columns: var(--grid-columns-tablet-large);
+  }
+  
+  .grid-type-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Desktop (1200px+) */
+@media (min-width: 1200px) {
+  .grid {
+    --grid-columns: var(--grid-columns-desktop);
+  }
+  
+  .grid--categories,
+  .grid-type-4 {
+    grid-template-columns: repeat(var(--category-grid-columns-desktop), 1fr);
+  }
+}
+
+/* Desktop Large (1400px+) */
+@media (min-width: 1400px) {
+  .grid {
+    --grid-columns: var(--grid-columns-desktop-large);
+  }
+}
+
+/* =================================================================
+   COMPATIBILIDAD CON CLASES LEGACY
+   ================================================================= */
+
+/* Redirección de clases legacy a componentes BEM */
+.product-grid:not(.grid-type-1):not(.grid-type-2):not(.grid-type-3):not(.grid-type-4) {
+  /* Aplicar estilos de grid estándar para productos */
+  grid-auto-rows: minmax(200px, auto);
+}
+
+.category-grid:not(.grid-type-1):not(.grid-type-2):not(.grid-type-3):not(.grid-type-4) {
+  /* Aplicar estilos de grid estándar para categorías */
+  grid-template-columns: repeat(var(--category-grid-columns-desktop), 1fr);
+  grid-auto-rows: minmax(120px, auto);
+}
+
+/* =================================================================
+   UTILIDADES DE GRID
+   ================================================================= */
+
+/* Clases de utilidad para casos especiales */
+.grid--full-width {
+  max-width: 100%;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+}
+
+.grid--centered {
+  justify-items: center;
+  align-items: center;
+}
+
+.grid--stretch {
+  align-items: stretch;
+}
+
+.grid--start {
+  justify-items: start;
+  align-items: start;
+}
+
+/* Clases para elementos de grid */
+.grid__item {
+  width: 100%;
+  height: 100%;
+}
+
+.grid__item--span-2 {
+  grid-column: span 2;
+}
+
+.grid__item--span-3 {
+  grid-column: span 3;
+}
+
+.grid__item--full-width {
+  grid-column: 1 / -1;
+}
+
+/* =================================================================
+   ESTADOS ESPECIALES
+   ================================================================= */
+
+/* Grid enhanced - Cuando se activa el modo mejorado */
+body.grid-enhanced .grid,
+body.grid-enhanced .product-grid,
+body.grid-enhanced .category-grid {
+  transition: all 0.3s ease;
+}
+
+/* Grid en modo orden */
+body.order-mode-active .grid .product-card,
+body.order-mode-active .product-grid .product-card {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+body.order-mode-active .grid .product-card:hover,
+body.order-mode-active .product-grid .product-card:hover {
+  transform: scale(1.02);
+}
+
+/* Grid loading state */
+.grid--loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.grid--loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(0, 247, 255, 0.3);
+  border-top: 3px solid #00f7ff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}

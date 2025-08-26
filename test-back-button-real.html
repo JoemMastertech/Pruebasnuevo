@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Back Button - Real App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #1a1a1a;
+            color: white;
+            padding-top: 80px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background: #2a2a2a;
+        }
+        .test-button {
+            background: #007acc;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .test-button:hover {
+            background: #005a9e;
+        }
+        .status {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 3px;
+        }
+        .success { background: #2d5a2d; }
+        .error { background: #5a2d2d; }
+        .warning { background: #5a5a2d; }
+        .info { background: #2d2d5a; }
+        
+        iframe {
+            width: 100%;
+            height: 600px;
+            border: 2px solid #333;
+            border-radius: 5px;
+            background: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test del Botón de Retroceso - Aplicación Real</h1>
+    
+    <div class="test-section">
+        <h3>Instrucciones de Prueba</h3>
+        <ol>
+            <li>Abrir la aplicación principal en el iframe</li>
+            <li>Hacer clic en el menú hamburguesa (☰)</li>
+            <li>Seleccionar "Licores"</li>
+            <li>Hacer clic en cualquier categoría de licor (ej: Whisky)</li>
+            <li>Verificar que el botón de retroceso (←) aparezca en la barra superior</li>
+        </ol>
+        
+        <button class="test-button" onclick="openMainApp()">Abrir Aplicación Principal</button>
+        <button class="test-button" onclick="checkConsole()">Verificar Console</button>
+        <button class="test-button" onclick="simulateNavigation()">Simular Navegación</button>
+        
+        <div id="test-status"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>Aplicación Principal</h3>
+        <iframe id="main-app" src="about:blank"></iframe>
+    </div>
+    
+    <div class="test-section">
+        <h3>Console Output</h3>
+        <div id="console-output" style="background: #000; color: #0f0; padding: 10px; font-family: monospace; height: 200px; overflow-y: auto;"></div>
+    </div>
+
+    <script>
+        function log(message, type = 'info') {
+            const container = document.getElementById('test-status');
+            const div = document.createElement('div');
+            div.className = `status ${type}`;
+            div.textContent = `${new Date().toLocaleTimeString()}: ${message}`;
+            container.appendChild(div);
+            console.log(`[${type.toUpperCase()}] ${message}`);
+            
+            // También mostrar en el console output
+            const consoleOutput = document.getElementById('console-output');
+            const consoleDiv = document.createElement('div');
+            consoleDiv.textContent = `${new Date().toLocaleTimeString()}: ${message}`;
+            consoleOutput.appendChild(consoleDiv);
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+        }
+        
+        function openMainApp() {
+            const iframe = document.getElementById('main-app');
+            iframe.src = 'index.html';
+            log('Aplicación principal cargada en iframe', 'success');
+            
+            // Escuchar mensajes del iframe
+            iframe.onload = function() {
+                log('Iframe cargado completamente', 'info');
+                
+                // Intentar acceder al console del iframe
+                try {
+                    const iframeWindow = iframe.contentWindow;
+                    const originalLog = iframeWindow.console.log;
+                    
+                    iframeWindow.console.log = function(...args) {
+                        originalLog.apply(iframeWindow.console, args);
+                        const message = args.join(' ');
+                        if (message.includes('TopNavManager') || message.includes('back-button') || message.includes('🔄') || message.includes('✅')) {
+                            log(`IFRAME: ${message}`, 'info');
+                        }
+                    };
+                } catch (e) {
+                    log('No se pudo acceder al console del iframe (CORS)', 'warning');
+                }
+            };
+        }
+        
+        function checkConsole() {
+            log('Verificando console para mensajes del TopNavManager...', 'info');
+            
+            // Simular verificación del estado
+            setTimeout(() => {
+                log('Revisa la consola del navegador para ver los logs del TopNavManager', 'warning');
+                log('Busca mensajes que contengan: "TopNavManager", "back-button", "🔄", "✅"', 'info');
+            }, 1000);
+        }
+        
+        function simulateNavigation() {
+            const iframe = document.getElementById('main-app');
+            
+            if (iframe.src === 'about:blank') {
+                log('Primero debes abrir la aplicación principal', 'error');
+                return;
+            }
+            
+            log('Simulando navegación paso a paso...', 'info');
+            
+            try {
+                const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                
+                // Paso 1: Hacer clic en hamburger
+                setTimeout(() => {
+                    const hamburger = iframeDoc.getElementById('top-hamburger-btn');
+                    if (hamburger) {
+                        hamburger.click();
+                        log('✓ Clic en menú hamburguesa', 'success');
+                    } else {
+                        log('✗ No se encontró el menú hamburguesa', 'error');
+                    }
+                }, 1000);
+                
+                // Paso 2: Hacer clic en Licores
+                setTimeout(() => {
+                    const licoresBtn = iframeDoc.querySelector('button.nav-button:nth-child(3)');
+                    if (licoresBtn && licoresBtn.textContent.includes('Licores')) {
+                        licoresBtn.click();
+                        log('✓ Clic en Licores', 'success');
+                    } else {
+                        log('✗ No se encontró el botón de Licores', 'error');
+                    }
+                }, 2000);
+                
+                // Paso 3: Hacer clic en una categoría
+                setTimeout(() => {
+                    const categoryCard = iframeDoc.querySelector('.category-card');
+                    if (categoryCard) {
+                        categoryCard.click();
+                        log('✓ Clic en categoría de licor', 'success');
+                    } else {
+                        log('✗ No se encontró tarjeta de categoría', 'error');
+                    }
+                }, 3000);
+                
+                // Paso 4: Verificar botón de retroceso
+                setTimeout(() => {
+                    const topBackBtn = iframeDoc.getElementById('top-back-btn');
+                    const backBtn = iframeDoc.querySelector('.back-button');
+                    
+                    if (topBackBtn) {
+                        const isVisible = topBackBtn.style.display !== 'none';
+                        log(`Botón superior de retroceso: ${isVisible ? 'VISIBLE' : 'OCULTO'}`, isVisible ? 'success' : 'error');
+                        log(`Display style: ${topBackBtn.style.display}`, 'info');
+                    } else {
+                        log('✗ No se encontró el botón superior de retroceso', 'error');
+                    }
+                    
+                    if (backBtn) {
+                        log('✓ Botón original de retroceso encontrado', 'success');
+                    } else {
+                        log('✗ No se encontró el botón original de retroceso', 'error');
+                    }
+                }, 4000);
+                
+            } catch (e) {
+                log(`Error al simular navegación: ${e.message}`, 'error');
+                log('Esto puede deberse a restricciones CORS. Prueba manualmente.', 'warning');
+            }
+        }
+        
+        // Capturar logs de la consola principal
+        const originalConsoleLog = console.log;
+        console.log = function(...args) {
+            originalConsoleLog.apply(console, args);
+            const message = args.join(' ');
+            if (message.includes('TopNavManager') || message.includes('back-button') || message.includes('🔄') || message.includes('✅')) {
+                const consoleOutput = document.getElementById('console-output');
+                const div = document.createElement('div');
+                div.textContent = `${new Date().toLocaleTimeString()}: ${message}`;
+                consoleOutput.appendChild(div);
+                consoleOutput.scrollTop = consoleOutput.scrollHeight;
+            }
+        };
+        
+        // Inicialización
+        window.addEventListener('load', () => {
+            log('Test de botón de retroceso iniciado', 'info');
+        });
+    </script>
+</body>
+</html>

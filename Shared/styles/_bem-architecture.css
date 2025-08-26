@@ -1,0 +1,586 @@
+/* =====================================================================
+   ARQUITECTURA BEM UNIFICADA
+   Reemplaza selectores de alta especificidad con clases semánticas
+   ===================================================================== */
+
+/* =====================================================================
+   SECTION 1: PRODUCT COMPONENTS
+   ===================================================================== */
+
+/* === PRODUCT CARDS - Bloque Principal === */
+
+/* BLOQUE BASE */
+.product-card {
+  /* Estilos base heredados de main.css */
+  background: var(--card-bg-current);
+  border-radius: var(--card-radius);
+  padding: var(--card-padding);
+  min-height: var(--card-height-current);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+/* MODIFICADORES DE BLOQUE */
+.product-card--liquor {
+  /* Reemplaza: .product-card.liquor-card */
+  min-height: var(--card-height-liquor);
+  background: var(--card-bg-current);
+}
+
+.product-card--compact {
+  min-height: var(--card-height-compact);
+}
+
+.product-card--expanded {
+  min-height: var(--card-height-expanded);
+}
+
+/* ELEMENTOS DEL PRODUCT CARD */
+.product-card__name {
+  /* Reemplaza: .product-card.liquor-card .product-name */
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.product-card__description {
+  /* Reemplaza: .product-ingredients */
+  font-size: clamp(0.8rem, 1.8vw, 0.95rem);
+  color: #666;
+  margin-bottom: 8px;
+  line-height: 1.3;
+  font-style: italic;
+}
+
+.product-card__image {
+  /* Reemplaza: .product-card.liquor-card .product-image */
+  width: 100%;
+  height: var(--image-height-current);
+  object-fit: cover;
+  border-radius: 8px;
+  transition: var(--transition);
+}
+
+.product-card__media {
+  /* Reemplaza: .product-card.liquor-card .product-media */
+  width: 100%;
+  min-height: var(--media-height-current);
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #f8f9fa;
+}
+
+.product-card__prices {
+  /* Reemplaza: .product-card.liquor-card .product-prices */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 8px;
+  justify-content: center;
+}
+
+.product-card__price-item {
+  /* Reemplaza: .product-card.liquor-card .price-item */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 60px;
+}
+
+/* MODIFICADORES DE ELEMENTO */
+.product-card__image--video {
+  /* Para imágenes que contienen video */
+  position: relative;
+}
+
+.product-card__image--video::after {
+  content: '▶';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.product-card__image--large {
+  /* Para imágenes grandes (bebidas, licores) */
+  max-width: 120px;
+  max-height: 120px;
+}
+
+.product-card__image--small {
+  /* Para imágenes pequeñas (comidas) */
+  max-width: 80px;
+  max-height: 80px;
+}
+
+.product-card__media--compact {
+  min-height: calc(var(--media-height-current) * 0.8);
+}
+
+/* === PRICE BUTTONS - Componente de Precios === */
+
+/* BLOQUE BASE */
+.price-button {
+  /* Estilos base para todos los price buttons */
+  border: 1px solid rgba(0, 247, 255, 0.3);
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: transparent;
+  min-height: var(--price-button-height-current);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* MODIFICADORES DE BLOQUE */
+.price-button--liquor {
+  /* Reemplaza: .product-grid .product-card.liquor-card .price-button */
+  background: rgba(0, 247, 255, 0.1);
+  border-color: rgba(0, 247, 255, 0.3);
+}
+
+.price-button--standard {
+  /* Para productos no-licor */
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* ESTADOS */
+.price-button--active {
+  /* Reemplaza: .price-selection-mode .product-grid .product-card.liquor-card .price-button */
+  background: rgba(0, 247, 255, 0.2);
+  animation: pulse 2s infinite;
+  transform: scale(1.02);
+  border-color: rgba(0, 247, 255, 0.6);
+}
+
+.price-button--disabled {
+  /* Reemplaza: .price-button:disabled */
+  opacity: 0.5;
+  cursor: not-allowed;
+  animation: none;
+  background: transparent;
+  transform: none;
+}
+
+.price-button--non-selectable {
+  /* Reemplaza: .price-button.non-selectable */
+  opacity: 0.6;
+  cursor: default;
+  animation: none;
+  background: transparent;
+  transform: none;
+}
+
+/* ELEMENTOS DEL PRICE BUTTON */
+.price-button__label {
+  /* Reemplaza: .product-card.liquor-card .price-label */
+  font-size: clamp(0.6rem, 1.2vw, 0.8rem);
+  color: #666;
+  margin-bottom: 2px;
+  text-align: center;
+}
+
+.price-button__value {
+  /* Para el valor del precio */
+  font-weight: 600;
+  color: var(--price-color);
+}
+
+/* HOVER STATES */
+.price-button:hover:not(.price-button--disabled):not(.price-button--non-selectable) {
+  transform: scale(1.05);
+  background: rgba(0, 247, 255, 0.15);
+  border-color: rgba(0, 247, 255, 0.5);
+}
+
+/* =====================================================================
+   SECTION 2: LAYOUT COMPONENTS
+   ===================================================================== */
+
+/* === CATEGORY GRIDS - Sistema de Categorías === */
+
+/* BLOQUE BASE */
+.category-grid {
+  /* Estilos base para category grids */
+  display: grid;
+  gap: var(--gap);
+  padding: var(--padding);
+}
+
+/* MODIFICADORES DE BLOQUE */
+.category-grid--liquor {
+  /* Reemplaza: .category-grid[data-category="licores"] */
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.category-grid--standard {
+  /* Para categorías estándar */
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+}
+
+/* ELEMENTOS DEL CATEGORY GRID */
+.category-grid__card {
+  /* Reemplaza: .category-grid[data-category="licores"] .category-card */
+  min-height: var(--category-height-current);
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: var(--card-radius);
+  padding: var(--card-padding);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.category-grid__image {
+  /* Reemplaza: .category-grid[data-category="licores"] .category-image */
+  width: var(--category-image-current);
+  height: var(--category-image-current);
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 12px;
+  transition: var(--transition);
+}
+
+.category-grid__name {
+  /* Reemplaza: .category-grid[data-category="licores"] .category-name */
+  font-size: clamp(0.8rem, 1.8vw, 1rem);
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+  min-height: var(--category-name-height-current);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.category-grid__prompt {
+  /* Reemplaza: .category-grid[data-category="licores"] .subcategory-prompt */
+  font-size: clamp(0.7rem, 1.4vw, 0.9rem);
+  color: #666;
+  text-align: center;
+  margin-top: 8px;
+  font-style: italic;
+}
+
+/* HOVER STATES */
+.category-grid__card:hover {
+  transform: scale(var(--hover-scale));
+  box-shadow: var(--glow-shadow-hover);
+}
+
+.category-grid__card:hover .category-grid__image {
+  transform: scale(1.1);
+}
+
+/* === PRODUCT TABLES - Tablas de Productos === */
+
+/* BLOQUE BASE */
+.product-table {
+  /* Estilos base para product tables */
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--spacing) auto;
+  max-width: var(--container-max);
+}
+
+/* MODIFICADORES DE BLOQUE */
+.product-table--beverages {
+  /* Reemplaza: .product-table[data-category="refrescos"], .product-table[data-category="cervezas"] */
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.product-table--food {
+  /* Para productos de comida */
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* ELEMENTOS DE LA TABLA */
+.product-table--beverages th,
+.product-table--beverages td {
+  /* Reemplaza: .product-table[data-category="refrescos"] th, .product-table[data-category="cervezas"] th */
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.product-table--beverages th:first-child,
+.product-table--beverages td.product-name {
+  /* Reemplaza: .product-table[data-category="refrescos"] th:first-child */
+  width: 45%;
+  font-weight: 600;
+}
+
+.product-table--beverages th:nth-child(2),
+.product-table--beverages td:nth-child(2) {
+  /* Reemplaza: .product-table[data-category="refrescos"] th:nth-child(2) */
+  width: 25%;
+  text-align: center;
+}
+
+.product-table--beverages th:nth-child(3),
+.product-table--beverages td:nth-child(3) {
+  /* Reemplaza: .product-table[data-category="refrescos"] th:nth-child(3) */
+  width: 30%;
+  text-align: right;
+}
+
+/* =====================================================================
+   SECTION 3: MODAL COMPONENTS
+   ===================================================================== */
+
+/* === MODAL CONTENT - Contenido de Modales === */
+
+/* MODIFICADORES DE MODAL */
+.modal-content--beverages {
+  /* Reemplaza: .modal-content[data-category="refrescos"], .modal-content[data-category="cervezas"] */
+  width: 33.6%;
+  max-width: 336px;
+}
+
+.modal-content--standard {
+  /* Para modales estándar */
+  width: 50%;
+  max-width: 500px;
+}
+
+/* =====================================================================
+   SECTION 4: GLOBAL STATES
+   ===================================================================== */
+
+/* === ESTADOS GLOBALES === */
+
+/* ESTADO DE SELECCIÓN DE PRECIOS */
+.is-price-selection-mode .price-button--liquor {
+  /* Reemplaza: .price-selection-mode .product-grid .product-card.liquor-card .price-button */
+  background: rgba(0, 247, 255, 0.2);
+  animation: pulse 2s infinite;
+  transform: scale(1.02);
+}
+
+.is-price-selection-mode .price-button:not(.price-button--liquor) {
+  /* Reemplaza: .price-selection-mode .price-button:not(.product-grid .product-card.liquor-card .price-button) */
+  background: rgba(0, 247, 255, 0.2);
+  transform: scale(1.05);
+  transition: all 0.3s ease;
+  animation: pulse 2s infinite;
+}
+
+.is-price-selection-mode .price-button--disabled,
+.is-price-selection-mode .price-button--non-selectable {
+  /* Reemplaza: .price-selection-mode .price-button.non-selectable, .price-selection-mode .price-button:disabled */
+  animation: none;
+  background: transparent;
+  transform: none;
+}
+
+/* ESTADO DE CARGA */
+.is-loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.is-loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(0, 247, 255, 0.3);
+  border-top: 2px solid var(--accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* ESTADO DE ERROR */
+.is-error {
+  border-color: #ff4444;
+  background: rgba(255, 68, 68, 0.1);
+}
+
+/* =====================================================================
+   SECTION 5: ANIMATIONS
+   ===================================================================== */
+
+/* === ANIMACIONES === */
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* =====================================================================
+   SECTION 6: RESPONSIVE UTILITIES
+   ===================================================================== */
+
+/* === UTILIDADES RESPONSIVAS === */
+
+/* ALTURAS RESPONSIVAS */
+.h-card-sm { height: var(--card-height-mobile); }
+.h-card-md { height: var(--card-height-tablet); }
+.h-card-lg { height: var(--card-height-desktop); }
+
+.min-h-card-sm { min-height: var(--card-height-mobile); }
+.min-h-card-md { min-height: var(--card-height-tablet); }
+.min-h-card-lg { min-height: var(--card-height-desktop); }
+
+/* MEDIA RESPONSIVO */
+.h-media-sm { height: var(--media-height-mobile); }
+.h-media-md { height: var(--media-height-tablet); }
+.h-media-lg { height: var(--media-height-desktop); }
+
+/* BOTONES RESPONSIVOS */
+.h-btn-sm { height: var(--button-height-sm); }
+.h-btn-md { height: var(--button-height-md); }
+.h-btn-lg { height: var(--button-height-lg); }
+
+/* ASPECTOS ESPECÍFICOS */
+.aspect-card {
+  aspect-ratio: 3/4; /* Proporción consistente para cards */
+}
+
+.aspect-media {
+  aspect-ratio: 16/9; /* Proporción para media */
+}
+
+.aspect-square {
+  aspect-ratio: 1/1; /* Para elementos cuadrados */
+}
+
+/* VISIBILIDAD RESPONSIVA */
+.visible-mobile { display: block; }
+.visible-tablet { display: none; }
+.visible-desktop { display: none; }
+
+@media (min-width: 768px) {
+  .visible-mobile { display: none; }
+  .visible-tablet { display: block; }
+  .visible-desktop { display: none; }
+}
+
+@media (min-width: 1024px) {
+  .visible-mobile { display: none; }
+  .visible-tablet { display: none; }
+  .visible-desktop { display: block; }
+}
+
+/* =====================================================================
+   SECTION 7: DYNAMIC GRID SYSTEM
+   ===================================================================== */
+
+/* === GRID TYPES - Tipos dinámicos aplicados por JavaScript === */
+
+/* GRID TYPE 1 - Grid estándar para productos (3 columnas desktop, 2 tablet, 1-2 mobile) */
+.grid-type-1,
+.product-grid.grid-type-1 {
+  grid-template-columns: repeat(var(--grid-columns), 1fr);
+  gap: clamp(15px, 2.5vw, 25px);
+  padding: clamp(15px, 2.5vw, 25px);
+}
+
+/* GRID TYPE 2 - Grid compacto para bebidas sin ingredientes (refrescos, cervezas) */
+.grid-type-2,
+.product-grid.grid-type-2 {
+  grid-template-columns: repeat(var(--grid-columns), 1fr);
+  gap: clamp(10px, 2vw, 20px);
+  padding: clamp(10px, 2vw, 20px);
+}
+
+.grid-type-2 .product-card {
+  min-height: 180px; /* Más compacto para bebidas */
+}
+
+/* GRID TYPE 3 - Grid para categorías especiales */
+.grid-type-3,
+.category-grid.grid-type-3 {
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: clamp(12px, 2.2vw, 22px);
+  padding: clamp(12px, 2.2vw, 22px);
+}
+
+/* GRID TYPE 4 - Grid para categorías de licores (5 columnas desktop) */
+.grid-type-4,
+.category-grid.grid-type-4 {
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  padding: 20px;
+}
+
+@media (max-width: 1024px) {
+  .grid-type-4 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .grid-type-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* =====================================================================
+   SECTION 8: COMPATIBILITY & FALLBACKS
+   ===================================================================== */
+
+/* === COMPATIBILIDAD Y TRANSICIÓN === */
+
+/* CLASES DE TRANSICIÓN - Para migración gradual */
+.product-card.liquor-card.product-card--liquor {
+  /* Permite usar ambas clases durante la transición */
+  min-height: var(--card-height-liquor);
+}
+
+.price-button.price-button--liquor {
+  /* Permite usar ambas clases durante la transición */
+  background: rgba(0, 247, 255, 0.1);
+}
+
+/* FALLBACKS PARA NAVEGADORES ANTIGUOS */
+@supports not (min-height: clamp(180px, 25vh, 220px)) {
+  .product-card--liquor {
+    min-height: 260px; /* Fallback fijo */
+  }
+  
+  .product-card__media {
+    min-height: 140px; /* Fallback fijo */
+  }
+  
+  .category-grid__card {
+    min-height: 173px; /* Fallback fijo */
+  }
+}
