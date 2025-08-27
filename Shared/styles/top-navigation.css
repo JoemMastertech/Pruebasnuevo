@@ -130,9 +130,7 @@ body.top-nav-visible {
   padding-top: var(--top-nav-height);
 }
 
-#app {
-  padding-top: 0;
-}
+/* Removed conflicting #app rule - padding-top handled in main.css */
 
 /* =================================================================
    RESPONSIVE DESIGN - TOP NAVIGATION

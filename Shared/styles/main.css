@@ -48,17 +48,6 @@
   opacity: 0.4;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Montserrat', sans-serif; color: var(--text); background: var(--background-color); min-height: 100vh; overflow-y: auto; }
-#app { 
-  width: 70%; 
-  min-height: 100vh; 
-  position: relative; 
-  margin: 0 auto;
-  transition: margin-left 0.3s ease-in-out;
-}
-.screen { position: absolute; top: 0; left: 0; width: 100%; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 1; }
-
 /* =====================================================================
    SECTION 1: CORE FOUNDATION
    ===================================================================== */
@@ -71,7 +60,9 @@ body { font-family: 'Montserrat', sans-serif; color: var(--text); background: va
   min-height: 100vh; 
   position: relative; 
   margin: 0 auto;
+  padding-top: var(--top-nav-height);
   transition: margin-left 0.3s ease-in-out;
+  box-sizing: border-box;
 }
 .screen { position: absolute; top: 0; left: 0; width: 100%; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 1; }
 
@@ -99,14 +90,11 @@ body { font-family: 'Montserrat', sans-serif; color: var(--text); background: va
   max-width: 300px;
   height: auto;
   animation: fadeIn 1s ease-in-out;
-  filter: drop-shadow(0 0 10px rgba(0, 247, 255, 0.3));
+
   transition: all var(--transition-time) ease;
 }
 
-.logo:hover {
-  transform: scale(1.05);
-  filter: drop-shadow(0 0 20px rgba(0, 247, 255, 0.6));
-}
+
 
 /* Logo específico para la página */
 .main-logo {
@@ -179,42 +167,7 @@ body { font-family: 'Montserrat', sans-serif; color: var(--text); background: va
   color: var(--background-color);
 }
 
-/* === BUTTON COMPONENTS === */
-.nav-button, .view-toggle-btn {
-  background: transparent;
-  border: 2px solid var(--primary-color);
-  color: var(--text-color);
-  padding: 8px 15px;
-  font: 600 1rem 'Montserrat', sans-serif;
-  cursor: pointer;
-  transition: all var(--transition-time) ease;
-}
-
-.view-toggle-btn {
-  font-size: 1.2rem;
-  width: 50px;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: var(--border-radius-lg);
-  backdrop-filter: blur(10px);
-  font-weight: bold;
-}
-
-.nav-button:hover, .nav-button.active, .view-toggle-btn:hover {
-  background-color: var(--primary-color);
-  color: var(--background-color);
-}
-
-.view-toggle-btn:hover {
-  transform: scale(1.05);
-}
-
-.view-toggle-btn.active {
-  background-color: var(--primary-color);
-  color: var(--background-color);
-}
+/* === BUTTON COMPONENTS - Duplicated styles removed === */
 
 /* =====================================================================
    SECTION 4: LAYOUT COMPONENTS
@@ -235,14 +188,14 @@ body { font-family: 'Montserrat', sans-serif; color: var(--text); background: va
 .page-title {
   font-family: 'Playfair Display', serif;
   color: var(--text-color);
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 4vw, 2rem);
   text-align: center;
   width: 100%;
   margin: 0;
-  padding: 15px 20px;
+  padding: clamp(8px, 2vw, 12px) clamp(15px, 3vw, 20px);
   background: transparent;
   border-bottom: 2px solid var(--border-color);
-  margin-bottom: 15px;
+  margin-bottom: clamp(10px, 2vw, 12px);
 }
 
 #create-order-btn, #orders-btn {
@@ -545,12 +498,12 @@ body { font-family: 'Montserrat', sans-serif; color: var(--text); background: va
   grid-column: 1 / -1;
   text-align: center;
   border-bottom: 2px solid var(--border-color);
-  padding-bottom: 15px;
-  margin-bottom: 20px;
+  padding-bottom: clamp(8px, 2vw, 12px);
+  margin-bottom: clamp(12px, 2.5vw, 16px);
 }
 
 .category-grid .page-title {
-  margin-bottom: 5px;
+  margin-bottom: clamp(4px, 1vw, 8px);
 }
 
 /* =====================================================================
@@ -675,7 +628,7 @@ body { font-family: 'Montserrat', sans-serif; color: var(--text); background: va
   margin-bottom: 15px;
   text-align: justify;
   text-justify: inter-word;
-  opacity: 0.8;
+  opacity: 1;
   flex-grow: 1;
   order: 3;
   
@@ -1401,12 +1354,12 @@ body { font-family: 'Montserrat', sans-serif; color: var(--text); background: va
   border-radius: 8px;
   backdrop-filter: blur(10px);
   position: fixed;
-  top: 20px;
+  top: calc(var(--top-nav-height) + 20px);
   right: 20px;
-  max-height: calc(100vh - 40px);
+  max-height: calc(100vh - var(--top-nav-height) - 40px);
   overflow-y: auto;
   overflow-x: hidden;
-  z-index: 1000;
+  z-index: 999;
   box-shadow: var(--glow-shadow);
   display: none;
   transition: all var(--transition-time) ease;
@@ -2272,14 +2225,15 @@ textarea:focus {
     margin: 4px 0;
   }
   
-  /* ORDER SIDEBAR - MOBILE LANDSCAPE (pegado al borde derecho) */
+  /* ORDER SIDEBAR - MOBILE LANDSCAPE (redimensionamiento proporcional) */
   body.order-mode-active #app {
-    margin-left: 0;
-    margin-right: 0;
+    width: calc(70% - 140px);
+    margin-left: auto;
+    margin-right: auto;
   }
   
   .content-wrapper {
-    width: calc(100% - 140px);
+    width: 100%;
   }
   
   #order-sidebar {
@@ -2515,6 +2469,13 @@ textarea:focus {
     margin-bottom: 18px;
   }
   
+  /* Ajustar el contenedor principal para sidebar más ancho en pantallas grandes */
+  body.order-mode-active #app {
+    width: calc(70% - 240px); /* Ajuste para sidebar de 240px */
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
   .order-item {
     padding: 12px 0;
     margin-bottom: 12px;
@@ -2674,7 +2635,7 @@ textarea:focus {
 }
 
 /* Optimized drawer menu */
-.drawer-menu { position: fixed; top: 0; left: 0; width: 300px; height: 100vh; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(10px); z-index: 999; transform: translateX(-100%); transition: transform 0.3s ease-in-out; overflow-y: auto; border-right: 1px solid var(--border-color); box-shadow: 3px 0 15px rgba(0, 247, 255, 0.2); }
+.drawer-menu { position: fixed; top: 0; left: 0; width: 300px; height: 100vh; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(10px); z-index: 999; transform: translateX(-100%); transition: transform 0.3s ease-in-out; overflow-y: auto; border-right: 1px solid rgba(255, 255, 255, 0.2); }
 .drawer-menu.open { transform: translateX(0); }
 .drawer-content { padding: 80px 20px 20px 20px; display: flex; flex-direction: column; gap: 15px; }
 .drawer-logo-container { display: flex; justify-content: center; margin-bottom: 10px; }
@@ -2694,9 +2655,11 @@ textarea:focus {
   background: transparent;
 }
 
-/* Cuando el modo orden está activo, desplazar el contenedor maestro hacia la izquierda */
+/* Cuando el modo orden está activo, ajustar el ancho del contenedor para hacer espacio al sidebar */
 body.order-mode-active #app {
-  margin-left: calc(50% - 35% - 110px); /* Desplaza hacia la izquierda para hacer espacio al sidebar */
+  width: calc(70% - 140px); /* Reduce el ancho en lugar de desplazar */
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .content-wrapper.order-active {
@@ -2906,8 +2869,7 @@ body.order-mode-active #app {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 247, 255, 0.3);
-  box-shadow: var(--glow-shadow);
+  background: rgba(255, 255, 255, 0.3);
 }
 
 ::-webkit-scrollbar-corner {
