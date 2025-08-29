@@ -1,0 +1,37 @@
+# Git attributes file
+# This file tells Git how to handle files with special characters like underscores
+
+# Handle all files with underscores as text files
+*_*.* text
+
+# Ensure CSS files with underscores are treated as text
+*_*.css text
+
+# Ensure JavaScript files with underscores are treated as text
+*_*.js text
+
+# Ensure Markdown files with underscores are treated as text
+*_*.md text
+
+# General text file handling
+*.css text
+*.js text
+*.html text
+*.md text
+*.json text
+*.yml text
+*.yaml text
+*.txt text
+
+# Line ending normalization
+* text=auto
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.zip binary
+*.tar.gz binary
