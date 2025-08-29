@@ -1,0 +1,181 @@
+/* =================================================================
+   UTILITIES WITH HIGH SPECIFICITY - REPLACES !important
+   ================================================================= */
+
+/* === DISPLAY UTILITIES === */
+/* High specificity display utilities to replace !important */
+html body .u-display-none,
+html body .screen-hidden,
+html body .choice-hidden,
+html body .error-hidden,
+html body .modal-hidden,
+html body .hidden,
+html body .page-title-hidden,
+html body .hamburger-hidden,
+html body .sidebar-hidden,
+html body .content-hidden,
+html body .input-container-hidden {
+  display: none;
+}
+
+html body .u-display-flex,
+html body .screen-visible,
+html body .screen-flex,
+html body .modal-flex {
+  display: flex;
+}
+
+html body .u-display-block,
+html body .screen-block,
+html body .choice-visible,
+html body .error-visible,
+html body .page-title-visible,
+html body .hamburger-visible,
+html body .sidebar-visible,
+html body .content-visible,
+html body .input-container-visible {
+  display: block;
+}
+
+/* === SIZE UTILITIES === */
+/* High specificity size utilities */
+html body .u-size-xs,
+html body .product-image-small {
+  width: 40px;
+  height: 40px;
+}
+
+html body .u-size-sm,
+html body .product-image-large {
+  width: 70px;
+  height: 70px;
+}
+
+html body .u-height-auto,
+html body .height-auto {
+  height: auto;
+}
+
+html body .u-min-height-auto,
+html body .min-height-auto {
+  min-height: auto;
+}
+
+/* === RESPONSIVE NAVIGATION UTILITIES === */
+/* Mobile navigation overrides */
+@media (orientation: portrait) and (max-width: var(--bp-mobile-large)) {
+  html body #top-nav.u-nav-mobile,
+  html body #top-nav {
+    height: var(--top-nav-height-mobile);
+    min-height: var(--top-nav-height-mobile);
+    max-height: var(--top-nav-height-mobile);
+  }
+  
+  html body.top-nav-visible.u-body-mobile,
+  html body.top-nav-visible {
+    padding-top: var(--top-nav-height-mobile);
+  }
+}
+
+/* Tablet navigation overrides */
+@media (min-width: calc(var(--bp-mobile-large) + 1px)) and (max-width: var(--bp-desktop)) {
+  html body #top-nav.u-nav-tablet,
+  html body #top-nav {
+    height: var(--top-nav-height-tablet);
+    min-height: var(--top-nav-height-tablet);
+    max-height: var(--top-nav-height-tablet);
+  }
+  
+  html body.top-nav-visible.u-body-tablet,
+  html body.top-nav-visible {
+    padding-top: var(--top-nav-height-tablet);
+  }
+}
+
+/* === TABLE UTILITIES === */
+/* Compact table overrides for mobile */
+@media (max-width: var(--bp-mobile-large)) {
+  html body .product-table.u-table-compact th,
+  html body .liquor-table.u-table-compact th,
+  html body .product-table th,
+  html body .liquor-table th {
+    padding: var(--spacing-sm) var(--spacing-xs);
+    font-size: 0.6rem;
+  }
+  
+  html body .product-table.u-table-compact td,
+  html body .liquor-table.u-table-compact td,
+  html body .product-table td,
+  html body .liquor-table td {
+    padding: 4px 2px;
+    font-size: 0.55rem;
+  }
+  
+  html body .product-table.u-table-compact td.image-icon img,
+  html body .liquor-table.u-table-compact td.image-icon img,
+  html body .product-table td.image-icon img,
+  html body .liquor-table td.image-icon img {
+    width: var(--icon-xs);
+    height: var(--icon-xs);
+  }
+}
+
+/* === ORDER ITEM UTILITIES === */
+/* Order item text overrides */
+@media (max-width: var(--bp-mobile-large)) {
+  html body .order-item-name.u-text-compact,
+  html body .order-item-name {
+    font-size: 0.7rem;
+    margin-bottom: 3px;
+  }
+  
+  html body .order-item-price.u-text-compact,
+  html body .order-item-price {
+    font-size: 0.65rem;
+  }
+}
+
+/* === DRAWER MENU UTILITIES === */
+/* Drawer menu size override */
+html body .drawer-menu.u-drawer-compact,
+html body .drawer-menu {
+  width: 150px;
+}
+
+/* === CATEGORY GRID UTILITIES === */
+/* Category grid spacing overrides */
+@media (min-width: var(--bp-tablet)) and (max-width: var(--bp-desktop)) {
+  html body .category-grid--liquors .subcategory-prompt.u-spacing-compact,
+  html body .category-grid--liquors .subcategory-prompt {
+    margin: 2px 0 8px 0;
+  }
+}
+
+/* === UTILITY MODIFIERS === */
+/* Additional utility classes for common overrides */
+/* Base class for high specificity overrides: .u-override */
+
+html body .u-override.u-display-none { display: none; }
+html body .u-override.u-display-flex { display: flex; }
+html body .u-override.u-display-block { display: block; }
+html body .u-override.u-height-auto { height: auto; }
+html body .u-override.u-min-height-auto { min-height: auto; }
+
+/* === RESPONSIVE UTILITY MODIFIERS === */
+@media (max-width: var(--bp-mobile-large)) {
+  html body .u-mobile-override.u-display-none { display: none; }
+  html body .u-mobile-override.u-display-flex { display: flex; }
+  html body .u-mobile-override.u-display-block { display: block; }
+}
+
+@media (min-width: var(--bp-tablet)) and (max-width: var(--bp-desktop)) {
+  html body .u-tablet-override.u-display-none { display: none; }
+  html body .u-tablet-override.u-display-flex { display: flex; }
+  html body .u-tablet-override.u-display-block { display: block; }
+}
+
+@media (min-width: var(--bp-desktop)) {
+  html body .u-desktop-override.u-display-none { display: none; }
+  html body .u-desktop-override.u-display-flex { display: flex; }
+  html body .u-desktop-override.u-display-block { display: block; }
+}

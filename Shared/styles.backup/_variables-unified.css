@@ -388,9 +388,8 @@
     /* Navegación */
     --nav-height: var(--nav-height-desktop);
     
-    /* Grid system - Asegurar 3 columnas en desktop */
-    --grid-columns: 3;
-    --grid-columns-liquor: 5;
+    /* Grid */
+    --grid-columns: var(--grid-columns-desktop);
     
     /* Espaciado */
     --spacing: var(--spacing-desktop);

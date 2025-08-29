@@ -133,6 +133,20 @@ class OrderSystem {
       return;
     }
     
+    // Handle create order button from hamburger menu
+    if (target && target.getAttribute && target.getAttribute('data-action') === 'createOrder') {
+      console.log('🎯 handleDelegatedEvent: createOrder button clicked', {
+        target: target,
+        eventType: event.type,
+        timeStamp: event.timeStamp,
+        isTrusted: event.isTrusted
+      });
+      event.preventDefault();
+      event.stopPropagation(); // Prevent event bubbling
+      this.toggleOrderMode();
+      return;
+    }
+    
     // Handle modal confirm/cancel buttons
     if (target.id === 'confirm-drinks-btn') {
       event.preventDefault();
@@ -232,9 +246,9 @@ class OrderSystem {
       const card = target.closest('.product-card');
       
       if (row) {
-        const nameCell = row.querySelector('.product-name');
+        const nameCell = row.querySelector('.product-card__name') || row.querySelector('.product-name');
         const priceText = target.textContent;
-        const productName = nameCell.textContent;
+        const productName = nameCell ? nameCell.textContent : target.dataset.productName;
         this.handleProductSelection(productName, priceText, row, event);
       } else if (card) {
         const productName = target.dataset.productName;
@@ -367,8 +381,19 @@ class OrderSystem {
   }
 
   toggleOrderMode(skipClear = false) {
+    console.log('🔄 toggleOrderMode called, current isOrderMode:', this.isOrderMode);
     this.isOrderMode = !this.isOrderMode;
+    console.log('🔄 toggleOrderMode new isOrderMode:', this.isOrderMode);
+    
     const elements = this._getOrderModeElements();
+    console.log('🔍 Elements found:', {
+      sidebar: !!elements.sidebar,
+      sidebarId: elements.sidebar?.id,
+      tables: elements.tables?.length,
+      wrapper: !!elements.wrapper,
+      orderBtn: !!elements.orderBtn,
+      body: !!elements.body
+    });
     
     this._updateOrderModeUI(elements, this.isOrderMode);
     this._handleOrderModeCleanup(skipClear);
@@ -411,20 +436,51 @@ class OrderSystem {
   }
 
   _updateSidebarVisibility(sidebar, isActive) {
+    console.log('👁️ _updateSidebarVisibility called:', {
+      sidebarExists: !!sidebar,
+      sidebarId: sidebar?.id,
+      hasClassList: !!sidebar?.classList,
+      isActive: isActive,
+      currentDisplay: sidebar?.style?.display,
+      currentClasses: sidebar?.className
+    });
+    
     if (sidebar && sidebar.classList) {
-      // Keep sidebar visible if there are items in the order, even when order mode is off
-      const hasItems = this.core && this.core.getItems && this.core.getItems().length > 0;
-      const shouldBeVisible = isActive || hasItems;
-      
-      sidebar.classList.toggle('sidebar-visible', shouldBeVisible);
-      sidebar.classList.toggle('sidebar-hidden', !shouldBeVisible);
-      
-      // Agregar clase 'active' para animaciones en móviles landscape ≤480px
-      if (shouldBeVisible && window.innerWidth <= 480 && window.matchMedia('(orientation: landscape)').matches) {
-        sidebar.classList.add('active');
+      // Show sidebar when order mode is active
+      if (isActive) {
+        console.log('✅ Showing sidebar - removing sidebar-hidden, adding sidebar-visible');
+        sidebar.classList.remove('sidebar-hidden');
+        sidebar.classList.add('sidebar-visible');
+        sidebar.style.display = 'block';
+        
+        console.log('📱 Window dimensions:', {
+          width: window.innerWidth,
+          isLandscape: window.matchMedia('(orientation: landscape)').matches
+        });
+        
+        // Agregar clase 'active' para animaciones en móviles landscape ≤480px
+        if (window.innerWidth <= 480 && window.matchMedia('(orientation: landscape)').matches) {
+          sidebar.classList.add('active');
+          console.log('📱 Added active class for mobile landscape');
+        }
+        
+        console.log('✅ Sidebar after showing:', {
+          display: sidebar.style.display,
+          classes: sidebar.className
+        });
       } else {
-        sidebar.classList.remove('active');
+        console.log('❌ Hiding sidebar - removing sidebar-visible, adding sidebar-hidden');
+        sidebar.classList.remove('sidebar-visible', 'active');
+        sidebar.classList.add('sidebar-hidden');
+        sidebar.style.display = 'none';
+        
+        console.log('❌ Sidebar after hiding:', {
+          display: sidebar.style.display,
+          classes: sidebar.className
+        });
       }
+    } else {
+      console.error('❌ Sidebar element not found or missing classList!');
     }
   }
 
@@ -447,10 +503,24 @@ class OrderSystem {
   }
 
   _updateBodyState(body, isActive) {
+    console.log('🎯 _updateBodyState called:', {
+      bodyExists: !!body,
+      hasClassList: !!body?.classList,
+      isActive: isActive,
+      currentBodyClasses: body?.className
+    });
+    
     if (body && body.classList) {
       body.classList.toggle('order-mode-active', isActive);
+      console.log('🎯 Body classes after toggle:', {
+        hasOrderModeActive: body.classList.contains('order-mode-active'),
+        allClasses: body.className
+      });
+      
       // Reposition hamburger button when order mode changes
       this._repositionHamburgerButton(isActive);
+    } else {
+      console.error('❌ Body element not found or missing classList!');
     }
   }
 
@@ -462,7 +532,8 @@ class OrderSystem {
   _handleOrderModeCleanup(skipClear) {
     if (!this.isOrderMode && !skipClear) {
       this.core.clearItems();
-      this.updateOrderDisplay();
+      // Removed updateOrderDisplay() call to prevent recursion
+      console.log('Order items cleared during cleanup');
     }
   }
 
@@ -1159,14 +1230,9 @@ class OrderSystem {
     if (!this.isOrderMode) {
       console.warn('Attempting to add product when not in order mode, activating order mode');
       this.toggleOrderMode();
-      
-      // Wait for order mode to be fully activated and sidebar to be visible
-      setTimeout(() => {
-        this._addConfirmedProduct(prefix, name, customization);
-      }, 300);
-      return;
     }
     
+    // Always add the product directly without setTimeout to avoid recursion
     this._addConfirmedProduct(prefix, name, customization);
   }
   
@@ -1550,21 +1616,12 @@ class OrderSystem {
     
     // Ensure sidebar is visible before adding product
     const sidebar = document.getElementById(CONSTANTS.SELECTORS.SIDEBAR);
-    if (sidebar) {
-      if (sidebar.classList.contains('sidebar-hidden')) {
-        sidebar.classList.remove('sidebar-hidden');
-        sidebar.classList.add('sidebar-visible');
-        
-        // Wait a bit for the sidebar to become visible before updating display
-        setTimeout(() => {
-          this.core.addProduct(orderItem);
-          this.updateOrderDisplay();
-          this.currentProduct = null;
-        }, 100);
-        return;
-      }
+    if (sidebar && sidebar.classList.contains('sidebar-hidden')) {
+      sidebar.classList.remove('sidebar-hidden');
+      sidebar.classList.add('sidebar-visible');
     }
     
+    // Add product directly without setTimeout to avoid recursion
     this.core.addProduct(orderItem); 
     this.updateOrderDisplay();
     this.currentProduct = null;
@@ -1602,23 +1659,11 @@ class OrderSystem {
           sidebar.classList.add('sidebar-visible');
           console.log('  - sidebar classes after change:', sidebar.className);
           
-          // Try again after a short delay to allow DOM to update
-          setTimeout(() => {
-            const retryContainer = document.getElementById('order-items');
-            console.log('🔍 DEBUG - updateOrderDisplay retry after 150ms:');
-            console.log('  - order-items found on retry:', !!retryContainer);
-            console.log('  - sidebar classes on retry:', sidebar ? sidebar.className : 'N/A');
-            if (retryContainer) {
-              console.log('  - SUCCESS: order-items found, updating content');
-              this._updateOrderDisplayContent(retryContainer);
-            } else {
-              console.error('Element with ID "order-items" still not found after making sidebar visible');
-              console.log('  - All elements with class sidebar-visible:', document.querySelectorAll('.sidebar-visible').length);
-              console.log('  - All elements with id order-sidebar:', document.querySelectorAll('#order-sidebar').length);
-              // Don't force order mode off, just log the error
-              window.Logger.error('Unable to find order-items container even after making sidebar visible');
-            }
-          }, 150); // Increased timeout to allow for CSS transitions
+          // Log the error without retrying to prevent recursion
+          console.error('Element with ID "order-items" still not found after making sidebar visible');
+          console.log('  - All elements with class sidebar-visible:', document.querySelectorAll('.sidebar-visible').length);
+          console.log('  - All elements with id order-sidebar:', document.querySelectorAll('#order-sidebar').length);
+          window.Logger.error('Unable to find order-items container even after making sidebar visible');
         } else {
           console.error('Sidebar element not found in DOM');
         }
@@ -1910,28 +1955,45 @@ class OrderSystem {
   }
 
   showOrdersScreen() {
+    // Check if orders screen already exists and is visible to prevent duplication
+    const existingOrdersScreen = document.querySelector('.orders-screen');
+    if (existingOrdersScreen && existingOrdersScreen.classList.contains('screen-visible')) {
+      window.Logger.debug('Orders screen already visible, skipping creation');
+      return;
+    }
+    
     const elements = {
       mainContentScreen: document.querySelector('.main-content-screen'),
       contentContainer: document.getElementById('content-container'),
       pageTitleElement: document.querySelector('.page-title'),
-      // hamburgerBtn is now handled by IndependentTopNavManager
-      ordersScreen: document.querySelector('.orders-screen')
+      ordersScreen: existingOrdersScreen
     };
     
-    // Hamburger button visibility is now handled by IndependentTopNavManager
-    elements.contentContainer.className = 'content-hidden';
+    // Hide main content but don't interfere with navigation
+    if (elements.contentContainer) {
+      elements.contentContainer.classList.add('content-hidden');
+      elements.contentContainer.classList.remove('content-visible');
+    }
     
-    this.previousCategory = elements.mainContentScreen.getAttribute('data-category');
+    this.previousCategory = elements.mainContentScreen ? elements.mainContentScreen.getAttribute('data-category') : 'cocteleria';
     this.previousTitle = elements.pageTitleElement ? elements.pageTitleElement.textContent : 'Coctelería';
     this.isShowingHistory = false;
     
     if (elements.ordersScreen) {
-      elements.ordersScreen.className = 'orders-screen screen-block';
+      // Remove any existing screen-hidden class and add screen-visible
+      elements.ordersScreen.classList.remove('screen-hidden');
+      elements.ordersScreen.classList.add('screen-visible');
       const historyButton = elements.ordersScreen.querySelector('.history-btn');
       if (historyButton) historyButton.textContent = 'Historial Órdenes';
       this.populateOrdersScreen();
     } else {
-      elements.mainContentScreen.appendChild(this._createOrdersScreen());
+      // Remove any existing orders screens to prevent duplication
+      const allOrdersScreens = document.querySelectorAll('.orders-screen');
+      allOrdersScreens.forEach(screen => screen.remove());
+      
+      const newOrdersScreen = this._createOrdersScreen();
+      newOrdersScreen.classList.add('screen-visible');
+      document.body.appendChild(newOrdersScreen);
       this.populateOrdersScreen();
     }
   }
@@ -2234,19 +2296,49 @@ class OrderSystem {
     
     const elements = {
       contentContainer: document.getElementById('content-container'),
-      ordersScreen: document.querySelector('.orders-screen'),
-      // hamburgerBtn is now handled by IndependentTopNavManager
+      ordersScreen: document.querySelector('.orders-screen')
     };
     
-    // Hamburger button visibility is now handled by IndependentTopNavManager
-    elements.ordersScreen.classList.add('screen-hidden');
-    elements.ordersScreen.classList.remove('screen-visible');
-    elements.contentContainer.classList.add('content-visible');
-    elements.contentContainer.classList.remove('content-hidden');
+    // Hide orders screen
+    if (elements.ordersScreen) {
+      elements.ordersScreen.classList.add('screen-hidden');
+      elements.ordersScreen.classList.remove('screen-visible');
+    }
+    
+    // Show main content
+    if (elements.contentContainer) {
+      elements.contentContainer.classList.add('content-visible');
+      elements.contentContainer.classList.remove('content-hidden');
+    }
+    
+    // Ensure main screen is properly visible
+    const mainScreen = document.querySelector('.main-content-screen');
+    if (mainScreen) {
+      mainScreen.classList.remove('screen-hidden');
+      mainScreen.classList.add('screen-visible');
+    }
     
     if (this.previousCategory && window.AppInit) {
       window.Logger.debug('📞 Llamando a AppInit.loadContent con categoría:', this.previousCategory);
       await window.AppInit.loadContent(this.previousCategory);
+      
+      // Restore active state in drawer menu for the previous category
+      const drawerButtons = document.querySelectorAll('#drawer-menu .nav-button');
+      if (drawerButtons) {
+        drawerButtons.forEach(btn => {
+          const btnTarget = btn.getAttribute('data-target');
+          if (btnTarget === this.previousCategory) {
+            btn.classList.add('active');
+          } else if (btnTarget) {
+            btn.classList.remove('active');
+          }
+        });
+      }
+      
+      // Dispatch event to notify that navigation is complete
+      document.dispatchEvent(new CustomEvent('app-content-changed', {
+        detail: { contentType: this.previousCategory }
+      }));
       
       // Log DOM state after loadContent
       setTimeout(() => {
@@ -2286,74 +2378,68 @@ class OrderSystem {
   }
 }
 
-// Wait for AppInit to be ready before initializing OrderSystem
+// Simple OrderSystem initialization
 let orderSystemInitialized = false;
+let orderSystemInstance = null;
 
 function initializeOrderSystem() {
-  if (orderSystemInitialized) {
-    window.Logger.info('OrderSystem already initialized, skipping...');
-    return;
+  if (orderSystemInitialized && orderSystemInstance) {
+    return orderSystemInstance;
   }
   
-  // Log DOM state before initialization
-  const mainScreen = document.getElementById('main-screen');
-  const contentContainer = document.getElementById('content-container');
-  const ordersBox = document.getElementById('orders-box');
-  
-  window.Logger.debug('🔧 Inicializando OrderSystem - Estado DOM:', {
-    mainScreen: !!mainScreen,
-    contentContainer: !!contentContainer,
-    ordersBox: !!ordersBox,
-    mainScreenVisible: mainScreen ? !mainScreen.classList.contains('screen-hidden') : false,
-    mainScreenClasses: mainScreen ? Array.from(mainScreen.classList) : [],
-    url: window.location.href
-  });
-  
   try {
-    const orderSystem = new OrderSystem();
-    orderSystem.initialize();
+    // Destroy existing instance if any
+    if (orderSystemInstance && orderSystemInstance.destroyEventDelegation) {
+      orderSystemInstance.destroyEventDelegation();
+    }
+    
+    orderSystemInstance = new OrderSystem();
+    orderSystemInstance.initialize();
     orderSystemInitialized = true;
     
-    // Log DOM state after initialization
-    setTimeout(() => {
-      const afterMainScreen = document.getElementById('main-screen');
-      const afterContentContainer = document.getElementById('content-container');
-      const afterOrdersBox = document.getElementById('orders-box');
-      
-      window.Logger.debug('✅ OrderSystem inicializado - Estado DOM después:', {
-        mainScreen: !!afterMainScreen,
-        contentContainer: !!afterContentContainer,
-        ordersBox: !!afterOrdersBox,
-        mainScreenVisible: afterMainScreen ? !afterMainScreen.classList.contains('screen-hidden') : false,
-        mainScreenClasses: afterMainScreen ? Array.from(afterMainScreen.classList) : []
-      });
-    }, 50);
-    
-    window.Logger.info('OrderSystem initialized successfully');
+    return orderSystemInstance;
   } catch (error) {
-    window.Logger.error('Failed to initialize OrderSystem:', error);
-    // Retry after a short delay
-    setTimeout(initializeOrderSystem, 100);
+    console.error('Failed to initialize OrderSystem:', error);
+    orderSystemInitialized = false;
+    orderSystemInstance = null;
+    return null;
   }
 }
 
-// Check if AppInit is already available, otherwise wait for it
-if (window.AppInit && window.DIContainer) {
-  initializeOrderSystem();
-} else {
-  // Listen for AppInit completion
-  document.addEventListener('app-init-complete', initializeOrderSystem);
-  
-  // Listen for content ready events to ensure DOM elements are available
-  document.addEventListener('app-content-ready', function() {
-    // Ensure OrderSystem is initialized when content is ready
+// Wait for DI Container to be available before initializing
+function waitForDIContainer() {
+  if (typeof window.container !== 'undefined' || typeof window.DIContainer !== 'undefined') {
     if (!orderSystemInitialized) {
+      console.log('🔧 Initializing OrderSystem...');
       initializeOrderSystem();
     }
-  });
-  
-  // Fallback: try after DOMContentLoaded with a delay
-  document.addEventListener('DOMContentLoaded', function() {
-    setTimeout(initializeOrderSystem, 500);
-  });
+  } else {
+    // Check again in 50ms
+    setTimeout(waitForDIContainer, 50);
+  }
 }
+
+// Temporarily disable auto-initialization to prevent stack overflow
+// Initialize only once when DOM is ready and DI Container is available
+/*
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(waitForDIContainer, 100);
+  });
+} else {
+  // DOM is already ready
+  setTimeout(waitForDIContainer, 100);
+}
+*/
+
+// Automatic initialization on DOM ready
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('OrderSystem initializing...');
+  initializeOrderSystem();
+});
+
+// Manual initialization for debugging
+window.initOrderSystemManually = function() {
+  console.log('🔧 Manual OrderSystem initialization requested');
+  return initializeOrderSystem();
+};

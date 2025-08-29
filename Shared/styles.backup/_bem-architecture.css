@@ -11,53 +11,21 @@
 
 /* BLOQUE BASE */
 .product-card {
-  /* Estilos base consolidados de main.css, mobile.css, tablet.css */
-  background: var(--card-bg);
-  border-radius: 10px;
+  /* Estilos base heredados de main.css */
+  background: var(--card-bg-current);
+  border-radius: var(--card-radius);
+  padding: var(--card-padding);
+  min-height: var(--card-height-current);
+  transition: var(--transition);
+  position: relative;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 15px;
-  box-shadow: 0 0 10px var(--border-color);
-  
-  /* Altura flexible que se adapta al contenido pero mantiene consistencia */
-  min-height: clamp(300px, 35vh, 400px);
-  height: auto;
-  gap: clamp(10px, 1.2vw, 15px);
-}
-
-/* HOVER STATE */
-.product-card:hover {
-  transform: translateY(-5px) scale(1.02);
-  box-shadow: 0 5px 20px var(--price-color);
 }
 
 /* MODIFICADORES DE BLOQUE */
 .product-card--liquor {
   /* Reemplaza: .product-card.liquor-card */
-  min-height: clamp(300px, 35vh, 400px);
-  background: var(--card-bg);
-}
-
-/* MODIFICADORES RESPONSIVOS */
-.product-card--mobile {
-  /* Estilos específicos para móvil */
-  background: var(--mobile-card-bg);
-  border-radius: var(--card-radius-mobile);
-  border: 1px solid var(--mobile-border-color);
-  transition: var(--mobile-transition);
-  padding: clamp(6px, 2vw, 12px);
-  min-height: clamp(120px, 16vw, 180px);
-  justify-content: space-between;
-}
-
-.product-card--tablet {
-  /* Estilos específicos para tablet */
-  padding: clamp(8px, 2vw, 16px);
-  min-height: clamp(140px, 18vw, 220px);
+  min-height: var(--card-height-liquor);
+  background: var(--card-bg-current);
 }
 
 .product-card--compact {
@@ -70,56 +38,12 @@
 
 /* ELEMENTOS DEL PRODUCT CARD */
 .product-card__name {
-  /* Consolidado de main.css, mobile.css, tablet.css */
-  font: 600 1.1rem 'Montserrat', sans-serif;
-  color: white;
-  margin-bottom: 10px;
-  text-align: center;
-  order: 1;
-  
-  /* NIVEL 1: Espacio fijo asignado al componente */
-  height: clamp(1.92rem, 2.88vw + 0.8rem, 2.56rem);
-  
-  /* NIVEL 2: Contenido se adapta al espacio disponible */
-  font-size: clamp(0.69rem, 1.46vw + 0.406rem, 0.975rem);
-  line-height: clamp(1.2, 1.5vw + 1rem, 1.4);
-  
-  /* Configuración sin truncamiento - texto completo visible */
-  display: block;
-  overflow: visible;
-  text-overflow: unset;
-  word-wrap: break-word;
-  hyphens: auto;
-  
-  /* Sin limitación de líneas - mostrar todo el contenido */
-  -webkit-line-clamp: unset;
-  line-clamp: unset;
-  position: relative;
-}
-
-/* MODIFICADORES DE NOMBRE */
-.product-card__name--liquor {
-  /* Configuración específica para títulos de licores */
-  font-size: clamp(0.63rem, 1.35vw + 0.375rem, 0.9rem);
-  line-height: clamp(1.15, 1.8vw + 0.9rem, 1.35);
-  height: clamp(1.62rem, 2.16vw + 0.864rem, 2.376rem);
-  font-weight: 700;
-  letter-spacing: 0.02em;
-}
-
-.product-card__name--mobile {
-  /* Estilos móvil */
-  font-size: clamp(10px, 2.5vw, 14px);
-  min-height: clamp(1.5rem, 3vw, 2.2rem);
+  /* Reemplaza: .product-card.liquor-card .product-name */
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
   font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: var(--spacing-sm);
   line-height: 1.2;
-  color: var(--text);
-}
-
-.product-card__name--tablet {
-  /* Estilos tablet */
-  font-size: clamp(11px, 2.2vw, 16px);
-  min-height: clamp(1.8rem, 3.5vw, 2.8rem);
 }
 
 .product-card__description {
@@ -132,125 +56,39 @@
 }
 
 .product-card__image {
-  /* Consolidado de main.css, mobile.css, tablet.css */
+  /* Reemplaza: .product-card.liquor-card .product-image */
   width: 100%;
-  height: 180px;
-  object-fit: contain;
-  background: white;
-  border-radius: var(--border-radius-lg);
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-/* MODIFICADORES DE IMAGEN */
-.product-card__image--liquor {
-  /* Configuración específica para imágenes de licores */
-  height: clamp(120px, 15vw + 2vh, 200px);
-  object-fit: contain;
-  object-position: center;
-  background: white;
-  transition: all 0.3s ease;
-}
-
-.product-card__image--mobile {
-  /* Estilos móvil */
-  width: clamp(40px, 6vw, 80px);
-  height: clamp(40px, 6vw, 80px);
+  height: var(--image-height-current);
   object-fit: cover;
-  border-radius: var(--table-thumb-radius);
-}
-
-.product-card__image--tablet {
-  /* Estilos tablet */
-  width: clamp(50px, 7vw, 100px);
-  height: clamp(50px, 7vw, 100px);
-}
-
-.product-card__image--video {
-  /* Para thumbnails de video */
-  height: 140px;
-  object-fit: cover;
-  border-radius: 8px;
-  padding: 0;
-}
-
-/* HOVER EFFECTS */
-.product-card__image:hover {
-  transform: scale(1.1);
+  border-radius: var(--card-radius-mobile);
+  transition: var(--transition);
 }
 
 .product-card__media {
-  /* Consolidado de main.css */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 15px;
-  min-height: 180px;
-  order: 2;
+  /* Reemplaza: .product-card.liquor-card .product-media */
   width: 100%;
-}
-
-/* MODIFICADORES DE MEDIA */
-.product-card__media--liquor {
-  /* Ajustar el contenedor de media para licores */
-  min-height: clamp(120px, 15vw + 2vh, 200px);
-  height: auto;
-  margin-bottom: clamp(8px, 1.2vw, 15px);
-}
-
-.product-card__media--video {
-  /* Para thumbnails de video */
-  min-height: 140px;
-}
-
-.product-card__media--standard {
-  /* Para imágenes estándar */
-  min-height: 180px;
+  min-height: var(--media-height-current);
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #f8f9fa;
 }
 
 .product-card__prices {
-  /* Consolidado de main.css */
+  /* Reemplaza: .product-card.liquor-card .product-prices */
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: var(--spacing-xs);
+  margin-top: var(--spacing-sm);
   justify-content: center;
-  order: 4;
-  margin-top: auto;
-}
-
-/* MODIFICADORES DE PRECIOS */
-.product-card__prices--liquor {
-  /* Configuración específica para licores */
-  display: flex;
-  flex-direction: column;
-  gap: clamp(3px, 1.5%, 8px);
-  align-items: flex-start;
-  width: 100%;
-  min-height: clamp(75px, 25%, 140px);
-  justify-content: space-between;
 }
 
 .product-card__price-item {
-  /* Consolidado de main.css */
+  /* Reemplaza: .product-card.liquor-card .price-item */
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: clamp(4px, 2%, 10px);
-  width: 100%;
-  min-height: clamp(20px, 8%, 36px);
-  flex-shrink: 0;
-}
-
-.product-card__price-label {
-  /* Consolidado de main.css */
-  color: var(--text-color);
-  font-size: clamp(0.55rem, 3% + 0.1rem, 0.8rem);
-  font-weight: 500;
-  min-width: clamp(35px, 20%, 60px);
-  opacity: 0.9;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  line-height: 1.2;
+  min-width: var(--min-width-button);
 }
 
 /* MODIFICADORES DE ELEMENTO */
@@ -365,38 +203,6 @@
   /* Para el valor del precio */
   font-weight: 600;
   color: var(--price-color);
-}
-
-.product-card__ingredients {
-  /* Consolidado de main.css */
-  color: var(--text-color);
-  margin-bottom: 15px;
-  text-align: justify;
-  text-justify: inter-word;
-  opacity: 1;
-  flex-grow: 1;
-  order: 3;
-  
-  /* Contenido se adapta al espacio disponible */
-  font-size: clamp(0.7rem, 1.5vw + 0.3rem, 0.9rem);
-  line-height: clamp(1.2, 1.3vw + 1rem, 1.4);
-  
-  /* Configuración para texto 100% responsivo - sin restricciones */
-  display: block;
-  overflow: visible;
-  text-overflow: unset;
-  word-wrap: break-word;
-  hyphens: auto;
-  
-  /* Sin límite de líneas - texto libre */
-  -webkit-line-clamp: unset;
-  line-clamp: unset;
-  
-  /* Permitir expansión natural del texto */
-  position: relative;
-  height: auto;
-  min-height: clamp(3.96rem, 4.95vw + 2.2rem, 5.5rem);
-  max-height: none;
 }
 
 /* HOVER STATES */

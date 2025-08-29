@@ -136,53 +136,53 @@ body.top-nav-visible {
    RESPONSIVE DESIGN - TOP NAVIGATION
    ================================================================= */
 
-/* Desktop - Reemplazado por alta especificidad en _utilities-high-specificity.css */
+/* Desktop */
 @media (min-width: 1025px) {
   #top-nav {
-    height: var(--top-nav-height-desktop);
-    min-height: var(--top-nav-height-desktop);
-    max-height: var(--top-nav-height-desktop);
+    height: var(--top-nav-height-desktop) !important;
+    min-height: var(--top-nav-height-desktop) !important;
+    max-height: var(--top-nav-height-desktop) !important;
   }
   
   body.top-nav-visible {
-    padding-top: var(--top-nav-height-desktop);
+    padding-top: var(--top-nav-height-desktop) !important;
   }
 }
 
-/* Tablet - Reemplazado por alta especificidad en _utilities-high-specificity.css */
+/* Tablet */
 @media (min-width: calc(var(--bp-tablet) + 1px)) and (max-width: var(--bp-desktop)) {
   :root {
     --top-nav-height-tablet: 60px;
   }
   
   #top-nav {
-    height: var(--top-nav-height-tablet);
-    min-height: var(--top-nav-height-tablet);
-    max-height: var(--top-nav-height-tablet);
+    height: var(--top-nav-height-tablet) !important;
+    min-height: var(--top-nav-height-tablet) !important;
+    max-height: var(--top-nav-height-tablet) !important;
     background: var(--top-nav-bg);
     border-bottom: 1px solid var(--top-nav-border);
   }
   
   body.top-nav-visible {
-    padding-top: var(--top-nav-height-tablet);
+    padding-top: var(--top-nav-height-tablet) !important;
   }
 }
 
-/* Mobile - Reemplazado por alta especificidad en _utilities-high-specificity.css */
+/* Mobile */
 @media (max-width: var(--bp-tablet)) {
   :root {
     --top-nav-height-mobile: 60px;
   }
   
   #top-nav {
-    height: var(--top-nav-height-mobile);
-    min-height: var(--top-nav-height-mobile);
-    max-height: var(--top-nav-height-mobile);
+    height: var(--top-nav-height-mobile) !important;
+    min-height: var(--top-nav-height-mobile) !important;
+    max-height: var(--top-nav-height-mobile) !important;
     background: var(--top-nav-bg);
     border-bottom: 1px solid var(--top-nav-border);
   }
   
   body.top-nav-visible {
-    padding-top: var(--top-nav-height-mobile);
+    padding-top: var(--top-nav-height-mobile) !important;
   }
 }

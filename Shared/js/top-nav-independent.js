@@ -167,7 +167,8 @@ class IndependentTopNavManager {
       }
     });
 
-    // Add scroll behavior for hamburger button in mobile portrait
+    // Add scroll behavior for hamburger button in mobile portrait - TEMPORARILY DISABLED
+    /*
     let lastScrollTop = 0;
     window.addEventListener('scroll', () => {
       const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
@@ -185,6 +186,7 @@ class IndependentTopNavManager {
       
       lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
     }, { passive: true });
+    */
   }
 
   setupContentReadyListener() {
@@ -286,7 +288,11 @@ class IndependentTopNavManager {
       this.elements.viewToggleBtn.classList.toggle('active', this.state.viewMode === 'grid');
       
       // Siempre visible
-      window.cssClassManager.removeClass(this.elements.viewToggleBtn, 'top-nav-btn--hidden');
+      if (window.cssClassManager && window.cssClassManager.removeClass) {
+        window.cssClassManager.removeClass(this.elements.viewToggleBtn, 'top-nav-btn--hidden');
+      } else {
+        this.elements.viewToggleBtn.classList.remove('top-nav-btn--hidden');
+      }
     }
   }
 
@@ -322,14 +328,22 @@ class IndependentTopNavManager {
 
   showBackButton() {
     if (this.elements.backBtn) {
-      window.cssClassManager.removeClass(this.elements.backBtn, 'top-nav-btn--hidden');
+      if (window.cssClassManager && window.cssClassManager.removeClass) {
+        window.cssClassManager.removeClass(this.elements.backBtn, 'top-nav-btn--hidden');
+      } else {
+        this.elements.backBtn.classList.remove('top-nav-btn--hidden');
+      }
       console.log('IndependentTopNavManager: Back button shown');
     }
   }
 
   hideBackButton() {
     if (this.elements.backBtn) {
-      window.cssClassManager.addClass(this.elements.backBtn, 'top-nav-btn--hidden');
+      if (window.cssClassManager && window.cssClassManager.addClass) {
+        window.cssClassManager.addClass(this.elements.backBtn, 'top-nav-btn--hidden');
+      } else {
+        this.elements.backBtn.classList.add('top-nav-btn--hidden');
+      }
       console.log('IndependentTopNavManager: Back button hidden');
     }
   }

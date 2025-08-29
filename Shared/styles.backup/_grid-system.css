@@ -9,14 +9,12 @@
 
 :root {
   /* Grid Columns por Breakpoint */
-  --grid-columns: 3; /* Default desktop columns */
   --grid-columns-mobile: 1;
   --grid-columns-mobile-large: 2;
   --grid-columns-tablet: 2;
   --grid-columns-tablet-large: 3;
   --grid-columns-desktop: 3;
   --grid-columns-desktop-large: 4;
-  --grid-columns-tablet-portrait: 2;
   
   /* Grid Columns para Categorías */
   --category-grid-columns-mobile: 2;
@@ -111,57 +109,8 @@
 }
 
 /* =================================================================
-   GRIDS ESPECIALIZADOS - Consolidados desde archivos dispersos
-   ================================================================= */
-
-/* OPTIONS GRID - Para modales de opciones */
-.options-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 12px;
-  padding: 10px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-/* OPTIONS GRID - Variante para modales de bebidas */
-.modal--drink-options .options-grid {
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 20px;
-  padding: 20px;
-  align-content: start;
-  justify-content: center;
-}
-
-/* CATEGORY GRID - Desktop base (5 columnas) */
-.category-grid {
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: auto auto auto;
-  gap: 20px;
-  row-gap: 10px;
-  padding: 20px;
-}
-
-/* PRODUCT GRID - Desktop base (3 columnas) */
-.product-grid {
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(15px, 2.5vw, 25px);
-  padding: clamp(15px, 2.5vw, 25px);
-  max-width: var(--table-max-width);
-  margin: 0 auto;
-  width: var(--table-width);
-}
-
-/* =================================================================
    RESPONSIVE BREAKPOINTS
    ================================================================= */
-
-/* Mobile (up to 479px) */
-@media (max-width: 479px) {
-  .grid {
-    --grid-columns: var(--grid-columns-mobile);
-  }
-}
 
 /* Mobile Large (480px+) */
 @media (min-width: var(--bp-mobile-large)) {
@@ -186,28 +135,6 @@
   
   .grid-type-4 {
     grid-template-columns: repeat(var(--category-grid-columns-tablet), 1fr);
-  }
-  
-  /* Consolidado desde main.css - Tablet layouts */
-  .product-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--gap-tablet);
-    padding: var(--padding-tablet);
-  }
-  
-  .category-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--gap-tablet);
-    padding: var(--padding-tablet);
-  }
-  
-  /* Consolidado desde tablet.css - Portrait orientation */
-  .grid,
-  .product-grid.tablet-portrait,
-  .category-grid.tablet-portrait {
-    grid-template-columns: repeat(var(--grid-columns-tablet-portrait), 1fr);
-    gap: var(--gap-tablet);
-    padding: var(--padding-tablet);
   }
 }
 
@@ -242,32 +169,6 @@
 }
 
 /* =================================================================
-   MOBILE RESPONSIVE - Consolidado desde mobile.css y main.css
-   ================================================================= */
-
-@media (max-width: 767px) {
-  /* Consolidado desde main.css - Mobile layouts */
-  .product-grid {
-    grid-template-columns: 1fr;
-    gap: var(--gap-mobile);
-    padding: var(--padding-mobile);
-  }
-  
-  .category-grid {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: auto auto auto repeat(5, auto);
-    gap: var(--gap-mobile);
-    padding: var(--padding-mobile);
-  }
-  
-  /* Options grid mobile adjustments */
-  .options-grid {
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: 8px;
-  }
-}
-
-/* =================================================================
    COMPATIBILIDAD CON CLASES LEGACY
    ================================================================= */
 
@@ -297,43 +198,6 @@
 .grid--centered {
   justify-items: center;
   align-items: center;
-}
-
-/* =================================================================
-   GRIDS ESPECÍFICOS ADICIONALES - Consolidados
-   ================================================================= */
-
-/* Grids para secciones específicas consolidados desde main.css */
-@media (min-width: 768px) and (max-width: 1023px) {
-  .liquor-category-grid {
-    grid-template-columns: repeat(auto-fit, minmax(105px, 1fr));
-  }
-  
-  .special-grid-3col {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  
-  .special-grid-2col {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1024px) {
-  .tablet-large-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--gap-tablet);
-    padding: var(--padding-tablet);
-  }
-  
-  .category-grid.four-col {
-    grid-template-columns: repeat(var(--grid-columns-4col), 1fr);
-    gap: var(--gap-tablet);
-    padding: var(--padding-tablet);
-  }
-  
-  .liquor-grid {
-    grid-template-columns: repeat(var(--grid-columns-liquor), 1fr);
-  }
 }
 
 .grid--stretch {

@@ -198,8 +198,12 @@ class CSSClassManager {
       this.addClass(card, 'product-card--enhanced');
       
       // Aplicar clases específicas según tipo
-      if (card.classList.contains('liquor-card')) {
+      if (card.classList.contains('liquor-card') || card.classList.contains('product-card--liquor')) {
         this.addClass(card, 'product-card--liquor');
+        // Mantener compatibilidad temporal
+        if (!card.classList.contains('liquor-card')) {
+          this.addClass(card, 'liquor-card');
+        }
       }
     });
     

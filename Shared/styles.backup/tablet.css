@@ -17,8 +17,17 @@
 
 /* === TABLET PORTRAIT RULES - 2 COLUMNAS === */
 @media (min-width: var(--bp-tablet)) and (max-width: 1023px) {
-  /* MIGRATED TO _grid-system.css - Tablet portrait grid layouts */
-  /* Use consolidated grid definitions from _grid-system.css with .tablet-portrait modifier */
+  .grid,
+  .product-grid,
+  .category-grid {
+    display: grid;
+    grid-template-columns: repeat(var(--grid-columns-tablet-portrait), 1fr);
+    gap: var(--gap-tablet);
+    padding: var(--padding-tablet);
+    width: 100%;
+    max-width: var(--container-max);
+    margin: 0 auto;
+    box-sizing: border-box;
   }
   
   /* Configuración específica para productos */
@@ -30,7 +39,7 @@
   .category-grid {
     grid-template-rows: repeat(auto-fit, minmax(160px, 1fr));
   }
-  
+}
 
 /* === MODIFICADORES DE GRID TABLET === */
 .grid--products {
@@ -203,36 +212,28 @@
   }
 }
 
-/* === TARJETAS RESPONSIVE PARA TABLET === */
-/* Product cards migrados a _bem-architecture.css */
-/* Usar: .product-card--tablet */
-
-.category-card {
+/* Tarjetas responsive para tablet */
+.category-card, .product-card {
   padding: clamp(8px, 2vw, 16px);
   min-height: clamp(140px, 18vw, 220px);
 }
 
-/* === IMÁGENES RESPONSIVE PARA TABLET === */
-/* Product images migradas a _bem-architecture.css */
-/* Usar: .product-card__image--tablet */
-
-.category-image {
+/* Imágenes responsive para tablet */
+.category-image, .product-image {
   width: clamp(50px, 7vw, 100px);
   height: clamp(50px, 7vw, 100px);
 }
 
-/* === TEXTO RESPONSIVE PARA TABLET === */
-/* Product names migrados a _bem-architecture.css */
-/* Usar: .product-card__name--tablet */
-
-.category-card .category-name {
+/* Texto responsive para tablet */
+.category-card .category-name,
+.product-card .product-name {
   font-size: clamp(11px, 2.2vw, 16px);
   min-height: clamp(1.8rem, 3.5vw, 2.8rem);
 }
 
-/* Reducir espaciado del pie de página para licores en tablet - Reemplazado por alta especificidad en _utilities-high-specificity.css */
+/* Reducir espaciado del pie de página para licores en tablet */
 .category-grid--liquors .subcategory-prompt {
-  margin: 2px 0 8px 0;
+  margin: 2px 0 8px 0 !important;
 }
 
 .category-grid--liquors .category-card {
@@ -289,8 +290,9 @@
     grid-template-columns: repeat(2, 1fr);
   }
   
-  /* MIGRATED TO _grid-system.css - Categories grid 2 columns */
-  /* Use consolidated grid definitions from _grid-system.css */
+  .grid--categories {
+    grid-template-columns: repeat(2, 1fr);
+  }
   
   .card--category {
     aspect-ratio: 1.1;
@@ -399,19 +401,19 @@
   }
 }
 
-/* === NAVEGACIÓN SUPERIOR TABLET === - Reemplazado por alta especificidad en _utilities-high-specificity.css */
+/* === NAVEGACIÓN SUPERIOR TABLET === */
 @media (min-width: calc(var(--bp-mobile-large) + 1px)) and (max-width: var(--bp-desktop)) {
   #top-nav {
-    height: var(--top-nav-height-tablet);
-    min-height: var(--top-nav-height-tablet);
-    max-height: var(--top-nav-height-tablet);
+    height: var(--top-nav-height-tablet) !important;
+    min-height: var(--top-nav-height-tablet) !important;
+    max-height: var(--top-nav-height-tablet) !important;
     padding: 0 18px;
     background: var(--top-nav-bg);
     border-bottom: 1px solid var(--top-nav-border);
   }
   
   body.top-nav-visible {
-    padding-top: var(--top-nav-height-tablet);
+    padding-top: var(--top-nav-height-tablet) !important;
   }
 }
 

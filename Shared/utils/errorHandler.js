@@ -5,13 +5,17 @@ class ErrorHandler {
     const errorMessage = error instanceof Error ? error.message : (error || 'Error desconocido');
     const timestamp = new Date().toISOString();
     
-    // Log error with context
-    window.Logger.error(`[${timestamp}] [${context}] ERROR: ${errorMessage}`, {
-      name: error?.name,
-      stack: error?.stack,
+    // Serialize error object properly
+    const errorDetails = {
+      name: error?.name || 'Unknown',
+      message: errorMessage,
+      stack: error?.stack || 'No stack trace available',
       context,
-      additionalInfo: options.additionalInfo
-    });
+      additionalInfo: options.additionalInfo ? JSON.stringify(options.additionalInfo, null, 2) : 'None'
+    };
+    
+    // Log error with context
+    window.Logger.error(`[${timestamp}] [${context}] ERROR: ${errorMessage}`, errorDetails);
     
     // Return user-friendly message
     return this.#getUserFriendlyMessage(error);

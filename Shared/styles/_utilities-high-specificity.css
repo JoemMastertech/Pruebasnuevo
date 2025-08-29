@@ -1,0 +1,310 @@
+/* =================================================================
+   UTILITIES WITH HIGH SPECIFICITY - REPLACES !important
+   ================================================================= */
+
+/* === DISPLAY UTILITIES === */
+/* Reemplaza: .screen-hidden { display: none !important; } */
+html body .screen-hidden {
+  display: none;
+}
+
+/* Reemplaza: .screen-visible { display: flex !important; } */
+html body .screen-visible {
+  display: flex;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Reemplaza: .screen-flex { display: flex !important; } */
+html body .screen-flex {
+  display: flex;
+}
+
+/* Reemplaza: .screen-block { display: block !important; } */
+html body .screen-block {
+  display: block;
+}
+
+/* Reemplaza: .sidebar-hidden { display: none !important; } */
+html body .sidebar-hidden {
+  display: none;
+}
+
+/* Reemplaza: .sidebar-visible { display: block !important; } */
+html body .sidebar-visible {
+  display: block;
+}
+
+/* === SIZE UTILITIES === */
+/* Reemplaza: .product-image-small { width: 40px !important; height: 40px !important; } */
+html body .product-image-small {
+  width: 40px;
+  height: 40px;
+}
+
+/* Reemplaza: .product-image-large { width: 70px !important; height: 70px !important; } */
+html body .product-image-large {
+  width: 70px;
+  height: 70px;
+}
+
+/* Reemplaza: .height-auto { height: auto !important; } */
+html body .height-auto {
+  height: auto;
+}
+
+/* Reemplaza: .min-height-auto { min-height: auto !important; } */
+html body .min-height-auto {
+  min-height: auto;
+}
+
+/* === NAVIGATION UTILITIES === */
+/* Reemplaza: #top-nav height, min-height, max-height !important en desktop */
+html body #top-nav {
+  height: var(--top-nav-height-desktop);
+  min-height: var(--top-nav-height-desktop);
+  max-height: var(--top-nav-height-desktop);
+}
+
+/* Reemplaza: body.top-nav-visible padding-top !important en desktop */
+html body.top-nav-visible {
+  padding-top: var(--top-nav-height-desktop);
+}
+
+/* === MOBILE SPECIFIC UTILITIES === */
+/* Reemplaza: .order-item-name font-size !important en mobile */
+html body .order-item-name {
+  font-size: 0.7rem;
+  margin-bottom: 3px;
+}
+
+/* Reemplaza: .order-item-price font-size !important en mobile */
+html body .order-item-price {
+  font-size: 0.65rem;
+}
+
+/* Reemplaza: table padding y font-size !important en mobile */
+html body .product-table th,
+html body .liquor-table th {
+  padding: 4px 2px;
+  font-size: 0.6rem;
+}
+
+html body .product-table td,
+html body .liquor-table td {
+  padding: 4px 2px;
+  font-size: 0.55rem;
+}
+
+/* Reemplaza: image icons width/height !important en mobile */
+html body .product-table td.image-icon img,
+html body .liquor-table td.image-icon img {
+  width: 20px;
+  height: 20px;
+}
+
+/* Reemplaza: .drawer-menu width !important en mobile portrait */
+html body .drawer-menu {
+  width: 150px;
+}
+
+/* === TABLET SPECIFIC UTILITIES === */
+/* Reemplaza: margin !important en tablet liquors */
+html body .category-grid--liquors .subcategory-prompt {
+  margin: 2px 0 8px 0;
+}
+
+/* === RESPONSIVE NAVIGATION UTILITIES === */
+/* Desktop navigation overrides - Reemplaza !important en top-navigation.css */
+@media (min-width: 1025px) {
+  html body #top-nav {
+    height: var(--top-nav-height-desktop);
+    min-height: var(--top-nav-height-desktop);
+    max-height: var(--top-nav-height-desktop);
+  }
+  
+  html body.top-nav-visible {
+    padding-top: var(--top-nav-height-desktop);
+  }
+}
+
+/* Tablet navigation overrides - Reemplaza !important en top-navigation.css y tablet.css */
+@media (min-width: calc(var(--bp-tablet) + 1px)) and (max-width: var(--bp-desktop)) {
+  html body #top-nav {
+    height: var(--top-nav-height-tablet);
+    min-height: var(--top-nav-height-tablet);
+    max-height: var(--top-nav-height-tablet);
+  }
+  
+  html body.top-nav-visible {
+    padding-top: var(--top-nav-height-tablet);
+  }
+}
+
+/* Mobile navigation overrides - Reemplaza !important en top-navigation.css y mobile.css */
+@media (max-width: var(--bp-tablet)) {
+  html body #top-nav {
+    height: var(--top-nav-height-mobile);
+    min-height: var(--top-nav-height-mobile);
+    max-height: var(--top-nav-height-mobile);
+  }
+  
+  html body.top-nav-visible {
+    padding-top: var(--top-nav-height-mobile);
+  }
+}
+
+/* Mobile Large specific overrides - Reemplaza !important en mobile.css */
+@media (max-width: var(--bp-mobile-large)) {
+  /* Order items font sizes */
+  html body .order-item-name {
+    font-size: 0.7rem;
+    margin-bottom: 3px;
+  }
+  
+  html body .order-item-price {
+    font-size: 0.65rem;
+  }
+  
+  /* Table compact rules */
+  html body .product-table th,
+  html body .liquor-table th {
+    padding: 4px 2px;
+    font-size: 0.6rem;
+  }
+  
+  html body .product-table td,
+  html body .liquor-table td {
+    padding: 4px 2px;
+    font-size: 0.55rem;
+  }
+  
+  html body .product-table td.image-icon img,
+  html body .liquor-table td.image-icon img {
+    width: 20px;
+    height: 20px;
+  }
+  
+  /* Navigation height */
+  html body #top-nav {
+    height: var(--top-nav-height-mobile);
+    min-height: var(--top-nav-height-mobile);
+    max-height: var(--top-nav-height-mobile);
+  }
+  
+  html body.top-nav-visible {
+    padding-top: var(--top-nav-height-mobile);
+  }
+}
+
+/* Mobile Portrait specific - Reemplaza !important en mobile.css */
+@media (orientation: portrait) and (max-width: var(--bp-mobile-large)) {
+  html body .drawer-menu {
+    width: 150px;
+  }
+}
+
+/* Tablet specific - Reemplaza !important en tablet.css */
+@media (min-width: calc(var(--bp-mobile-large) + 1px)) and (max-width: var(--bp-desktop)) {
+  html body .category-grid--liquors .subcategory-prompt {
+    margin: 2px 0 8px 0;
+  }
+  
+  html body #top-nav {
+    height: var(--top-nav-height-tablet);
+    min-height: var(--top-nav-height-tablet);
+    max-height: var(--top-nav-height-tablet);
+  }
+  
+  html body.top-nav-visible {
+    padding-top: var(--top-nav-height-tablet);
+  }
+}
+
+/* === TABLE UTILITIES === */
+/* Compact table overrides for mobile */
+@media (max-width: var(--bp-mobile-large)) {
+  html body .product-table.u-table-compact th,
+  html body .liquor-table.u-table-compact th,
+  html body .product-table th,
+  html body .liquor-table th {
+    padding: var(--spacing-sm) var(--spacing-xs);
+    font-size: 0.6rem;
+  }
+  
+  html body .product-table.u-table-compact td,
+  html body .liquor-table.u-table-compact td,
+  html body .product-table td,
+  html body .liquor-table td {
+    padding: 4px 2px;
+    font-size: 0.55rem;
+  }
+  
+  html body .product-table.u-table-compact td.image-icon img,
+  html body .liquor-table.u-table-compact td.image-icon img,
+  html body .product-table td.image-icon img,
+  html body .liquor-table td.image-icon img {
+    width: var(--icon-xs);
+    height: var(--icon-xs);
+  }
+}
+
+/* === ORDER ITEM UTILITIES === */
+/* Order item text overrides */
+@media (max-width: var(--bp-mobile-large)) {
+  html body .order-item-name.u-text-compact,
+  html body .order-item-name {
+    font-size: 0.7rem;
+    margin-bottom: 3px;
+  }
+  
+  html body .order-item-price.u-text-compact,
+  html body .order-item-price {
+    font-size: 0.65rem;
+  }
+}
+
+/* === DRAWER MENU UTILITIES === */
+/* Drawer menu size override */
+html body .drawer-menu.u-drawer-compact,
+html body .drawer-menu {
+  width: 150px;
+}
+
+/* === CATEGORY GRID UTILITIES === */
+/* Category grid spacing overrides */
+@media (min-width: var(--bp-tablet)) and (max-width: var(--bp-desktop)) {
+  html body .category-grid--liquors .subcategory-prompt.u-spacing-compact,
+  html body .category-grid--liquors .subcategory-prompt {
+    margin: 2px 0 8px 0;
+  }
+}
+
+/* === UTILITY MODIFIERS === */
+/* Additional utility classes for common overrides */
+/* Base class for high specificity overrides: .u-override */
+
+html body .u-override.u-display-none { display: none; }
+html body .u-override.u-display-flex { display: flex; }
+html body .u-override.u-display-block { display: block; }
+html body .u-override.u-height-auto { height: auto; }
+html body .u-override.u-min-height-auto { min-height: auto; }
+
+/* === RESPONSIVE UTILITY MODIFIERS === */
+@media (max-width: var(--bp-mobile-large)) {
+  html body .u-mobile-override.u-display-none { display: none; }
+  html body .u-mobile-override.u-display-flex { display: flex; }
+  html body .u-mobile-override.u-display-block { display: block; }
+}
+
+@media (min-width: var(--bp-tablet)) and (max-width: var(--bp-desktop)) {
+  html body .u-tablet-override.u-display-none { display: none; }
+  html body .u-tablet-override.u-display-flex { display: flex; }
+  html body .u-tablet-override.u-display-block { display: block; }
+}
+
+@media (min-width: var(--bp-desktop)) {
+  html body .u-desktop-override.u-display-none { display: none; }
+  html body .u-desktop-override.u-display-flex { display: flex; }
+  html body .u-desktop-override.u-display-block { display: block; }
+}

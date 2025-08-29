@@ -507,10 +507,17 @@ const AppInit = {
   },
   
   initializeDrawerMenu: function() {
+    // Prevent multiple initializations
+    if (this.drawerMenuInitialized) {
+      return;
+    }
+    
     // Hamburger button is now handled by IndependentTopNavManager
     const drawerMenu = document.getElementById('drawer-menu');
     const drawerOverlay = document.getElementById('drawer-overlay');
     const drawerContent = document.querySelector('.drawer-content');
+    
+    this.drawerMenuInitialized = true;
     
     // Add logo at the top of the drawer
     const logoContainer = document.createElement('div');
@@ -565,16 +572,17 @@ const AppInit = {
     
     // Hamburger button functionality is now handled by IndependentTopNavManager
     
-    // Close drawer when clicking overlay
-    drawerOverlay.addEventListener('click', () => {
-      drawerMenu.classList.remove('open');
-      drawerOverlay.classList.remove('active');
-    });
+    // Overlay click handling is now managed by IndependentTopNavManager
+    // Removed duplicate event listener to avoid conflicts
     
     // Menu item click handlers
     const menuButtons = drawerMenu.querySelectorAll('.nav-button');
     menuButtons.forEach(button => {
-      button.addEventListener('click', async () => {
+      button.addEventListener('click', async (event) => {
+        // Ensure event is properly handled
+        event.preventDefault();
+        event.stopPropagation();
+        
         const target = button.getAttribute('data-target');
         const action = button.getAttribute('data-action');
         
@@ -584,9 +592,10 @@ const AppInit = {
         // Set active state on clicked button
         button.classList.add('active');
         
-        // Close the drawer
-        drawerMenu.classList.remove('open');
-        drawerOverlay.classList.remove('active');
+        // Close the drawer using IndependentTopNavManager
+        if (window.IndependentTopNavManager && window.IndependentTopNavManager.closeMenu) {
+          window.IndependentTopNavManager.closeMenu();
+        }
         
         // Execute the appropriate action
         if (target) {
@@ -597,12 +606,23 @@ const AppInit = {
           if (OrderSystem) {
             OrderSystem.showOrdersScreen();
           }
+          // Don't keep orders button as active since it's not a regular navigation
+          button.classList.remove('active');
+          // Clear active state from all navigation buttons when entering orders
+          menuButtons.forEach(btn => {
+            const btnTarget = btn.getAttribute('data-target');
+            if (btnTarget) {
+              btn.classList.remove('active');
+            }
+          });
         } else if (action === 'createOrder') {
+          // TEMPORARILY DISABLED: OrderSystem handles this via event delegation
           // Call the order system's toggle order mode function
-          const OrderSystem = window.OrderSystem;
-          if (OrderSystem) {
-            OrderSystem.toggleOrderMode();
-          }
+          // const OrderSystem = window.OrderSystem;
+          // if (OrderSystem) {
+          //   OrderSystem.toggleOrderMode();
+          // }
+          console.log('DEBUG: createOrder action detected in app-init.js - delegating to OrderSystem event handler');
         }
       });
     });
@@ -695,12 +715,8 @@ const AppInit = {
       return;
     }
     
-    // Check if user is actively navigating (DOM is being modified)
-    const isUserNavigating = this.checkUserNavigation();
-    if (isUserNavigating && contentType === 'cocteleria') {
-      window.Logger.info('🚫 User navigation detected, skipping automatic cocteleria load');
-      return;
-    }
+    // Note: Removed user navigation check that was preventing cocteleria navigation
+    // This was causing the cocteleria button to not work when returning from other interfaces
     
     this.isLoading = true;
     window.Logger.info(`[NAVIGATION DEBUG] loadContent called with contentType: ${contentType}`);

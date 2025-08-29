@@ -68,7 +68,7 @@ const ProductRenderer = {
       } else if (grid.classList.contains('product-grid')) {
         const firstCard = grid.querySelector('.product-card');
         
-        if (firstCard && firstCard.classList.contains('liquor-card')) {
+        if (firstCard && (firstCard.classList.contains('liquor-card') || firstCard.classList.contains('product-card--liquor'))) {
           // Tipo 3: Subcategorías de Licores
           grid.classList.add('grid-type-3');
           console.log('✅ DEBUG - Assigned grid-type-3 to liquor product-grid');
@@ -299,8 +299,14 @@ const ProductRenderer = {
     
     if (row) {
       // Table view handling
-      const nameCell = row.querySelector('.product-name');
+      const nameCell = row.querySelector('.product-card__name') || row.querySelector('.product-name');
       const priceText = target.textContent;
+      
+      if (!nameCell) {
+        console.warn('No se encontró la celda del nombre del producto');
+        return;
+      }
+      
       const productName = nameCell.textContent;
       
       if (window.OrderSystem && window.OrderSystem.handleProductSelection) {
@@ -735,7 +741,7 @@ const ProductRenderer = {
       const isLiquorCategory = liquorCategories.includes(normalizedCategory);
       
       if (isLiquorCategory) {
-        card.classList.add('liquor-card');
+        card.classList.add('product-card--liquor', 'liquor-card'); // BEM + legacy compatibility
         card.dataset.productType = 'liquor';
         card.dataset.category = normalizedCategory;
       }
