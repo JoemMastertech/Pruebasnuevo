@@ -1,8 +1,11 @@
 import { CreateOrderUseCase } from '../../Aplicacion/UseCases/CreateOrderUseCase.js';
 import { ValidateProductUseCase } from '../../Aplicacion/UseCases/ValidateProductUseCase.js';
+import { AddProductToOrderUseCase } from '../../Aplicacion/UseCases/AddProductToOrderUseCase.js';
+import { ValidateOrderUseCase } from '../../Aplicacion/UseCases/ValidateOrderUseCase.js';
 import { OrderRepositoryPort } from '../../Domain/Ports/OrderRepositoryPort.js';
 import { ProductRepositoryPort } from '../../Domain/Ports/ProductRepositoryPort.js';
 import { DrinkRulesPort } from '../../Domain/Ports/DrinkRulesPort.js';
+import { EventBusPort, EventHandler, PublishResult, SubscriptionResult, DomainEvent } from '../../Domain/Ports/EventBusPort.js';
 import { InMemoryOrderRepository } from '../adapters/InMemoryOrderRepository.js';
 import { ProductDataRepositoryAdapter } from '../adapters/ProductDataRepositoryAdapter.js';
 import { DrinkRulesServiceAdapter } from '../adapters/DrinkRulesServiceAdapter.js';
@@ -51,12 +54,18 @@ export class HexagonalContainer {
       return new DrinkRulesServiceAdapter(validationService);
     });
 
+    // Registrar EventBus (implementación simple en memoria)
+    this.registerSingleton('EventBusPort', () => {
+      return this.createInMemoryEventBus();
+    });
+
     // Registrar casos de uso
     this.registerTransient('CreateOrderUseCase', () => {
       return new CreateOrderUseCase(
         this.resolve('OrderRepositoryPort'),
         this.resolve('ProductRepositoryPort'),
-        this.resolve('DrinkRulesPort')
+        this.resolve('DrinkRulesPort'),
+        this.resolve('EventBusPort')
       );
     });
 
@@ -64,6 +73,23 @@ export class HexagonalContainer {
       return new ValidateProductUseCase(
         this.resolve('ProductRepositoryPort'),
         this.resolve('DrinkRulesPort')
+      );
+    });
+
+    this.registerTransient('AddProductToOrderUseCase', () => {
+      return new AddProductToOrderUseCase(
+        this.resolve('OrderRepositoryPort'),
+        this.resolve('ProductRepositoryPort'),
+        this.resolve('DrinkRulesPort'),
+        this.resolve('EventBusPort')
+      );
+    });
+
+    this.registerTransient('ValidateOrderUseCase', () => {
+      return new ValidateOrderUseCase(
+        this.resolve('OrderRepositoryPort'),
+        this.resolve('DrinkRulesPort'),
+        this.resolve('EventBusPort')
       );
     });
   }
@@ -170,6 +196,108 @@ export class HexagonalContainer {
   }
 
   /**
+   * Crea una implementación simple en memoria del EventBusPort
+   */
+  private createInMemoryEventBus(): EventBusPort {
+    const subscribers = new Map<string, Array<{ id: string; handler: EventHandler<any> }>>();
+    const eventHistory: any[] = [];
+    let subscriptionCounter = 0;
+    
+    const eventBus: EventBusPort = {
+      publish: async (event: any): Promise<PublishResult> => {
+        console.log(`[EventBus] Publishing event: ${event.eventType}`, event);
+        eventHistory.push(event);
+        
+        const handlers = subscribers.get(event.eventType) || [];
+        for (const { handler } of handlers) {
+          try {
+            await handler.handle(event);
+          } catch (error) {
+            console.error(`[EventBus] Error handling event ${event.eventType}:`, error);
+            return {
+              success: false,
+              eventId: event.eventId,
+              errorMessage: error instanceof Error ? error.message : 'Unknown error'
+            };
+          }
+        }
+        
+        return {
+          success: true,
+          eventId: event.eventId
+        };
+      },
+      
+      subscribe: async <T extends DomainEvent>(eventType: string, handler: EventHandler<T>): Promise<SubscriptionResult> => {
+        console.log(`[EventBus] Subscribing to event: ${eventType}`);
+        const subscriptionId = `sub_${++subscriptionCounter}`;
+        
+        if (!subscribers.has(eventType)) {
+          subscribers.set(eventType, []);
+        }
+        subscribers.get(eventType)!.push({ id: subscriptionId, handler });
+        
+        return {
+          success: true,
+          subscriptionId
+        };
+      },
+      
+      publishMany: async (events: any[]): Promise<PublishResult[]> => {
+        const results: PublishResult[] = [];
+        for (const event of events) {
+          results.push(await eventBus.publish(event));
+        }
+        return results;
+      },
+      
+      unsubscribe: async (eventType: string, subscriptionId: string): Promise<boolean> => {
+        const handlers = subscribers.get(eventType);
+        if (handlers) {
+          const index = handlers.findIndex(h => h.id === subscriptionId);
+          if (index >= 0) {
+            handlers.splice(index, 1);
+            return true;
+          }
+        }
+        return false;
+      },
+      
+      getEventHistory: async (eventType?: string) => {
+        return eventType 
+          ? eventHistory.filter(e => e.eventType === eventType)
+          : eventHistory;
+      },
+      
+      clearEventHistory: async (eventType?: string) => {
+         if (eventType) {
+           const index = eventHistory.findIndex(e => e.eventType === eventType);
+           if (index >= 0) eventHistory.splice(index, 1);
+         } else {
+           eventHistory.length = 0;
+         }
+       },
+      
+      hasSubscribers: (eventType: string) => {
+        return subscribers.has(eventType) && subscribers.get(eventType)!.length > 0;
+      },
+      
+      getSubscriberCount: (eventType: string) => {
+        return subscribers.get(eventType)?.length || 0;
+      },
+      
+      getStats: async () => ({
+        totalEventsPublished: eventHistory.length,
+        totalSubscriptions: Array.from(subscribers.values()).reduce((sum, handlers) => sum + handlers.length, 0),
+        eventTypeStats: {},
+        uptime: Date.now()
+      })
+    };
+    
+    return eventBus;
+  }
+
+  /**
    * Crea un adaptador mock para desarrollo/testing
    */
   private createMockProductDataAdapter(): any {
@@ -229,6 +357,8 @@ export class HexagonalContainer {
       (window as any).HexagonalContainer = container;
       (window as any).CreateOrderUseCase = container.resolve('CreateOrderUseCase');
       (window as any).ValidateProductUseCase = container.resolve('ValidateProductUseCase');
+      (window as any).AddProductToOrderUseCase = container.resolve('AddProductToOrderUseCase');
+      (window as any).ValidateOrderUseCase = container.resolve('ValidateOrderUseCase');
     }
     
     return container;
@@ -245,6 +375,14 @@ export class HexagonalContainer {
     return this.resolve('ValidateProductUseCase');
   }
 
+  public getAddProductToOrderUseCase(): AddProductToOrderUseCase {
+    return this.resolve('AddProductToOrderUseCase');
+  }
+
+  public getValidateOrderUseCase(): ValidateOrderUseCase {
+    return this.resolve('ValidateOrderUseCase');
+  }
+
   public getOrderRepository(): OrderRepositoryPort {
     return this.resolve('OrderRepositoryPort');
   }
@@ -255,6 +393,10 @@ export class HexagonalContainer {
 
   public getDrinkRulesService(): DrinkRulesPort {
     return this.resolve('DrinkRulesPort');
+  }
+
+  public getEventBus(): EventBusPort {
+    return this.resolve('EventBusPort');
   }
 }
 

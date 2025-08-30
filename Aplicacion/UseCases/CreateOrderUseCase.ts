@@ -5,6 +5,7 @@ import { OrderItemId } from '../../Domain/ValueObjects/OrderItemId.js';
 import { OrderRepositoryPort } from '../../Domain/Ports/OrderRepositoryPort.js';
 import { ProductRepositoryPort } from '../../Domain/Ports/ProductRepositoryPort.js';
 import { DrinkRulesPort, ValidationResult, DrinkSelection } from '../../Domain/Ports/DrinkRulesPort.js';
+import { EventBusPort, DomainEventFactory } from '../../Domain/Ports/EventBusPort.js';
 
 /**
  * Datos de selección de producto del usuario
@@ -25,7 +26,8 @@ export class CreateOrderUseCase {
   constructor(
     private readonly orderRepository: OrderRepositoryPort,
     private readonly productRepository: ProductRepositoryPort,
-    private readonly drinkRules: DrinkRulesPort
+    private readonly drinkRules: DrinkRulesPort,
+    private readonly eventBus: EventBusPort
   ) {}
 
   /**
@@ -36,6 +38,12 @@ export class CreateOrderUseCase {
     
     if (!currentOrder) {
       currentOrder = await this.orderRepository.createOrder();
+      
+      // Publicar evento de orden creada
+      const orderCreatedEvent = DomainEventFactory.createOrderCreatedEvent(
+        currentOrder.id.value
+      );
+      await this.eventBus.publish(orderCreatedEvent);
     }
     
     return currentOrder;
@@ -83,6 +91,16 @@ export class CreateOrderUseCase {
 
     // 7. Guardar orden
     await this.orderRepository.save(order);
+
+    // 8. Publicar evento de producto agregado
+    const productAddedEvent = DomainEventFactory.createProductAddedToOrderEvent(
+      order.id.value,
+      product.id.value,
+      product.name.value,
+      productData.quantity,
+      product.price.toNumber()
+    );
+    await this.eventBus.publish(productAddedEvent);
 
     return orderItem;
   }
