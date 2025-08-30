@@ -4,7 +4,8 @@
 
 /* === IMPORTS === */
 @import '_variables-unified.css';  /* Variables responsivas unificadas */
-@import '_bem-architecture.css';   /* Arquitectura BEM */
+@import '_bem-base.css';           /* Base BEM y tokens de componentes */
+@import '_bem-architecture.css';   /* Arquitectura BEM específica */
 
 :root {
   /* Primary Colors */

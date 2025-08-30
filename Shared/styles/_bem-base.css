@@ -1,0 +1,451 @@
+/* =====================================================================
+   BEM BASE CONFIGURATION
+   Configuración base para la arquitectura BEM del sistema
+   ===================================================================== */
+
+/* =====================================================================
+   SECTION 1: BEM NAMING CONVENTIONS
+   ===================================================================== */
+
+/*
+  CONVENCIONES BEM UTILIZADAS:
+  
+  BLOQUE: .block
+  ELEMENTO: .block__element
+  MODIFICADOR: .block--modifier, .block__element--modifier
+  
+  EJEMPLOS:
+  .product-card                    // Bloque
+  .product-card__name             // Elemento
+  .product-card--liquor           // Modificador de bloque
+  .product-card__name--highlighted // Modificador de elemento
+*/
+
+/* =====================================================================
+   SECTION 2: COMPONENT TOKENS
+   Variables específicas para componentes BEM
+   ===================================================================== */
+
+:root {
+  /* === PRODUCT CARD TOKENS === */
+  --product-card-bg: var(--card-bg-current);
+  --product-card-radius: var(--card-radius);
+  --product-card-padding: var(--card-padding);
+  --product-card-min-height: var(--card-min-height);
+  --product-card-shadow: var(--shadow-base);
+  --product-card-shadow-hover: var(--shadow-hover);
+  
+  /* === NAVIGATION TOKENS === */
+  --nav-bg: var(--nav-bg);
+  --nav-height: var(--nav-height);
+  --nav-border: var(--nav-border);
+  --nav-text-color: var(--text);
+  --nav-link-hover: var(--accent);
+  
+  /* === BUTTON TOKENS === */
+  --btn-primary-bg: var(--accent);
+  --btn-primary-color: var(--bg);
+  --btn-secondary-bg: transparent;
+  --btn-secondary-color: var(--accent);
+  --btn-secondary-border: var(--accent);
+  --btn-radius: 8px;
+  --btn-padding: var(--spacing-sm) var(--spacing-md);
+  --btn-transition: var(--transition);
+  
+  /* === FORM TOKENS === */
+  --form-input-bg: rgba(255, 255, 255, 0.1);
+  --form-input-border: var(--border);
+  --form-input-color: var(--text);
+  --form-input-radius: 6px;
+  --form-input-padding: var(--spacing-sm);
+  
+  /* === TABLE TOKENS === */
+  --table-bg: var(--card-bg);
+  --table-border: var(--border);
+  --table-header-bg: rgba(0, 247, 255, 0.1);
+  --table-row-hover: rgba(0, 247, 255, 0.05);
+  
+  /* === MODAL TOKENS === */
+  --modal-bg: var(--card-bg);
+  --modal-overlay: rgba(0, 0, 0, 0.8);
+  --modal-radius: var(--card-radius);
+  --modal-padding: var(--spacing-lg);
+  
+  /* === GRID TOKENS === */
+  --grid-gap: var(--gap);
+  --grid-columns: var(--grid-columns);
+  --grid-min-item-width: 250px;
+}
+
+/* =====================================================================
+   SECTION 3: BASE COMPONENT CLASSES
+   Clases base para componentes BEM
+   ===================================================================== */
+
+/* === LAYOUT COMPONENTS === */
+.container {
+  width: var(--container-width);
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+.grid {
+  display: grid;
+  gap: var(--grid-gap);
+  grid-template-columns: repeat(var(--grid-columns), 1fr);
+}
+
+.grid--auto-fit {
+  grid-template-columns: repeat(auto-fit, minmax(var(--grid-min-item-width), 1fr));
+}
+
+.flex {
+  display: flex;
+}
+
+.flex--center {
+  justify-content: center;
+  align-items: center;
+}
+
+.flex--column {
+  flex-direction: column;
+}
+
+.flex--wrap {
+  flex-wrap: wrap;
+}
+
+/* === TYPOGRAPHY COMPONENTS === */
+.text {
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.text--primary {
+  color: var(--primary);
+}
+
+.text--accent {
+  color: var(--accent);
+}
+
+.text--center {
+  text-align: center;
+}
+
+.text--small {
+  font-size: var(--font-size-sm);
+}
+
+.text--large {
+  font-size: var(--font-size-lg);
+}
+
+.title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.title--h1 {
+  font-size: var(--font-size-xxl);
+}
+
+.title--h2 {
+  font-size: var(--font-size-xl);
+}
+
+.title--h3 {
+  font-size: var(--font-size-lg);
+}
+
+/* === BUTTON COMPONENTS === */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--btn-padding);
+  border-radius: var(--btn-radius);
+  border: none;
+  cursor: pointer;
+  transition: var(--btn-transition);
+  text-decoration: none;
+  font-family: inherit;
+  font-size: var(--font-size-base);
+  line-height: 1;
+}
+
+.btn--primary {
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-color);
+}
+
+.btn--primary:hover {
+  box-shadow: var(--glow-shadow-hover);
+  transform: translateY(-2px);
+}
+
+.btn--secondary {
+  background: var(--btn-secondary-bg);
+  color: var(--btn-secondary-color);
+  border: 1px solid var(--btn-secondary-border);
+}
+
+.btn--secondary:hover {
+  background: var(--btn-secondary-color);
+  color: var(--btn-secondary-bg);
+}
+
+.btn--small {
+  padding: calc(var(--spacing-xs)) var(--spacing-sm);
+  font-size: var(--font-size-sm);
+}
+
+.btn--large {
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-size: var(--font-size-lg);
+}
+
+/* === CARD COMPONENTS === */
+.card {
+  background: var(--product-card-bg);
+  border-radius: var(--product-card-radius);
+  padding: var(--product-card-padding);
+  box-shadow: var(--product-card-shadow);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  box-shadow: var(--product-card-shadow-hover);
+  transform: scale(var(--hover-scale));
+}
+
+.card--compact {
+  padding: var(--spacing-sm);
+}
+
+.card--spacious {
+  padding: var(--spacing-lg);
+}
+
+.card__header {
+  margin-bottom: var(--spacing-md);
+}
+
+.card__body {
+  flex: 1;
+}
+
+.card__footer {
+  margin-top: var(--spacing-md);
+  padding-top: var(--spacing-sm);
+  border-top: 1px solid var(--border);
+}
+
+/* === FORM COMPONENTS === */
+.form-group {
+  margin-bottom: var(--spacing-md);
+}
+
+.form-label {
+  display: block;
+  margin-bottom: var(--spacing-xs);
+  color: var(--text);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+}
+
+.form-input {
+  width: 100%;
+  padding: var(--form-input-padding);
+  background: var(--form-input-bg);
+  border: 1px solid var(--form-input-border);
+  border-radius: var(--form-input-radius);
+  color: var(--form-input-color);
+  font-family: inherit;
+  font-size: var(--font-size-base);
+  transition: var(--transition);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(0, 247, 255, 0.2);
+}
+
+.form-input--error {
+  border-color: #ff4444;
+}
+
+.form-error {
+  color: #ff4444;
+  font-size: var(--font-size-xs);
+  margin-top: var(--spacing-xs);
+}
+
+/* =====================================================================
+   SECTION 4: UTILITY CLASSES
+   Clases de utilidad para espaciado, colores, etc.
+   ===================================================================== */
+
+/* === SPACING UTILITIES === */
+.m-0 { margin: 0; }
+.m-xs { margin: var(--spacing-xs); }
+.m-sm { margin: var(--spacing-sm); }
+.m-md { margin: var(--spacing-md); }
+.m-lg { margin: var(--spacing-lg); }
+.m-xl { margin: var(--spacing-xl); }
+
+.mt-0 { margin-top: 0; }
+.mt-xs { margin-top: var(--spacing-xs); }
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+.mt-xl { margin-top: var(--spacing-xl); }
+
+.mb-0 { margin-bottom: 0; }
+.mb-xs { margin-bottom: var(--spacing-xs); }
+.mb-sm { margin-bottom: var(--spacing-sm); }
+.mb-md { margin-bottom: var(--spacing-md); }
+.mb-lg { margin-bottom: var(--spacing-lg); }
+.mb-xl { margin-bottom: var(--spacing-xl); }
+
+.p-0 { padding: 0; }
+.p-xs { padding: var(--spacing-xs); }
+.p-sm { padding: var(--spacing-sm); }
+.p-md { padding: var(--spacing-md); }
+.p-lg { padding: var(--spacing-lg); }
+.p-xl { padding: var(--spacing-xl); }
+
+/* === DISPLAY UTILITIES === */
+.d-none { display: none; }
+.d-block { display: block; }
+.d-inline { display: inline; }
+.d-inline-block { display: inline-block; }
+.d-flex { display: flex; }
+.d-grid { display: grid; }
+
+/* === VISIBILITY UTILITIES === */
+.hidden { visibility: hidden; }
+.visible { visibility: visible; }
+
+/* === POSITION UTILITIES === */
+.relative { position: relative; }
+.absolute { position: absolute; }
+.fixed { position: fixed; }
+.sticky { position: sticky; }
+
+/* === OVERFLOW UTILITIES === */
+.overflow-hidden { overflow: hidden; }
+.overflow-auto { overflow: auto; }
+.overflow-scroll { overflow: scroll; }
+
+/* =====================================================================
+   SECTION 5: RESPONSIVE UTILITIES
+   Clases de utilidad responsivas
+   ===================================================================== */
+
+/* === MOBILE FIRST RESPONSIVE UTILITIES === */
+@media (min-width: 768px) {
+  .tablet\:d-none { display: none; }
+  .tablet\:d-block { display: block; }
+  .tablet\:d-flex { display: flex; }
+  .tablet\:d-grid { display: grid; }
+  
+  .tablet\:text-left { text-align: left; }
+  .tablet\:text-center { text-align: center; }
+  .tablet\:text-right { text-align: right; }
+}
+
+@media (min-width: 1024px) {
+  .desktop\:d-none { display: none; }
+  .desktop\:d-block { display: block; }
+  .desktop\:d-flex { display: flex; }
+  .desktop\:d-grid { display: grid; }
+  
+  .desktop\:text-left { text-align: left; }
+  .desktop\:text-center { text-align: center; }
+  .desktop\:text-right { text-align: right; }
+}
+
+/* =====================================================================
+   SECTION 6: ANIMATION UTILITIES
+   ===================================================================== */
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.slide-up {
+  animation: slideUp 0.3s ease-out;
+}
+
+.scale-in {
+  animation: scaleIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* =====================================================================
+   SECTION 7: FOCUS AND ACCESSIBILITY
+   ===================================================================== */
+
+.focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* =====================================================================
+   SECTION 8: PRINT STYLES
+   ===================================================================== */
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .print-only {
+    display: block !important;
+  }
+}

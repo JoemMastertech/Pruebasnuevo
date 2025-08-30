@@ -301,6 +301,12 @@ const ProductRenderer = {
       // Table view handling
       const nameCell = row.querySelector('.product-name');
       const priceText = target.textContent;
+      
+      if (!nameCell) {
+        window.Logger.error('Product name cell not found in row');
+        return;
+      }
+      
       const productName = nameCell.textContent;
       
       if (window.OrderSystem && window.OrderSystem.handleProductSelection) {
@@ -537,7 +543,7 @@ const ProductRenderer = {
   },
 
   _createNameCell: function(td, nombre) {
-    td.className = 'product-card__name';
+    td.className = 'product-card__name product-name';
     td.textContent = nombre;
   },
 
@@ -687,25 +693,25 @@ const ProductRenderer = {
       });
       
       const card = document.createElement('div');
-      card.className = 'product-card';
+      card.className = 'product-card card'; // BEM + legacy compatibility
       
       // Product name
       const nameElement = document.createElement('div');
-      nameElement.className = 'product-card__name';
+      nameElement.className = 'product-card__name product-name'; // BEM + legacy compatibility
       nameElement.textContent = item.nombre;
       card.appendChild(nameElement);
       
       // Product ingredients (if available)
       if (item.ingredientes) {
         const ingredientsElement = document.createElement('div');
-        ingredientsElement.className = 'product-card__description';
+        ingredientsElement.className = 'product-card__description product-ingredients'; // BEM + legacy compatibility
         ingredientsElement.textContent = item.ingredientes;
         card.appendChild(ingredientsElement);
       }
       
       // Media container (video or image)
       const mediaContainer = document.createElement('div');
-      mediaContainer.className = 'product-media';
+      mediaContainer.className = 'product-card__media product-media'; // BEM + legacy compatibility
       
       if (item.video) {
         const videoThumbnail = document.createElement('img');
@@ -717,7 +723,7 @@ const ProductRenderer = {
         mediaContainer.appendChild(videoThumbnail);
       } else if (item.imagen || item.ruta_archivo) {
         const image = document.createElement('img');
-        image.className = 'product-card__image';
+        image.className = 'product-card__image product-image'; // BEM + legacy compatibility
         image.src = item.imagen || item.ruta_archivo;
         image.alt = item.nombre;
         // No individual event listener - handled by delegation
@@ -728,14 +734,14 @@ const ProductRenderer = {
       
       // Prices container
       const pricesContainer = document.createElement('div');
-      pricesContainer.className = 'product-prices';
+      pricesContainer.className = 'product-card__prices product-prices'; // BEM + legacy compatibility
       
       // Check if this is a liquor subcategory
       const liquorCategories = ['whisky', 'tequila', 'ron', 'vodka', 'ginebra', 'mezcal', 'cognac', 'brandy', 'digestivos', 'espumosos'];
       const isLiquorCategory = liquorCategories.includes(normalizedCategory);
       
       if (isLiquorCategory) {
-        card.classList.add('liquor-card');
+        card.classList.add('product-card--liquor', 'liquor-card'); // BEM + legacy compatibility
         card.dataset.productType = 'liquor';
         card.dataset.category = normalizedCategory;
       }
@@ -1149,9 +1155,9 @@ const ProductRenderer = {
     const licoresCategories = productRepository.getLicoresCategories();
     
     const html = licoresCategories.map(category => `
-      <div class="category-card" data-category="${category.nombre.toLowerCase()}">
-        <img src="${category.icono}" alt="${category.nombre}" class="category-image">
-        <h3 class="category-name">${category.nombre}</h3>
+      <div class="category-card card card--category" data-category="${category.nombre.toLowerCase()}">
+        <img src="${category.icono}" alt="${category.nombre}" class="category-card__image category-image">
+        <h3 class="category-card__name category-name">${category.nombre}</h3>
       </div>
     `).join('');
     

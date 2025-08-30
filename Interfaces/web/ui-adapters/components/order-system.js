@@ -234,6 +234,12 @@ class OrderSystem {
       if (row) {
         const nameCell = row.querySelector('.product-name');
         const priceText = target.textContent;
+        
+        if (!nameCell) {
+          window.Logger.error('Product name cell not found in row');
+          return;
+        }
+        
         const productName = nameCell.textContent;
         this.handleProductSelection(productName, priceText, row, event);
       } else if (card) {
@@ -2235,12 +2241,24 @@ class OrderSystem {
     const elements = {
       contentContainer: document.getElementById('content-container'),
       ordersScreen: document.querySelector('.orders-screen'),
+      orderHistoryContainer: document.querySelector('.order-history-container'),
       // hamburgerBtn is now handled by IndependentTopNavManager
     };
     
+    // Limpiar elementos dinámicos del historial de órdenes
+    if (elements.orderHistoryContainer) {
+      elements.orderHistoryContainer.remove();
+      window.Logger.debug('🗑️ Contenedor de historial eliminado del DOM');
+    }
+    
     // Hamburger button visibility is now handled by IndependentTopNavManager
-    elements.ordersScreen.classList.add('screen-hidden');
-    elements.ordersScreen.classList.remove('screen-visible');
+    if (elements.ordersScreen) {
+      elements.ordersScreen.classList.add('screen-hidden');
+      elements.ordersScreen.classList.remove('screen-visible');
+      // Limpiar completamente la pantalla de órdenes
+      elements.ordersScreen.remove();
+      window.Logger.debug('🗑️ Pantalla de órdenes eliminada del DOM');
+    }
     elements.contentContainer.classList.add('content-visible');
     elements.contentContainer.classList.remove('content-hidden');
     

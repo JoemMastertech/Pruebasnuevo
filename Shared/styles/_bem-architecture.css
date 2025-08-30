@@ -213,7 +213,58 @@
 }
 
 /* =====================================================================
-   SECTION 2: LAYOUT COMPONENTS
+   SECTION 2: CATEGORY COMPONENTS
+   Componentes para categorías de productos
+   ===================================================================== */
+
+.category-card {
+  /* Reemplaza: .category-card */
+  background: var(--card-bg-current);
+  border-radius: var(--card-radius);
+  padding: var(--card-padding);
+  box-shadow: var(--shadow-base);
+  transition: var(--transition);
+  cursor: pointer;
+  text-align: center;
+  min-height: var(--card-min-height);
+}
+
+.category-card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: scale(var(--hover-scale));
+}
+
+.category-card--liquor {
+  /* Modificador específico para categorías de licores */
+  border: 2px solid var(--accent-gold, var(--accent));
+}
+
+.category-card--enhanced {
+  /* Modificador para modo enhanced */
+  box-shadow: var(--glow-shadow-hover);
+}
+
+.category-card__image {
+  /* Reemplaza: .category-card .category-image */
+  width: 100%;
+  height: auto;
+  max-height: 120px;
+  object-fit: contain;
+  margin-bottom: var(--spacing-sm);
+  border-radius: var(--card-radius);
+}
+
+.category-card__name {
+  /* Reemplaza: .category-card .category-name */
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--text);
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* =====================================================================
+   SECTION 3: LAYOUT COMPONENTS
    ===================================================================== */
 
 /* === CATEGORY GRIDS - Sistema de Categorías === */
@@ -348,7 +399,7 @@
 }
 
 /* =====================================================================
-   SECTION 3: MODAL COMPONENTS
+   SECTION 4: MODAL COMPONENTS
    ===================================================================== */
 
 /* === MODAL CONTENT - Contenido de Modales === */
@@ -367,7 +418,7 @@
 }
 
 /* =====================================================================
-   SECTION 4: GLOBAL STATES
+   SECTION 5: GLOBAL STATES
    ===================================================================== */
 
 /* === ESTADOS GLOBALES === */
@@ -423,7 +474,7 @@
 }
 
 /* =====================================================================
-   SECTION 5: ANIMATIONS
+   SECTION 6: ANIMATIONS
    ===================================================================== */
 
 /* === ANIMACIONES === */
@@ -445,7 +496,7 @@
 }
 
 /* =====================================================================
-   SECTION 6: RESPONSIVE UTILITIES
+   SECTION 7: RESPONSIVE UTILITIES
    ===================================================================== */
 
 /* === UTILIDADES RESPONSIVAS === */
@@ -500,7 +551,7 @@
 }
 
 /* =====================================================================
-   SECTION 7: DYNAMIC GRID SYSTEM
+   SECTION 8: DYNAMIC GRID SYSTEM
    ===================================================================== */
 
 /* === GRID TYPES - Tipos dinámicos aplicados por JavaScript === */
@@ -554,7 +605,7 @@
 }
 
 /* =====================================================================
-   SECTION 8: COMPATIBILITY & FALLBACKS
+   SECTION 9: COMPATIBILITY & FALLBACKS
    ===================================================================== */
 
 /* === COMPATIBILIDAD Y TRANSICIÓN === */
