@@ -1,0 +1,1 @@
+{"version":3,"file":"ProductId.d.ts","sourceRoot":"","sources":["../../../Domain/ValueObjects/ProductId.ts"],"names":[],"mappings":"AAAA;;;GAGG;AACH,qBAAa,SAAS;aACQ,KAAK,EAAE,MAAM;gBAAb,KAAK,EAAE,MAAM;IAMzC,MAAM,CAAC,KAAK,EAAE,SAAS,GAAG,OAAO;IAIjC,QAAQ,IAAI,MAAM;CAGnB"}

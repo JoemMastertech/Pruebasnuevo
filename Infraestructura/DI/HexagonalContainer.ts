@@ -7,7 +7,7 @@ import { ProductRepositoryPort } from '../../Domain/Ports/ProductRepositoryPort.
 import { DrinkRulesPort } from '../../Domain/Ports/DrinkRulesPort.js';
 import { EventBusPort, EventHandler, PublishResult, SubscriptionResult, DomainEvent } from '../../Domain/Ports/EventBusPort.js';
 import { InMemoryOrderRepository } from '../adapters/InMemoryOrderRepository.js';
-import { ProductDataRepositoryAdapter } from '../adapters/ProductDataRepositoryAdapter.js';
+import { SupabaseAdapterTS } from '../adapters/SupabaseAdapterTS.js';
 import { DrinkRulesServiceAdapter } from '../adapters/DrinkRulesServiceAdapter.js';
 
 /**
@@ -43,9 +43,8 @@ export class HexagonalContainer {
     });
 
     this.registerSingleton('ProductRepositoryPort', () => {
-      // Obtener el ProductDataAdapter existente del sistema
-      const productDataAdapter = this.getExistingProductDataAdapter();
-      return new ProductDataRepositoryAdapter(productDataAdapter);
+      // Usar el nuevo SupabaseAdapterTS como adaptador principal
+      return new SupabaseAdapterTS();
     });
 
     this.registerSingleton('DrinkRulesPort', () => {
@@ -159,24 +158,7 @@ export class HexagonalContainer {
     }
   }
 
-  /**
-   * Obtiene el ProductDataAdapter existente del sistema
-   */
-  private getExistingProductDataAdapter(): any {
-    try {
-      // Intentar obtener el ProductDataAdapter del sistema existente
-      if (typeof window !== 'undefined' && (window as any).ProductDataAdapter) {
-        return (window as any).ProductDataAdapter;
-      }
-      
-      // Fallback: crear un adaptador mock si no existe
-      console.warn('ProductDataAdapter not found, creating mock adapter');
-      return this.createMockProductDataAdapter();
-    } catch (error) {
-      console.error('Error getting ProductDataAdapter:', error);
-      return this.createMockProductDataAdapter();
-    }
-  }
+
 
   /**
    * Obtiene el servicio de validación existente del sistema
@@ -297,54 +279,7 @@ export class HexagonalContainer {
     return eventBus;
   }
 
-  /**
-   * Crea un adaptador mock para desarrollo/testing
-   */
-  private createMockProductDataAdapter(): any {
-    return {
-      getProductByName: async (name: string) => {
-        // Mock data para desarrollo
-        const mockProducts = [
-          { nombre: 'Cerveza', categoria: 'bebidas', precio: 25, ingredientes: 'Malta, lúpulo' },
-          { nombre: 'Hamburguesa', categoria: 'comida', precio: 85, ingredientes: 'Carne, pan, lechuga' },
-          { nombre: 'Tequila', categoria: 'licores', precio: 45, ingredientes: 'Agave' }
-        ];
-        
-        return mockProducts.find(p => p.nombre.toLowerCase() === name.toLowerCase()) || null;
-      },
-      
-      getProductsByCategory: async (category: string) => {
-        const mockProducts = [
-          { nombre: 'Cerveza', categoria: 'bebidas', precio: 25, ingredientes: 'Malta, lúpulo' },
-          { nombre: 'Hamburguesa', categoria: 'comida', precio: 85, ingredientes: 'Carne, pan, lechuga' },
-          { nombre: 'Tequila', categoria: 'licores', precio: 45, ingredientes: 'Agave' }
-        ];
-        
-        return mockProducts.filter(p => p.categoria === category);
-      },
-      
-      getAllProducts: async () => {
-        return [
-          { nombre: 'Cerveza', categoria: 'bebidas', precio: 25, ingredientes: 'Malta, lúpulo' },
-          { nombre: 'Hamburguesa', categoria: 'comida', precio: 85, ingredientes: 'Carne, pan, lechuga' },
-          { nombre: 'Tequila', categoria: 'licores', precio: 45, ingredientes: 'Agave' }
-        ];
-      },
-      
-      searchProducts: async (query: string) => {
-        const mockProducts = [
-          { nombre: 'Cerveza', categoria: 'bebidas', precio: 25, ingredientes: 'Malta, lúpulo' },
-          { nombre: 'Hamburguesa', categoria: 'comida', precio: 85, ingredientes: 'Carne, pan, lechuga' },
-          { nombre: 'Tequila', categoria: 'licores', precio: 45, ingredientes: 'Agave' }
-        ];
-        
-        return mockProducts.filter(p => 
-          p.nombre.toLowerCase().includes(query.toLowerCase()) ||
-          p.ingredientes.toLowerCase().includes(query.toLowerCase())
-        );
-      }
-    };
-  }
+
 
   /**
    * Inicializa el contenedor y expone los casos de uso globalmente

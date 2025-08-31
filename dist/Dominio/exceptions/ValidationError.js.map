@@ -1,0 +1,1 @@
+{"version":3,"file":"ValidationError.js","sourceRoot":"","sources":["../../../Dominio/exceptions/ValidationError.js"],"names":[],"mappings":"AAAA,OAAO,WAAW,MAAM,kBAAkB,CAAC;AAE3C,MAAM,eAAgB,SAAQ,WAAW;IACvC,YAAY,OAAO;QACjB,KAAK,CAAC,OAAO,CAAC,CAAC;QACf,IAAI,CAAC,IAAI,GAAG,iBAAiB,CAAC;IAChC,CAAC;CACF;AAED,eAAe,eAAe,CAAC"}

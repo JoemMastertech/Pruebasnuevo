@@ -19,67 +19,92 @@ class HexagonalContainer {
   }
 
   registerDependencies() {
-    // Registrar adaptadores básicos para prueba
-    this.registerSingleton('OrderRepositoryPort', () => {
-      return {
-        getCurrentOrder: async () => null,
-        createOrder: async () => ({ id: 'test-order', items: [], total: 0 }),
-        save: async (order) => order,
-        findById: async (id) => null,
-        findAll: async () => [],
-        delete: async (id) => true,
-        completeOrder: async (id) => true,
-        cancelOrder: async (id) => true,
-        clearCurrentOrder: async () => true
-      };
-    });
+    try {
+      // Registrar adaptadores básicos para prueba
+      this.registerSingleton('OrderRepositoryPort', () => {
+        return {
+          getCurrentOrder: async () => null,
+          createOrder: async () => ({ id: 'test-order', items: [], total: 0 }),
+          save: async (order) => order,
+          findById: async (id) => null,
+          findAll: async () => [],
+          delete: async (id) => true,
+          completeOrder: async (id) => true,
+          cancelOrder: async (id) => true,
+          clearCurrentOrder: async () => true
+        };
+      });
 
-    this.registerSingleton('ProductRepositoryPort', () => {
-      return {
-        findByName: async (name) => null,
-        findByCategory: async (category) => [],
-        findAll: async () => [],
-        search: async (query) => [],
-        exists: async (productId) => false,
-        getDrinkOptions: async (product) => []
-      };
-    });
+      this.registerSingleton('ProductRepositoryPort', () => {
+        return {
+          findByName: async (name) => null,
+          findByCategory: async (category) => [],
+          findAll: async () => [],
+          search: async (query) => [],
+          exists: async (productId) => false,
+          getDrinkOptions: async (product) => []
+        };
+      });
 
-    this.registerSingleton('DrinkRulesPort', () => {
-      return {
-        getAvailableOptions: async (product) => ({ available: [], isAvailable: () => false, isValid: () => true }),
-        validateSelection: async (product, selection) => ({ success: true, errors: [], warnings: [] }),
-        getDrinkLimits: (product) => ({ min: 0, max: 1 }),
-        requiresDrinkSelection: (product) => false,
-        allowsMultipleDrinks: (product) => false,
-        getLiquorRules: (liquorType) => ({ allowedDrinks: [], maxDrinks: 1, specialRules: [] }),
-        validateDrinkCompatibility: async (drinks) => ({ success: true, errors: [], warnings: [] })
-      };
-    });
+      this.registerSingleton('DrinkRulesPort', () => {
+        return {
+          getAvailableOptions: async (product) => ({ available: [], isAvailable: () => false, isValid: () => true }),
+          validateSelection: async (product, selection) => ({ success: true, errors: [], warnings: [] }),
+          getDrinkLimits: (product) => ({ min: 0, max: 1 }),
+          requiresDrinkSelection: (product) => false,
+          allowsMultipleDrinks: (product) => false,
+          getLiquorRules: (liquorType) => ({ allowedDrinks: [], maxDrinks: 1, specialRules: [] }),
+          validateDrinkCompatibility: async (drinks) => ({ success: true, errors: [], warnings: [] })
+        };
+      });
 
-    // Registrar casos de uso básicos
-    this.registerTransient('CreateOrderUseCase', () => {
-      return {
-        getCurrentOrder: async () => null,
-        createOrder: async () => ({ id: 'test-order', items: [], total: 0 }),
-        addOrderItem: async (data) => ({ success: true, item: data }),
-        removeOrderItem: async (itemId) => true,
-        updateOrderItem: async (itemId, data) => ({ success: true, item: data }),
-        completeCurrentOrder: async () => true,
-        cancelCurrentOrder: async () => true,
-        clearCurrentOrder: async () => true,
-        getOrderSummary: async () => ({ total: { toNumber: () => 0 }, itemCount: 0, items: [] })
-      };
-    });
+      // Registrar casos de uso básicos
+      this.registerTransient('CreateOrderUseCase', () => {
+        return {
+          getCurrentOrder: async () => null,
+          createOrder: async () => ({ id: 'test-order', items: [], total: 0 }),
+          addOrderItem: async (data) => ({ success: true, item: data }),
+          removeOrderItem: async (itemId) => true,
+          updateOrderItem: async (itemId, data) => ({ success: true, item: data }),
+          completeCurrentOrder: async () => true,
+          cancelCurrentOrder: async () => true,
+          clearCurrentOrder: async () => true,
+          getOrderSummary: async () => ({ total: { toNumber: () => 0 }, itemCount: 0, items: [] })
+        };
+      });
 
-    this.registerTransient('ValidateProductUseCase', () => {
-      return {
-        validateProduct: async (data) => ({ isValid: true, errors: [], warnings: [] }),
-        getProductInfo: async (name) => null,
-        getDrinkOptions: async (product) => [],
-        checkProductExists: async (name) => false
-      };
-    });
+      this.registerTransient('ValidateProductUseCase', () => {
+        return {
+          validateProduct: async (data) => ({ isValid: true, errors: [], warnings: [] }),
+          getProductInfo: async (name) => null,
+          getDrinkOptions: async (product) => [],
+          checkProductExists: async (name) => false
+        };
+      });
+
+      this.registerTransient('AddProductToOrderUseCase', () => {
+        return {
+          addProduct: async (productData) => ({ success: true, item: productData }),
+          validateAndAdd: async (productData) => ({ success: true, item: productData }),
+          getProductDetails: async (productName) => null,
+          calculateItemTotal: (product, quantity) => ({ toNumber: () => 0 })
+        };
+      });
+
+      this.registerTransient('ValidateOrderUseCase', () => {
+        return {
+          validateOrder: async (order) => ({ isValid: true, errors: [], warnings: [] }),
+          validateOrderItems: async (items) => ({ isValid: true, errors: [], warnings: [] }),
+          checkOrderLimits: async (order) => ({ isValid: true, errors: [], warnings: [] }),
+          getOrderValidationRules: () => ({ rules: [], maxItems: 100, minTotal: 0 })
+        };
+      });
+      
+      console.log('✅ All dependencies registered successfully:', this.getRegisteredKeys());
+    } catch (error) {
+      console.error('❌ Error in registerDependencies:', error);
+      throw error;
+    }
   }
 
   registerSingleton(key, factory) {
@@ -134,6 +159,14 @@ class HexagonalContainer {
     return this.resolve('ValidateProductUseCase');
   }
 
+  getAddProductToOrderUseCase() {
+    return this.resolve('AddProductToOrderUseCase');
+  }
+
+  getValidateOrderUseCase() {
+    return this.resolve('ValidateOrderUseCase');
+  }
+
   getOrderRepository() {
     return this.resolve('OrderRepositoryPort');
   }
@@ -149,11 +182,9 @@ class HexagonalContainer {
   static initialize() {
     const container = HexagonalContainer.getInstance();
     
-    // Exponer casos de uso globalmente para compatibilidad con el sistema existente
+    // Exponer solo el contenedor globalmente
     if (typeof window !== 'undefined') {
       window.HexagonalContainer = container;
-      window.CreateOrderUseCase = container.resolve('CreateOrderUseCase');
-      window.ValidateProductUseCase = container.resolve('ValidateProductUseCase');
     }
     
     return container;
