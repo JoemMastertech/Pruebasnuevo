@@ -16,4 +16,3 @@ export class ProductId {
         return this.value;
     }
 }
-//# sourceMappingURL=ProductId.js.map

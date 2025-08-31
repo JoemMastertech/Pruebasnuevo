@@ -122,4 +122,3 @@ export class Product {
         return `${this.name.value} (${this.category.value}) - ${this.price.toString()}`;
     }
 }
-//# sourceMappingURL=Product.js.map

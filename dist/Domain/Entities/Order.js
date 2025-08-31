@@ -218,4 +218,3 @@ export class Order {
         return `Order ${this.id.value} (${this._status}):\n${itemsStr}\nTotal: ${this._total.toString()}`;
     }
 }
-//# sourceMappingURL=Order.js.map

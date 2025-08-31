@@ -96,4 +96,3 @@ export class OrderItem {
         return `${this.quantity}x ${this.product.name.value}${customizationsStr} - ${this.getSubtotal().toString()}`;
     }
 }
-//# sourceMappingURL=OrderItem.js.map

@@ -29,6 +29,8 @@ import ProductRenderer from '../../Interfaces/web/ui-adapters/components/product
 import SafeModal from '../../Interfaces/web/ui-adapters/components/SafeModal.js';
 import DIContainer from '../core/DIContainer.js';
 import ProductDataAdapter from '../../Infraestructura/adapters/ProductDataAdapter.js';
+import BaseAdapter from '../../Infraestructura/adapters/BaseAdapter.js';
+import AIInterface from '../../Infraestructura/integrations/AIInterface.js';
 import AppConfig from '../core/AppConfig.js';
 // Import shared utilities
 import { setSafeInnerHTML } from '../utils/domUtils.js';
@@ -1077,7 +1079,17 @@ const AppInit = {
       return new ProductDataAdapter();
     });
 
-    window.Logger.info('DI Container initialized (simplified)');
+    // Expose adapters globally for Phase 3 integration tests
+    window.BaseAdapter = BaseAdapter;
+    window.ProductDataAdapter = ProductDataAdapter;
+    window.AIInterface = AIInterface;
+    
+    // Create instances for testing
+    window.baseAdapterInstance = new BaseAdapter();
+    window.productDataAdapterInstance = new ProductDataAdapter();
+    window.aiInterfaceInstance = new AIInterface();
+
+    window.Logger.info('DI Container initialized (simplified) with global adapters exposed');
   }
 };
 

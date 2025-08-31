@@ -210,4 +210,3 @@ export class DrinkRulesServiceAdapter {
         return ValidationResult.success();
     }
 }
-//# sourceMappingURL=DrinkRulesServiceAdapter.js.map

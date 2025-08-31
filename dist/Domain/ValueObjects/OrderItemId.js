@@ -21,4 +21,3 @@ export class OrderItemId {
         return this.value;
     }
 }
-//# sourceMappingURL=OrderItemId.js.map

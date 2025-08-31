@@ -47,4 +47,3 @@ ProductCategory.VALID_CATEGORIES = [
     'vinos',
     'cervezas'
 ];
-//# sourceMappingURL=ProductCategory.js.map

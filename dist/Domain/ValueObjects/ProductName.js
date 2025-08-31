@@ -22,4 +22,3 @@ export class ProductName {
         return this.value;
     }
 }
-//# sourceMappingURL=ProductName.js.map

@@ -9,6 +9,9 @@ import { EventBusPort, EventHandler, PublishResult, SubscriptionResult, DomainEv
 import { InMemoryOrderRepository } from '../adapters/InMemoryOrderRepository.js';
 import { SupabaseAdapterTS } from '../adapters/SupabaseAdapterTS.js';
 import { DrinkRulesServiceAdapter } from '../adapters/DrinkRulesServiceAdapter.js';
+import BaseAdapter from '../adapters/BaseAdapter.js';
+import ProductDataAdapter from '../adapters/ProductDataAdapter.js';
+import AIInterface from '../integrations/AIInterface.js';
 
 /**
  * Contenedor de inyección de dependencias para la arquitectura hexagonal
@@ -56,6 +59,19 @@ export class HexagonalContainer {
     // Registrar EventBus (implementación simple en memoria)
     this.registerSingleton('EventBusPort', () => {
       return this.createInMemoryEventBus();
+    });
+
+    // Registrar adaptadores adicionales para completar Fase 3
+    this.registerSingleton('BaseAdapter', () => {
+      return new BaseAdapter();
+    });
+
+    this.registerSingleton('ProductDataAdapter', () => {
+      return new ProductDataAdapter();
+    });
+
+    this.registerSingleton('AIInterface', () => {
+      return new AIInterface();
     });
 
     // Registrar casos de uso
