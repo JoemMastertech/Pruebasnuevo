@@ -46,6 +46,10 @@ export declare class SupabaseAdapterTS implements ProductRepositoryPort {
      */
     search(query: string): Promise<Product[]>;
     /**
+     * Find product by ID
+     */
+    findById(productId: ProductId): Promise<Product | null>;
+    /**
      * Check if product exists
      */
     exists(productId: ProductId): Promise<boolean>;

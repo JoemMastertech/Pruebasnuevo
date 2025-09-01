@@ -6,6 +6,7 @@ export declare class ProductId {
     readonly value: string;
     constructor(value: string);
     equals(other: ProductId): boolean;
+    getValue(): string;
     toString(): string;
 }
 //# sourceMappingURL=ProductId.d.ts.map

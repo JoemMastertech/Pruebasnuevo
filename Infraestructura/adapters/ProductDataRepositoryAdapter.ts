@@ -100,12 +100,25 @@ export class ProductDataRepositoryAdapter implements ProductRepositoryPort {
   }
 
   /**
+   * Busca un producto por ID
+   */
+  async findById(productId: ProductId): Promise<Product | null> {
+    try {
+      // En este adaptador, usamos el ID como nombre del producto
+      return await this.findByName(productId.value);
+    } catch (error) {
+      console.error('Error finding product by ID:', error);
+      return null;
+    }
+  }
+
+  /**
    * Verifica si un producto existe
    */
   async exists(productId: ProductId): Promise<boolean> {
     try {
-      const allProducts = await this.findAll();
-      return allProducts.some(product => product.id.equals(productId));
+      const product = await this.findById(productId);
+      return product !== null;
     } catch (error) {
       console.error('Error checking product existence:', error);
       return false;

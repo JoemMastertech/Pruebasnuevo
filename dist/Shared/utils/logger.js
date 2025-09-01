@@ -28,8 +28,10 @@ class Logger {
 }
 _a = Logger;
 _Logger_isProduction = { value: false }; // Cambiar a true en producción
-// Expose Logger globally
-window.Logger = Logger;
+// Expose Logger globally (only in browser environment)
+if (typeof window !== 'undefined') {
+    window.Logger = Logger;
+}
 // Also export for ES6 compatibility
 export default Logger;
 //# sourceMappingURL=logger.js.map

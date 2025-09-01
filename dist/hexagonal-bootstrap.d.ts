@@ -17,6 +17,8 @@ declare class HexagonalContainer {
     replace(key: any, factory: any, isSingleton?: boolean): void;
     getCreateOrderUseCase(): any;
     getValidateProductUseCase(): any;
+    getAddProductToOrderUseCase(): any;
+    getValidateOrderUseCase(): any;
     getOrderRepository(): any;
     getProductRepository(): any;
     getDrinkRulesService(): any;
@@ -31,6 +33,14 @@ declare class HexagonalBootstrap {
      * Inicializa la arquitectura hexagonal
      */
     initialize(): Promise<any>;
+    /**
+     * Carga automáticamente _bem-base.css
+     */
+    loadBemBaseCss(): Promise<any>;
+    /**
+     * Expone adaptadores globalmente según contrato
+     */
+    exposeAdaptersGlobally(): void;
     /**
      * Conecta la nueva arquitectura con el sistema existente
      */

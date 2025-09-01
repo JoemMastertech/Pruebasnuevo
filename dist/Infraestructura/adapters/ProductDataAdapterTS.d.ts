@@ -38,6 +38,7 @@ export declare class ProductDataAdapterTS implements ProductRepositoryPort {
     /**
      * Check if product exists
      */
+    findById(productId: ProductId): Promise<Product | null>;
     exists(productId: ProductId): Promise<boolean>;
     /**
      * Get drink options for a product

@@ -27,8 +27,10 @@ class Logger {
   }
 }
 
-// Expose Logger globally
-window.Logger = Logger;
+// Expose Logger globally (only in browser environment)
+if (typeof window !== 'undefined') {
+  window.Logger = Logger;
+}
 
 // Also export for ES6 compatibility
 export default Logger;

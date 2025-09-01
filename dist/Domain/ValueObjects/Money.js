@@ -43,3 +43,4 @@ export class Money {
         return this.amount;
     }
 }
+//# sourceMappingURL=Money.js.map

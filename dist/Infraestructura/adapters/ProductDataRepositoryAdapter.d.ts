@@ -26,6 +26,10 @@ export declare class ProductDataRepositoryAdapter implements ProductRepositoryPo
      */
     search(query: string): Promise<Product[]>;
     /**
+     * Busca un producto por ID
+     */
+    findById(productId: ProductId): Promise<Product | null>;
+    /**
      * Verifica si un producto existe
      */
     exists(productId: ProductId): Promise<boolean>;

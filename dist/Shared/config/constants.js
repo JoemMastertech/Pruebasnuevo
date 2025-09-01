@@ -180,7 +180,7 @@ export const DEBUG = {
 };
 export const API = {
     // Base URLs
-    BASE_URL: window.location.origin + '/api',
+    BASE_URL: (typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000') + '/api',
     TIMEOUT: 10000,
     // Endpoints
     ENDPOINTS: {

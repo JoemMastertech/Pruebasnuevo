@@ -278,8 +278,12 @@ class AppConfig {
 const appConfigInstance = new AppConfig();
 
 // Expose globally for non-module scripts
-window.AppConfig = appConfigInstance;
-window.AppConfigClass = AppConfig;
+if (typeof window !== 'undefined') {
+  window.AppConfig = appConfigInstance;
+}
+if (typeof window !== 'undefined') {
+  window.AppConfigClass = AppConfig;
+}
 
 // Export singleton instance
 export default appConfigInstance;

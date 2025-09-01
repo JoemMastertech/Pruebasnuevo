@@ -38,6 +38,12 @@ export interface ProductRepositoryPort {
      */
     search(query: string): Promise<Product[]>;
     /**
+     * Busca un producto por ID
+     * @param productId ID del producto
+     * @returns Promise<Product | null> Producto encontrado o null
+     */
+    findById(productId: ProductId): Promise<Product | null>;
+    /**
      * Verifica si un producto existe
      * @param productId ID del producto
      * @returns Promise<boolean> True si existe

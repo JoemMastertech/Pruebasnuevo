@@ -65,5 +65,9 @@ export declare class OrderItem {
      * Representación en string del item
      */
     toString(): string;
+    getId(): OrderItemId;
+    getProductId(): any;
+    getQuantity(): number;
+    getDrinkOptions(): string[];
 }
 //# sourceMappingURL=OrderItem.d.ts.map

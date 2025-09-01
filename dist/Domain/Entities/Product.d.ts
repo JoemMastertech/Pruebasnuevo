@@ -66,5 +66,11 @@ export declare class Product {
      * Representación en string del producto
      */
     toString(): string;
+    getId(): ProductId;
+    getName(): string;
+    getCategory(): ProductCategory;
+    getPrice(): number;
+    getDescription(): string;
+    getDrinkOptions(): string[];
 }
 //# sourceMappingURL=Product.d.ts.map

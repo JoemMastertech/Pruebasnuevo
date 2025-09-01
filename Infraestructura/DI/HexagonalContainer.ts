@@ -2,6 +2,8 @@ import { CreateOrderUseCase } from '../../Aplicacion/UseCases/CreateOrderUseCase
 import { ValidateProductUseCase } from '../../Aplicacion/UseCases/ValidateProductUseCase.js';
 import { AddProductToOrderUseCase } from '../../Aplicacion/UseCases/AddProductToOrderUseCase.js';
 import { ValidateOrderUseCase } from '../../Aplicacion/UseCases/ValidateOrderUseCase.js';
+import { GetProductsUseCase } from '../../Aplicacion/UseCases/GetProductsUseCase.js';
+import { GetProductByIdUseCase } from '../../Aplicacion/UseCases/GetProductByIdUseCase.js';
 import { OrderRepositoryPort } from '../../Domain/Ports/OrderRepositoryPort.js';
 import { ProductRepositoryPort } from '../../Domain/Ports/ProductRepositoryPort.js';
 import { DrinkRulesPort } from '../../Domain/Ports/DrinkRulesPort.js';
@@ -105,6 +107,18 @@ export class HexagonalContainer {
         this.resolve('OrderRepositoryPort'),
         this.resolve('DrinkRulesPort'),
         this.resolve('EventBusPort')
+      );
+    });
+
+    this.registerTransient('GetProductsUseCase', () => {
+      return new GetProductsUseCase(
+        this.resolve('ProductRepositoryPort')
+      );
+    });
+
+    this.registerTransient('GetProductByIdUseCase', () => {
+      return new GetProductByIdUseCase(
+        this.resolve('ProductRepositoryPort')
       );
     });
   }

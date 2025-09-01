@@ -134,4 +134,32 @@ export class Product {
   toString(): string {
     return `${this.name.value} (${this.category.value}) - ${this.price.toString()}`;
   }
+
+  // Métodos getter para compatibilidad con UI
+  getId(): ProductId {
+    return this.id;
+  }
+
+  getName(): string {
+    return this.name.value;
+  }
+
+  getCategory(): ProductCategory {
+    return this.category;
+  }
+
+  getPrice(): number {
+    return this.price.amount;
+  }
+
+  getDescription(): string {
+    return this.ingredients || '';
+  }
+
+  getDrinkOptions(): string[] {
+    if (this.requiresDrinkSelection()) {
+      return ['Con hielo', 'Sin hielo', 'Mezclado'];
+    }
+    return [];
+  }
 }

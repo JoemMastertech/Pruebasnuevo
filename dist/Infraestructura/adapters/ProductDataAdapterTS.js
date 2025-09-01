@@ -117,13 +117,28 @@ export class ProductDataAdapterTS {
     /**
      * Check if product exists
      */
+    async findById(productId) {
+        try {
+            // Use existing adapter's findById if available, otherwise fallback to findByName
+            if (this.productDataAdapter && typeof this.productDataAdapter.findById === 'function') {
+                const rawProduct = await this.productDataAdapter.findById(productId.value);
+                return rawProduct ? this.mapRawProductToDomain(rawProduct) : null;
+            }
+            // Fallback: search by name (assuming ID might be used as name)
+            return await this.findByName(productId.value);
+        }
+        catch (error) {
+            console.error('ProductDataAdapterTS: Error finding product by ID:', error);
+            return null;
+        }
+    }
     async exists(productId) {
         try {
-            const product = await this.findByName(productId.value);
+            const product = await this.findById(productId);
             return product !== null;
         }
         catch (error) {
-            console.error('ProductDataAdapterTS.exists error:', error);
+            console.error('ProductDataAdapterTS: Error checking product existence:', error);
             return false;
         }
     }

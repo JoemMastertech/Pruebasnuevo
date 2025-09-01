@@ -28,12 +28,13 @@
     "Domain/**/*",
     "Aplicacion/**/*",
     "Infraestructura/**/*",
+    "Interfaces/**/*",
+    "Tests/**/*",
+    "Shared/**/*",
     "hexagonal-bootstrap.js"
   ],
   "exclude": [
     "node_modules",
-    "dist",
-    "**/*.test.ts",
-    "**/*.test.js"
+    "dist"
   ]
 }

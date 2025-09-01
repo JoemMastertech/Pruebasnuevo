@@ -12,7 +12,11 @@ export class ProductId {
     equals(other) {
         return this.value === other.value;
     }
+    getValue() {
+        return this.value;
+    }
     toString() {
         return this.value;
     }
 }
+//# sourceMappingURL=ProductId.js.map

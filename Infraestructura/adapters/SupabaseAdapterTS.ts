@@ -202,20 +202,34 @@ export class SupabaseAdapterTS implements ProductRepositoryPort {
   }
 
   /**
-   * Check if product exists
+   * Find product by ID
    */
-  async exists(productId: ProductId): Promise<boolean> {
+  async findById(productId: ProductId): Promise<Product | null> {
     try {
       const result = await this.safeExecuteAsync(
         () => this.client
           .from('products')
-          .select('id')
-          .eq('id', productId.value),
-        'exists',
-        []
+          .select('*')
+          .eq('id', productId.value)
+          .single(),
+        'findById',
+        null
       );
       
-      return result.length > 0;
+      return result ? this.mapRawProductToDomain(result) : null;
+    } catch (error) {
+      console.error('SupabaseAdapterTS.findById error:', error);
+      return null;
+    }
+  }
+
+  /**
+   * Check if product exists
+   */
+  async exists(productId: ProductId): Promise<boolean> {
+    try {
+      const product = await this.findById(productId);
+      return product !== null;
     } catch (error) {
       console.error('SupabaseAdapterTS.exists error:', error);
       return false;

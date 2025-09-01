@@ -13,6 +13,10 @@ export class ProductId {
     return this.value === other.value;
   }
 
+  getValue(): string {
+    return this.value;
+  }
+
   toString(): string {
     return this.value;
   }

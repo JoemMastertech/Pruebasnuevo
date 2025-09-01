@@ -119,14 +119,25 @@ export const logError = (message, error = null, context = {}) => {
     });
 };
 // Expose ErrorHandler globally
-window.ErrorHandler = ErrorHandler;
-window.logError = logError;
-window.logWarning = ErrorHandler.logWarning;
-window.handleValidationError = ErrorHandler.handleValidationError;
-window.handleMissingElementError = ErrorHandler.handle;
-window.showUserError = ErrorHandler.showUserError;
-window.clearUserError = ErrorHandler.clearUserError;
-window.handleXSSError = ErrorHandler.handleXSSError;
+// Expose ErrorHandler globally (only in browser environment)
+if (typeof window !== 'undefined') {
+    window.ErrorHandler = ErrorHandler;
+}
+if (typeof window !== 'undefined') {
+    window.logError = logError;
+    window.logWarning = ErrorHandler.logWarning;
+}
+if (typeof window !== 'undefined') {
+    window.handleValidationError = ErrorHandler.handleValidationError;
+    window.handleMissingElementError = ErrorHandler.handle;
+}
+if (typeof window !== 'undefined') {
+    window.showUserError = ErrorHandler.showUserError;
+    window.clearUserError = ErrorHandler.clearUserError;
+}
+if (typeof window !== 'undefined') {
+    window.handleXSSError = ErrorHandler.handleXSSError;
+}
 export const logWarning = ErrorHandler.logWarning;
 export const handleValidationError = ErrorHandler.handleValidationError;
 export const handleMissingElementError = ErrorHandler.handle;

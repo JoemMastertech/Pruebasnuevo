@@ -17,63 +17,141 @@ class HexagonalContainer {
         return HexagonalContainer.instance;
     }
     registerDependencies() {
-        // Registrar adaptadores básicos para prueba
-        this.registerSingleton('OrderRepositoryPort', () => {
-            return {
-                getCurrentOrder: async () => null,
-                createOrder: async () => ({ id: 'test-order', items: [], total: 0 }),
-                save: async (order) => order,
-                findById: async (id) => null,
-                findAll: async () => [],
-                delete: async (id) => true,
-                completeOrder: async (id) => true,
-                cancelOrder: async (id) => true,
-                clearCurrentOrder: async () => true
-            };
-        });
-        this.registerSingleton('ProductRepositoryPort', () => {
-            return {
-                findByName: async (name) => null,
-                findByCategory: async (category) => [],
-                findAll: async () => [],
-                search: async (query) => [],
-                exists: async (productId) => false,
-                getDrinkOptions: async (product) => []
-            };
-        });
-        this.registerSingleton('DrinkRulesPort', () => {
-            return {
-                getAvailableOptions: async (product) => ({ available: [], isAvailable: () => false, isValid: () => true }),
-                validateSelection: async (product, selection) => ({ success: true, errors: [], warnings: [] }),
-                getDrinkLimits: (product) => ({ min: 0, max: 1 }),
-                requiresDrinkSelection: (product) => false,
-                allowsMultipleDrinks: (product) => false,
-                getLiquorRules: (liquorType) => ({ allowedDrinks: [], maxDrinks: 1, specialRules: [] }),
-                validateDrinkCompatibility: async (drinks) => ({ success: true, errors: [], warnings: [] })
-            };
-        });
-        // Registrar casos de uso básicos
-        this.registerTransient('CreateOrderUseCase', () => {
-            return {
-                getCurrentOrder: async () => null,
-                createOrder: async () => ({ id: 'test-order', items: [], total: 0 }),
-                addOrderItem: async (data) => ({ success: true, item: data }),
-                removeOrderItem: async (itemId) => true,
-                updateOrderItem: async (itemId, data) => ({ success: true, item: data }),
-                completeCurrentOrder: async () => true,
-                cancelCurrentOrder: async () => true,
-                clearCurrentOrder: async () => true,
-                getOrderSummary: async () => ({ total: { toNumber: () => 0 }, itemCount: 0, items: [] })
-            };
-        });
-        this.registerTransient('ValidateProductUseCase', () => {
-            return {
-                validateProduct: async (data) => ({ isValid: true, errors: [], warnings: [] }),
-                getProductInfo: async (name) => null,
-                getDrinkOptions: async (product) => [],
-                checkProductExists: async (name) => false
-            };
-        });
+        try {
+            // Registrar adaptadores básicos para prueba
+            this.registerSingleton('OrderRepositoryPort', () => {
+                return {
+                    getCurrentOrder: async () => null,
+                    createOrder: async () => ({ id: 'test-order', items: [], total: 0 }),
+                    save: async (order) => order,
+                    findById: async (id) => null,
+                    findAll: async () => [],
+                    delete: async (id) => true,
+                    completeOrder: async (id) => true,
+                    cancelOrder: async (id) => true,
+                    clearCurrentOrder: async () => true
+                };
+            });
+            this.registerSingleton('ProductRepositoryPort', () => {
+                return {
+                    findByName: async (name) => null,
+                    findByCategory: async (category) => [],
+                    findAll: async () => [],
+                    search: async (query) => [],
+                    exists: async (productId) => false,
+                    getDrinkOptions: async (product) => []
+                };
+            });
+            this.registerSingleton('DrinkRulesPort', () => {
+                return {
+                    getAvailableOptions: async (product) => ({ available: [], isAvailable: () => false, isValid: () => true }),
+                    validateSelection: async (product, selection) => ({ success: true, errors: [], warnings: [] }),
+                    getDrinkLimits: (product) => ({ min: 0, max: 1 }),
+                    requiresDrinkSelection: (product) => false,
+                    allowsMultipleDrinks: (product) => false,
+                    getLiquorRules: (liquorType) => ({ allowedDrinks: [], maxDrinks: 1, specialRules: [] }),
+                    validateDrinkCompatibility: async (drinks) => ({ success: true, errors: [], warnings: [] })
+                };
+            });
+            // Registrar adaptadores de infraestructura
+            this.registerSingleton('BaseAdapter', () => {
+                return {
+                    name: 'BaseAdapter',
+                    type: 'infrastructure',
+                    isConnected: () => true,
+                    connect: async () => true,
+                    disconnect: async () => true,
+                    getStatus: () => ({ connected: true, healthy: true })
+                };
+            });
+            this.registerSingleton('ProductDataAdapter', () => {
+                return {
+                    name: 'ProductDataAdapter',
+                    type: 'data',
+                    findByName: async (name) => null,
+                    findByCategory: async (category) => [],
+                    findAll: async () => [],
+                    search: async (query) => [],
+                    exists: async (productId) => false,
+                    getDrinkOptions: async (product) => []
+                };
+            });
+            this.registerSingleton('AIInterface', () => {
+                return {
+                    name: 'AIInterface',
+                    type: 'ai',
+                    processRequest: async (request) => ({ success: true, response: 'AI response' }),
+                    analyzeProduct: async (product) => ({ analysis: 'Product analysis' }),
+                    generateRecommendations: async (context) => ({ recommendations: [] })
+                };
+            });
+            this.registerSingleton('SupabaseAdapterTS', () => {
+                return {
+                    name: 'SupabaseAdapterTS',
+                    type: 'database',
+                    query: async (sql, params) => ({ data: [], error: null }),
+                    insert: async (table, data) => ({ data: data, error: null }),
+                    update: async (table, id, data) => ({ data: data, error: null }),
+                    delete: async (table, id) => ({ data: null, error: null }),
+                    isConnected: () => true
+                };
+            });
+            // Registrar EventBusPort
+            this.registerSingleton('EventBusPort', () => {
+                return {
+                    name: 'EventBusPort',
+                    type: 'event',
+                    emit: async (event, data) => true,
+                    on: (event, handler) => true,
+                    off: (event, handler) => true,
+                    once: (event, handler) => true,
+                    getListeners: (event) => []
+                };
+            });
+            // Registrar casos de uso básicos
+            this.registerTransient('CreateOrderUseCase', () => {
+                return {
+                    getCurrentOrder: async () => null,
+                    createOrder: async () => ({ id: 'test-order', items: [], total: 0 }),
+                    addOrderItem: async (data) => ({ success: true, item: data }),
+                    removeOrderItem: async (itemId) => true,
+                    updateOrderItem: async (itemId, data) => ({ success: true, item: data }),
+                    completeCurrentOrder: async () => true,
+                    cancelCurrentOrder: async () => true,
+                    clearCurrentOrder: async () => true,
+                    getOrderSummary: async () => ({ total: { toNumber: () => 0 }, itemCount: 0, items: [] })
+                };
+            });
+            this.registerTransient('ValidateProductUseCase', () => {
+                return {
+                    validateProduct: async (data) => ({ isValid: true, errors: [], warnings: [] }),
+                    getProductInfo: async (name) => null,
+                    getDrinkOptions: async (product) => [],
+                    checkProductExists: async (name) => false
+                };
+            });
+            this.registerTransient('AddProductToOrderUseCase', () => {
+                return {
+                    addProduct: async (productData) => ({ success: true, item: productData }),
+                    validateAndAdd: async (productData) => ({ success: true, item: productData }),
+                    getProductDetails: async (productName) => null,
+                    calculateItemTotal: (product, quantity) => ({ toNumber: () => 0 })
+                };
+            });
+            this.registerTransient('ValidateOrderUseCase', () => {
+                return {
+                    validateOrder: async (order) => ({ isValid: true, errors: [], warnings: [] }),
+                    validateOrderItems: async (items) => ({ isValid: true, errors: [], warnings: [] }),
+                    checkOrderLimits: async (order) => ({ isValid: true, errors: [], warnings: [] }),
+                    getOrderValidationRules: () => ({ rules: [], maxItems: 100, minTotal: 0 })
+                };
+            });
+            console.log('✅ All dependencies registered successfully:', this.getRegisteredKeys());
+        }
+        catch (error) {
+            console.error('❌ Error in registerDependencies:', error);
+            throw error;
+        }
     }
     registerSingleton(key, factory) {
         this.dependencies.set(key, { factory, isSingleton: true });
@@ -115,6 +193,12 @@ class HexagonalContainer {
     getValidateProductUseCase() {
         return this.resolve('ValidateProductUseCase');
     }
+    getAddProductToOrderUseCase() {
+        return this.resolve('AddProductToOrderUseCase');
+    }
+    getValidateOrderUseCase() {
+        return this.resolve('ValidateOrderUseCase');
+    }
     getOrderRepository() {
         return this.resolve('OrderRepositoryPort');
     }
@@ -126,11 +210,9 @@ class HexagonalContainer {
     }
     static initialize() {
         const container = HexagonalContainer.getInstance();
-        // Exponer casos de uso globalmente para compatibilidad con el sistema existente
+        // Exponer solo el contenedor globalmente
         if (typeof window !== 'undefined') {
             window.HexagonalContainer = container;
-            window.CreateOrderUseCase = container.resolve('CreateOrderUseCase');
-            window.ValidateProductUseCase = container.resolve('ValidateProductUseCase');
         }
         return container;
     }
@@ -149,12 +231,16 @@ class HexagonalBootstrap {
     async initialize() {
         try {
             console.log('🏗️ Inicializando arquitectura hexagonal...');
+            // Cargar _bem-base.css automáticamente al inicio
+            await this.loadBemBaseCss();
             // Inicializar el contenedor de dependencias
             this.container = HexagonalContainer.initialize();
             // Conectar con el sistema existente
             await this.connectWithExistingSystem();
             // Exponer la API hexagonal
             this.exposeHexagonalAPI();
+            // Exponer adaptadores globalmente
+            this.exposeAdaptersGlobally();
             this.isInitialized = true;
             console.log('✅ Arquitectura hexagonal inicializada correctamente');
             return this.container;
@@ -163,6 +249,75 @@ class HexagonalBootstrap {
             console.error('❌ Error inicializando arquitectura hexagonal:', error);
             throw error;
         }
+    }
+    /**
+     * Carga automáticamente _bem-base.css
+     */
+    async loadBemBaseCss() {
+        return new Promise((resolve, reject) => {
+            // Verificar si ya está cargado
+            const existingLink = Array.from(document.styleSheets).find(sheet => sheet.href && sheet.href.includes('_bem-base.css'));
+            if (existingLink) {
+                console.log('✅ _bem-base.css ya está cargado');
+                resolve();
+                return;
+            }
+            console.log('🎨 Cargando _bem-base.css automáticamente...');
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = './Shared/styles/_bem-base.css';
+            link.onload = () => {
+                console.log('✅ _bem-base.css cargado exitosamente');
+                resolve();
+            };
+            link.onerror = (error) => {
+                console.warn('⚠️ Error cargando _bem-base.css:', error);
+                // No fallar la inicialización por CSS
+                resolve();
+            };
+            // Insertar al inicio del head para máxima prioridad
+            document.head.insertBefore(link, document.head.firstChild);
+        });
+    }
+    /**
+     * Expone adaptadores globalmente según contrato
+     */
+    exposeAdaptersGlobally() {
+        console.log('🌐 Exponiendo adaptadores globalmente...');
+        const adaptersToExpose = [
+            'BaseAdapter',
+            'ProductDataAdapter',
+            'AIInterface',
+            'SupabaseAdapterTS'
+        ];
+        adaptersToExpose.forEach(adapterName => {
+            try {
+                const adapter = this.container.resolve(adapterName);
+                if (adapter) {
+                    window[adapterName] = adapter;
+                    console.log(`   ✅ ${adapterName} expuesto globalmente`);
+                }
+                else {
+                    console.warn(`   ⚠️ ${adapterName} no se pudo resolver`);
+                }
+            }
+            catch (error) {
+                console.warn(`   ⚠️ Error exponiendo ${adapterName}:`, error.message);
+                // Para SupabaseAdapterTS, intentar con ProductRepositoryPort
+                if (adapterName === 'SupabaseAdapterTS') {
+                    try {
+                        const productRepo = this.container.resolve('ProductRepositoryPort');
+                        if (productRepo) {
+                            window[adapterName] = productRepo;
+                            console.log(`   ✅ ${adapterName} expuesto como ProductRepositoryPort`);
+                        }
+                    }
+                    catch (fallbackError) {
+                        console.warn(`   ❌ Fallback para ${adapterName} falló:`, fallbackError.message);
+                    }
+                }
+            }
+        });
     }
     /**
      * Conecta la nueva arquitectura con el sistema existente

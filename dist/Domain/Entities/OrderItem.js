@@ -95,4 +95,18 @@ export class OrderItem {
             : '';
         return `${this.quantity}x ${this.product.name.value}${customizationsStr} - ${this.getSubtotal().toString()}`;
     }
+    // Métodos getter para compatibilidad con UI
+    getId() {
+        return this.id;
+    }
+    getProductId() {
+        return this.product.getId();
+    }
+    getQuantity() {
+        return this.quantity;
+    }
+    getDrinkOptions() {
+        return this.getSelectedDrinks().map(drink => drink.value);
+    }
 }
+//# sourceMappingURL=OrderItem.js.map
