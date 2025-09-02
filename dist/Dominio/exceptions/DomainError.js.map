@@ -1,1 +1,0 @@
-{"version":3,"file":"DomainError.js","sourceRoot":"","sources":["../../../Dominio/exceptions/DomainError.js"],"names":[],"mappings":"AAAA,MAAM,WAAY,SAAQ,KAAK;IAC7B,YAAY,OAAO;QACjB,KAAK,CAAC,OAAO,CAAC,CAAC;QACf,IAAI,CAAC,IAAI,GAAG,aAAa,CAAC;IAC5B,CAAC;CACF;AAED,eAAe,WAAW,CAAC"}

@@ -1,0 +1,56 @@
+{
+  "name": "proyecto-hexagonal",
+  "version": "1.0.0",
+  "description": "Proyecto con arquitectura hexagonal implementada en TypeScript",
+  "main": "index.html",
+  "scripts": {
+    "build": "powershell -ExecutionPolicy Bypass -File ./build-with-cleanup.ps1",
+    "build:clean": "powershell -ExecutionPolicy Bypass -File ./build-with-cleanup.ps1 -Clean",
+    "build:fast": "powershell -ExecutionPolicy Bypass -File ./build-with-cleanup.ps1 -SkipTests",
+    "clean": "powershell -ExecutionPolicy Bypass -File ./build-with-cleanup.ps1 -Clean -SkipTests",
+    "compile": "tsc",
+    "compile:watch": "tsc --watch",
+    "review:unreferenced": "powershell -ExecutionPolicy Bypass -File ./review-unreferenced-files.ps1 -Action analyze",
+    "review:interactive": "powershell -ExecutionPolicy Bypass -File ./review-unreferenced-files.ps1 -Action interactive",
+    "review:report": "powershell -ExecutionPolicy Bypass -File ./review-unreferenced-files.ps1 -Action report",
+    "test": "echo \"Tests no configurados aún. Ejecute npm run test:setup para configurar.\"",
+    "test:setup": "echo \"Para configurar tests, instale Jest: npm install --save-dev jest @types/jest ts-jest\"",
+    "start": "echo \"Abra index.html en su navegador para ver la aplicación\"",
+    "dev": "echo \"Modo desarrollo: abra index.html y use npm run compile:watch para compilación automática\"",
+    "backup": "powershell -ExecutionPolicy Bypass -File ./create-backup.ps1",
+    "restore": "powershell -ExecutionPolicy Bypass -File ./restore-backup.ps1",
+    "cleanup:compiled": "powershell -ExecutionPolicy Bypass -File ./cleanup-compiled-files.ps1",
+    "validate:duplicates": "powershell -ExecutionPolicy Bypass -File ./validate-duplicates.ps1"
+  },
+  "keywords": [
+    "typescript",
+    "hexagonal-architecture",
+    "clean-architecture",
+    "domain-driven-design"
+  ],
+  "author": "Proyecto UNAM",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "."
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "files": [
+    "dist/",
+    "index.html",
+    "*.md",
+    "tsconfig.json"
+  ]
+}

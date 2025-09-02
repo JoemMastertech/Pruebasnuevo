@@ -1,0 +1,21 @@
+{
+  "timestamp": "2025-09-01T04:35:24.422Z",
+  "layerStats": {
+    "controllers": 17,
+    "presenters": 8,
+    "ui": 31,
+    "infrastructure": 43,
+    "domain": 71,
+    "application": 33,
+    "unreferenced": 145
+  },
+  "totalFiles": 347,
+  "unreferencedFiles": 145,
+  "recommendations": [
+    {
+      "type": "cleanup",
+      "priority": "high",
+      "message": "Se encontraron 145 archivos sin referencias. Considerar eliminación."
+    }
+  ]
+}

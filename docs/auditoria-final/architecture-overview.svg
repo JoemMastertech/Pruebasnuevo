@@ -1,0 +1,73 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .layer-box { fill: #f0f0f0; stroke: #333; stroke-width: 2; }
+      .ui-layer { fill: #fff3cd; }
+      .presenter-layer { fill: #d4edda; }
+      .app-layer { fill: #f8d7da; }
+      .domain-layer { fill: #d1ecf1; }
+      .infra-layer { fill: #e2e3e5; }
+      .text { font-family: Arial, sans-serif; font-size: 12px; text-anchor: middle; }
+      .title { font-size: 16px; font-weight: bold; }
+      .stats { font-size: 10px; fill: #666; }
+      .arrow { stroke: #333; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333" />
+    </marker>
+  </defs>
+  
+  <!-- Title -->
+  <text x="400" y="30" class="text title">Arquitectura Hexagonal - Vista General</text>
+  <text x="400" y="50" class="text stats">Total: 347 archivos | Sin referencias: 145 | Candidatos limpieza: 381</text>
+  
+  <!-- UI Layer -->
+  <rect x="50" y="80" width="700" height="80" class="layer-box ui-layer" />
+  <text x="400" y="105" class="text title">Capa de Presentación (UI)</text>
+  <text x="200" y="125" class="text">Componentes UI: 31 archivos</text>
+  <text x="400" y="125" class="text">Controladores: 17 archivos</text>
+  <text x="600" y="125" class="text">Presenters: 8 archivos</text>
+  <text x="400" y="145" class="text stats">Responsabilidad: Interfaz de usuario, manejo de eventos, presentación de datos</text>
+  
+  <!-- Application Layer -->
+  <rect x="50" y="180" width="700" height="80" class="layer-box app-layer" />
+  <text x="400" y="205" class="text title">Capa de Aplicación</text>
+  <text x="400" y="225" class="text">Casos de Uso: 33 archivos</text>
+  <text x="400" y="245" class="text stats">Responsabilidad: Orquestación de la lógica de negocio, coordinación entre capas</text>
+  
+  <!-- Domain Layer -->
+  <rect x="50" y="280" width="700" height="80" class="layer-box domain-layer" />
+  <text x="400" y="305" class="text title">Capa de Dominio (Core)</text>
+  <text x="300" y="325" class="text">Entidades y Value Objects: 71 archivos</text>
+  <text x="500" y="325" class="text">Reglas de Negocio</text>
+  <text x="400" y="345" class="text stats">Responsabilidad: Lógica de negocio pura, entidades, reglas de dominio</text>
+  
+  <!-- Infrastructure Layer -->
+  <rect x="50" y="380" width="700" height="80" class="layer-box infra-layer" />
+  <text x="400" y="405" class="text title">Capa de Infraestructura</text>
+  <text x="300" y="425" class="text">Adaptadores: 43 archivos</text>
+  <text x="500" y="425" class="text">Repositorios, APIs, DB</text>
+  <text x="400" y="445" class="text stats">Responsabilidad: Implementación de puertos, acceso a datos, servicios externos</text>
+  
+  <!-- Arrows showing dependencies -->
+  <line x1="400" y1="160" x2="400" y2="180" class="arrow" />
+  <line x1="400" y1="260" x2="400" y2="280" class="arrow" />
+  <line x1="400" y1="360" x2="400" y2="380" class="arrow" />
+  
+  <!-- Side panel with cleanup stats -->
+  <rect x="50" y="480" width="300" height="100" class="layer-box" fill="#fff5f5" />
+  <text x="200" y="500" class="text title">Oportunidades de Limpieza</text>
+  <text x="70" y="520" class="text stats">• Duplicados exactos: 8 grupos</text>
+  <text x="70" y="535" class="text stats">• Archivos compilados: 201 archivos</text>
+  <text x="70" y="550" class="text stats">• Sin referencias: 140 archivos</text>
+  <text x="70" y="565" class="text stats">• Espacio recuperable: ~2.2 MB</text>
+  
+  <!-- Side panel with quality metrics -->
+  <rect x="450" y="480" width="300" height="100" class="layer-box" fill="#f0fff4" />
+  <text x="600" y="500" class="text title">Métricas de Calidad</text>
+  <text x="470" y="520" class="text stats">• Cobertura tests: 95%+</text>
+  <text x="470" y="535" class="text stats">• Errores TypeScript: 0</text>
+  <text x="470" y="550" class="text stats">• Arquitectura: Hexagonal ✓</text>
+  <text x="470" y="565" class="text stats">• Documentación: Completa ✓</text>
+  
+</svg>

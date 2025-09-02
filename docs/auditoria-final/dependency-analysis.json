@@ -1,0 +1,1399 @@
+{
+  "totalFiles": 347,
+  "sourceFiles": 331,
+  "referencedFiles": 494,
+  "unreferencedFiles": 145,
+  "filesByExtension": {
+    ".js": 196,
+    ".css": 13,
+    ".ts": 135,
+    ".html": 2,
+    ".json": 1
+  },
+  "unreferencedList": [
+    {
+      "path": "..\\..\\Aplicacion\\UseCases\\ValidateProductUseCase.ts",
+      "size": 7075,
+      "lastModified": "29/08/2025 02:28:07 p. m."
+    },
+    {
+      "path": "..\\..\\compiled\\Domain\\Ports\\OrderRepositoryPort.js",
+      "size": 77,
+      "lastModified": "30/08/2025 01:57:20 p. m."
+    },
+    {
+      "path": "..\\..\\compiled\\Domain\\Ports\\ProductRepositoryPort.js",
+      "size": 77,
+      "lastModified": "30/08/2025 01:57:20 p. m."
+    },
+    {
+      "path": "..\\..\\compiled\\Infraestructura\\DI\\HexagonalContainer.js",
+      "size": 14246,
+      "lastModified": "30/08/2025 01:57:20 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Aplicacion\\services\\OrderCore.d.ts",
+      "size": 511,
+      "lastModified": "31/08/2025 03:48:22 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Aplicacion\\use-cases\\LoadCocktailsUseCase.d.ts",
+      "size": 452,
+      "lastModified": "31/08/2025 03:48:23 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Aplicacion\\UseCases\\AddProductToOrderUseCase.d.ts",
+      "size": 1941,
+      "lastModified": "31/08/2025 03:48:21 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Aplicacion\\UseCases\\CreateOrderUseCase.d.ts",
+      "size": 2453,
+      "lastModified": "31/08/2025 03:48:22 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Aplicacion\\UseCases\\GetProductByIdUseCase.d.ts",
+      "size": 609,
+      "lastModified": "31/08/2025 03:48:22 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Aplicacion\\UseCases\\GetProductsUseCase.d.ts",
+      "size": 508,
+      "lastModified": "31/08/2025 03:48:22 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Aplicacion\\UseCases\\ValidateOrderUseCase.d.ts",
+      "size": 2244,
+      "lastModified": "31/08/2025 03:48:22 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Aplicacion\\UseCases\\ValidateProductUseCase.d.ts",
+      "size": 2258,
+      "lastModified": "31/08/2025 03:48:22 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Domain\\Entities\\Order.d.ts",
+      "size": 2699,
+      "lastModified": "31/08/2025 03:48:21 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Domain\\Entities\\OrderItem.d.ts",
+      "size": 2172,
+      "lastModified": "31/08/2025 03:48:21 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Domain\\Entities\\Product.d.ts",
+      "size": 2147,
+      "lastModified": "31/08/2025 03:48:21 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Domain\\Ports\\DrinkRulesPort.d.ts",
+      "size": 3218,
+      "lastModified": "31/08/2025 03:48:21 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Domain\\Ports\\EventBusPort.d.ts",
+      "size": 5734,
+      "lastModified": "31/08/2025 03:48:21 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Domain\\Ports\\OrderRepositoryPort.d.ts",
+      "size": 1919,
+      "lastModified": "31/08/2025 03:48:21 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Domain\\Ports\\ProductRepositoryPort.d.ts",
+      "size": 2794,
+      "lastModified": "31/08/2025 03:48:21 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Domain\\ValueObjects\\Money.d.ts",
+      "size": 534,
+      "lastModified": "31/08/2025 03:48:21 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Domain\\ValueObjects\\OrderId.d.ts",
+      "size": 351,
+      "lastModified": "31/08/2025 03:48:21 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Domain\\ValueObjects\\OrderItemId.d.ts",
+      "size": 375,
+      "lastModified": "31/08/2025 03:48:21 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Domain\\ValueObjects\\ProductCategory.d.ts",
+      "size": 523,
+      "lastModified": "31/08/2025 03:48:21 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Domain\\ValueObjects\\ProductDescription.d.ts",
+      "size": 413,
+      "lastModified": "31/08/2025 03:48:21 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Domain\\ValueObjects\\ProductDescription.js",
+      "size": 1060,
+      "lastModified": "31/08/2025 03:48:21 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Domain\\ValueObjects\\ProductId.d.ts",
+      "size": 342,
+      "lastModified": "31/08/2025 03:48:21 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Domain\\ValueObjects\\ProductName.d.ts",
+      "size": 353,
+      "lastModified": "31/08/2025 03:48:21 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Dominio\\exceptions\\DomainError.d.ts",
+      "size": 144,
+      "lastModified": "31/08/2025 03:48:22 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Dominio\\exceptions\\ValidationError.d.ts",
+      "size": 175,
+      "lastModified": "31/08/2025 03:48:23 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Dominio\\ports\\CocktailRepositoryPort.d.ts",
+      "size": 215,
+      "lastModified": "31/08/2025 03:48:23 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Infraestructura\\adapters\\BaseAdapter.d.ts",
+      "size": 1712,
+      "lastModified": "31/08/2025 03:48:23 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Infraestructura\\adapters\\DrinkRulesServiceAdapter.d.ts",
+      "size": 1966,
+      "lastModified": "31/08/2025 03:48:23 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Infraestructura\\adapters\\InMemoryOrderRepository.d.ts",
+      "size": 1705,
+      "lastModified": "31/08/2025 03:48:23 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Infraestructura\\adapters\\ProductDataAdapter.d.ts",
+      "size": 9045,
+      "lastModified": "31/08/2025 03:48:23 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Infraestructura\\adapters\\ProductDataAdapterTS.d.ts",
+      "size": 2504,
+      "lastModified": "31/08/2025 03:48:23 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Infraestructura\\adapters\\ProductDataAdapterTS.js",
+      "size": 10084,
+      "lastModified": "31/08/2025 03:48:23 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Infraestructura\\adapters\\ProductDataRepositoryAdapter.d.ts",
+      "size": 2371,
+      "lastModified": "31/08/2025 03:48:23 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Infraestructura\\adapters\\ProductDataRepositoryAdapter.js",
+      "size": 10996,
+      "lastModified": "31/08/2025 03:48:23 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Infraestructura\\adapters\\SupabaseAdapter.d.ts",
+      "size": 1793,
+      "lastModified": "31/08/2025 03:48:24 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Infraestructura\\adapters\\SupabaseAdapter.js",
+      "size": 3914,
+      "lastModified": "31/08/2025 03:48:23 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Infraestructura\\adapters\\SupabaseAdapterTS.d.ts",
+      "size": 2597,
+      "lastModified": "31/08/2025 03:48:23 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Infraestructura\\data-providers\\product-data.d.ts",
+      "size": 3555,
+      "lastModified": "31/08/2025 03:48:23 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Infraestructura\\DI\\HexagonalContainer.d.ts",
+      "size": 2952,
+      "lastModified": "31/08/2025 03:48:23 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Infraestructura\\integrations\\AIInterface.d.ts",
+      "size": 1480,
+      "lastModified": "31/08/2025 03:48:23 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Infraestructura\\integrations\\BillingInterface.d.ts",
+      "size": 1246,
+      "lastModified": "31/08/2025 03:48:24 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Infraestructura\\integrations\\BillingInterface.js",
+      "size": 1737,
+      "lastModified": "31/08/2025 03:48:24 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Infraestructura\\integrations\\ReservationInterface.d.ts",
+      "size": 1862,
+      "lastModified": "31/08/2025 03:48:24 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Infraestructura\\integrations\\ReservationInterface.js",
+      "size": 2629,
+      "lastModified": "31/08/2025 03:48:24 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Interfaces\\web\\components\\OrderSystemComponent.d.ts",
+      "size": 3250,
+      "lastModified": "31/08/2025 03:48:24 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Interfaces\\web\\components\\ProductGridComponent.d.ts",
+      "size": 3244,
+      "lastModified": "31/08/2025 03:48:24 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Interfaces\\web\\controllers\\OrderController.d.ts",
+      "size": 1718,
+      "lastModified": "31/08/2025 03:48:24 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Interfaces\\web\\controllers\\ProductController.d.ts",
+      "size": 1818,
+      "lastModified": "31/08/2025 03:48:24 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Interfaces\\web\\events\\EventHandler.d.ts",
+      "size": 2311,
+      "lastModified": "31/08/2025 03:48:24 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Interfaces\\web\\performance\\PerformanceOptimizer.d.ts",
+      "size": 3721,
+      "lastModified": "31/08/2025 03:48:24 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Interfaces\\web\\presenters\\OrderPresenter.d.ts",
+      "size": 2341,
+      "lastModified": "31/08/2025 03:48:24 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Interfaces\\web\\presenters\\ProductPresenter.d.ts",
+      "size": 1857,
+      "lastModified": "31/08/2025 03:48:24 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Interfaces\\web\\ui-adapters\\components\\order-system-validations.d.ts",
+      "size": 6099,
+      "lastModified": "31/08/2025 03:48:24 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Interfaces\\web\\ui-adapters\\components\\order-system.d.ts",
+      "size": 53,
+      "lastModified": "31/08/2025 03:48:25 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Interfaces\\web\\ui-adapters\\components\\ProductCarousel.d.ts",
+      "size": 1459,
+      "lastModified": "31/08/2025 03:48:24 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Interfaces\\web\\ui-adapters\\components\\ProductCarousel.js",
+      "size": 6501,
+      "lastModified": "31/08/2025 03:48:24 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Interfaces\\web\\ui-adapters\\components\\SafeModal.d.ts",
+      "size": 1361,
+      "lastModified": "31/08/2025 03:48:24 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Interfaces\\web\\ui-adapters\\screens\\screen-manager.d.ts",
+      "size": 1417,
+      "lastModified": "31/08/2025 03:48:25 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Shared\\base\\BaseEntity.d.ts",
+      "size": 381,
+      "lastModified": "31/08/2025 03:48:26 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Shared\\base\\BaseEntity.js",
+      "size": 2358,
+      "lastModified": "31/08/2025 03:48:26 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Shared\\config\\app-init.js",
+      "size": 42589,
+      "lastModified": "31/08/2025 03:48:26 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Shared\\config\\constants.d.ts",
+      "size": 6418,
+      "lastModified": "31/08/2025 03:48:22 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Shared\\config\\EnvironmentManager.d.ts",
+      "size": 4660,
+      "lastModified": "31/08/2025 03:48:26 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Shared\\config\\EnvironmentManager.js",
+      "size": 18896,
+      "lastModified": "31/08/2025 03:48:26 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Shared\\config\\storage.d.ts",
+      "size": 804,
+      "lastModified": "31/08/2025 03:48:23 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Shared\\config\\syncConfig.d.ts",
+      "size": 4400,
+      "lastModified": "31/08/2025 03:48:26 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Shared\\config\\syncConfig.js",
+      "size": 4623,
+      "lastModified": "31/08/2025 03:48:26 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Shared\\core\\AppConfig.d.ts",
+      "size": 2755,
+      "lastModified": "31/08/2025 03:48:23 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Shared\\core\\DIContainer.d.ts",
+      "size": 1701,
+      "lastModified": "31/08/2025 03:48:26 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Shared\\core\\Result.d.ts",
+      "size": 491,
+      "lastModified": "31/08/2025 03:48:22 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Shared\\exceptions\\InfrastructureError.d.ts",
+      "size": 168,
+      "lastModified": "31/08/2025 03:48:26 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Shared\\exceptions\\InfrastructureError.js",
+      "size": 227,
+      "lastModified": "31/08/2025 03:48:26 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Shared\\js\\CSSClassManager.d.ts",
+      "size": 5336,
+      "lastModified": "31/08/2025 03:48:26 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Shared\\js\\CSSClassManager.js",
+      "size": 15222,
+      "lastModified": "31/08/2025 03:48:26 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Shared\\js\\top-nav-independent.d.ts",
+      "size": 1426,
+      "lastModified": "31/08/2025 03:48:26 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Shared\\js\\top-nav-independent.js",
+      "size": 14263,
+      "lastModified": "31/08/2025 03:48:26 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Shared\\performance\\MemoizationManager.d.ts",
+      "size": 1622,
+      "lastModified": "31/08/2025 03:48:26 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Shared\\performance\\MemoizationManager.js",
+      "size": 3594,
+      "lastModified": "31/08/2025 03:48:26 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Shared\\services\\DataSyncService.d.ts",
+      "size": 1360,
+      "lastModified": "31/08/2025 03:48:23 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Shared\\utils\\calculationUtils.d.ts",
+      "size": 1266,
+      "lastModified": "31/08/2025 03:48:24 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Shared\\utils\\diUtils.d.ts",
+      "size": 1255,
+      "lastModified": "31/08/2025 03:48:24 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Shared\\utils\\domUtils.d.ts",
+      "size": 715,
+      "lastModified": "31/08/2025 03:48:25 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Shared\\utils\\errorHandler.d.ts",
+      "size": 1242,
+      "lastModified": "31/08/2025 03:48:23 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Shared\\utils\\formatters.d.ts",
+      "size": 662,
+      "lastModified": "31/08/2025 03:48:22 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Shared\\utils\\logger.d.ts",
+      "size": 321,
+      "lastModified": "31/08/2025 03:48:22 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Shared\\utils\\sanitizer.d.ts",
+      "size": 361,
+      "lastModified": "31/08/2025 03:48:25 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Shared\\utils\\simpleCache.d.ts",
+      "size": 896,
+      "lastModified": "31/08/2025 03:48:23 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Shared\\utils\\syncMonitor.d.ts",
+      "size": 1400,
+      "lastModified": "31/08/2025 03:48:27 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Shared\\utils\\syncMonitor.js",
+      "size": 6371,
+      "lastModified": "31/08/2025 03:48:27 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Shared\\utils\\validator.d.ts",
+      "size": 3640,
+      "lastModified": "31/08/2025 03:48:22 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Tests\\Integration\\Phase4\\ControllerIntegrationTests.d.ts",
+      "size": 2027,
+      "lastModified": "31/08/2025 03:48:25 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Tests\\Integration\\Phase4\\ControllerIntegrationTests.js",
+      "size": 18685,
+      "lastModified": "31/08/2025 03:48:25 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Tests\\Integration\\Phase4\\MinimalControllerTest.d.ts",
+      "size": 155,
+      "lastModified": "31/08/2025 03:48:25 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Tests\\Integration\\Phase4\\MinimalControllerTest.js",
+      "size": 3285,
+      "lastModified": "31/08/2025 03:48:25 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Tests\\Integration\\Phase4\\SimpleControllerTests.d.ts",
+      "size": 196,
+      "lastModified": "31/08/2025 03:48:26 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Tests\\Integration\\Phase4\\SimpleControllerTests.js",
+      "size": 6124,
+      "lastModified": "31/08/2025 03:48:26 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Tests\\Integration\\Phase4\\UIIntegrationTests.d.ts",
+      "size": 945,
+      "lastModified": "31/08/2025 03:48:26 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Tests\\Integration\\Phase4\\UIIntegrationTests.js",
+      "size": 19328,
+      "lastModified": "31/08/2025 03:48:26 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Tests\\Performance\\PerformanceOptimizationTest.d.ts",
+      "size": 957,
+      "lastModified": "31/08/2025 03:48:26 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\Tests\\Performance\\PerformanceOptimizationTest.js",
+      "size": 8645,
+      "lastModified": "31/08/2025 03:48:26 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\hexagonal-bootstrap.d.ts",
+      "size": 2818,
+      "lastModified": "31/08/2025 03:48:27 p. m."
+    },
+    {
+      "path": "..\\..\\dist\\hexagonal-bootstrap.js",
+      "size": 24155,
+      "lastModified": "31/08/2025 03:48:27 p. m."
+    },
+    {
+      "path": "..\\..\\Domain\\Ports\\DrinkRulesPort.ts",
+      "size": 3281,
+      "lastModified": "29/08/2025 02:20:21 p. m."
+    },
+    {
+      "path": "..\\..\\Domain\\Ports\\EventBusPort.ts",
+      "size": 7273,
+      "lastModified": "30/08/2025 02:24:00 p. m."
+    },
+    {
+      "path": "..\\..\\Domain\\Ports\\OrderRepositoryPort.ts",
+      "size": 1776,
+      "lastModified": "29/08/2025 02:17:16 p. m."
+    },
+    {
+      "path": "..\\..\\Domain\\ValueObjects\\OrderItemId.ts",
+      "size": 650,
+      "lastModified": "29/08/2025 02:06:52 p. m."
+    },
+    {
+      "path": "..\\..\\Dominio\\entities\\beer-entity.js",
+      "size": 818,
+      "lastModified": "25/08/2025 07:25:43 p. m."
+    },
+    {
+      "path": "..\\..\\Dominio\\entities\\cocktail-entity.js",
+      "size": 1070,
+      "lastModified": "25/08/2025 07:25:43 p. m."
+    },
+    {
+      "path": "..\\..\\Dominio\\entities\\food-entity.js",
+      "size": 1050,
+      "lastModified": "25/08/2025 07:25:43 p. m."
+    },
+    {
+      "path": "..\\..\\Dominio\\ports\\ProductRepositoryPort.js",
+      "size": 2808,
+      "lastModified": "25/08/2025 07:25:43 p. m."
+    },
+    {
+      "path": "..\\..\\Infraestructura\\adapters\\DrinkRulesServiceAdapter.ts",
+      "size": 8142,
+      "lastModified": "29/08/2025 08:08:49 p. m."
+    },
+    {
+      "path": "..\\..\\Infraestructura\\adapters\\InMemoryOrderRepository.ts",
+      "size": 3296,
+      "lastModified": "29/08/2025 07:33:29 p. m."
+    },
+    {
+      "path": "..\\..\\Infraestructura\\adapters\\ProductDataAdapterTS.ts",
+      "size": 9702,
+      "lastModified": "31/08/2025 01:55:52 p. m."
+    },
+    {
+      "path": "..\\..\\Infraestructura\\adapters\\ProductDataRepositoryAdapter.ts",
+      "size": 10310,
+      "lastModified": "31/08/2025 01:56:22 p. m."
+    },
+    {
+      "path": "..\\..\\Infraestructura\\adapters\\SupabaseAdapter.js",
+      "size": 3775,
+      "lastModified": "25/08/2025 07:25:43 p. m."
+    },
+    {
+      "path": "..\\..\\Infraestructura\\adapters\\SupabaseAdapterTS.ts",
+      "size": 11721,
+      "lastModified": "31/08/2025 01:57:22 p. m."
+    },
+    {
+      "path": "..\\..\\Infraestructura\\integrations\\BillingInterface.js",
+      "size": 1596,
+      "lastModified": "25/08/2025 07:25:43 p. m."
+    },
+    {
+      "path": "..\\..\\Infraestructura\\integrations\\ReservationInterface.js",
+      "size": 2440,
+      "lastModified": "25/08/2025 07:25:43 p. m."
+    },
+    {
+      "path": "..\\..\\Interfaces\\web\\ui-adapters\\components\\ProductCarousel.js",
+      "size": 5911,
+      "lastModified": "26/08/2025 02:20:39 p. m."
+    },
+    {
+      "path": "..\\..\\Shared\\config\\app-init.js",
+      "size": 38077,
+      "lastModified": "31/08/2025 11:46:22 a. m."
+    },
+    {
+      "path": "..\\..\\Shared\\config\\EnvironmentManager.js",
+      "size": 16460,
+      "lastModified": "25/08/2025 07:25:43 p. m."
+    },
+    {
+      "path": "..\\..\\Shared\\config\\syncConfig.js",
+      "size": 4239,
+      "lastModified": "25/08/2025 07:25:43 p. m."
+    },
+    {
+      "path": "..\\..\\Shared\\exceptions\\InfrastructureError.js",
+      "size": 168,
+      "lastModified": "25/08/2025 07:25:43 p. m."
+    },
+    {
+      "path": "..\\..\\Shared\\js\\CSSClassManager.js",
+      "size": 13892,
+      "lastModified": "29/08/2025 01:21:03 p. m."
+    },
+    {
+      "path": "..\\..\\Shared\\js\\top-nav-independent.js",
+      "size": 12785,
+      "lastModified": "29/08/2025 01:21:03 p. m."
+    },
+    {
+      "path": "..\\..\\Shared\\libs\\purify.min.js",
+      "size": 21037,
+      "lastModified": "25/08/2025 07:25:43 p. m."
+    },
+    {
+      "path": "..\\..\\Shared\\performance\\MemoizationManager.js",
+      "size": 3289,
+      "lastModified": "25/08/2025 07:25:43 p. m."
+    },
+    {
+      "path": "..\\..\\Shared\\utils\\syncMonitor.js",
+      "size": 5709,
+      "lastModified": "25/08/2025 07:25:45 p. m."
+    },
+    {
+      "path": "..\\..\\Tests\\Integration\\Phase4\\ControllerIntegrationTests.ts",
+      "size": 18698,
+      "lastModified": "31/08/2025 02:32:10 p. m."
+    },
+    {
+      "path": "..\\..\\Tests\\Integration\\Phase4\\MinimalControllerTest.ts",
+      "size": 3085,
+      "lastModified": "31/08/2025 03:40:22 p. m."
+    },
+    {
+      "path": "..\\..\\Tests\\Integration\\Phase4\\SimpleControllerTests.ts",
+      "size": 6605,
+      "lastModified": "31/08/2025 03:43:34 p. m."
+    },
+    {
+      "path": "..\\..\\Tests\\Integration\\Phase4\\UIIntegrationTests.js",
+      "size": 19791,
+      "lastModified": "31/08/2025 06:32:40 p. m."
+    },
+    {
+      "path": "..\\..\\Tests\\Integration\\Phase4\\UIIntegrationTests.ts",
+      "size": 19034,
+      "lastModified": "31/08/2025 06:31:27 p. m."
+    },
+    {
+      "path": "..\\..\\Tests\\Integration\\Phase5\\CompleteFlowTest.ts",
+      "size": 8210,
+      "lastModified": "31/08/2025 08:47:58 p. m."
+    },
+    {
+      "path": "..\\..\\Tests\\Integration\\Phase5\\E2EUserFlowTests.ts",
+      "size": 17133,
+      "lastModified": "31/08/2025 08:46:20 p. m."
+    },
+    {
+      "path": "..\\..\\Tests\\Integration\\Phase5\\UnitTestCoverage.ts",
+      "size": 18589,
+      "lastModified": "31/08/2025 10:01:32 p. m."
+    },
+    {
+      "path": "..\\..\\Tests\\Integration\\Phase5\\VisualFunctionalValidation.ts",
+      "size": 21636,
+      "lastModified": "31/08/2025 08:46:31 p. m."
+    },
+    {
+      "path": "..\\..\\Tests\\Performance\\PerformanceOptimizationTest.ts",
+      "size": 8177,
+      "lastModified": "31/08/2025 02:49:27 p. m."
+    },
+    {
+      "path": "..\\..\\Tests\\Performance\\PostRefactorBenchmarks.ts",
+      "size": 11008,
+      "lastModified": "31/08/2025 08:53:23 p. m."
+    },
+    {
+      "path": "..\\..\\Tests\\types\\jest.d.ts",
+      "size": 1361,
+      "lastModified": "31/08/2025 08:22:25 p. m."
+    },
+    {
+      "path": "..\\..\\hexagonal-bootstrap.js",
+      "size": 20749,
+      "lastModified": "31/08/2025 11:46:22 a. m."
+    }
+  ],
+  "largestFiles": [
+    {
+      "path": "..\\..\\dist\\Interfaces\\web\\ui-adapters\\components\\order-system.js",
+      "size": 98800,
+      "extension": ".js"
+    },
+    {
+      "path": "..\\..\\Interfaces\\web\\ui-adapters\\components\\order-system.js",
+      "size": 89894,
+      "extension": ".js"
+    },
+    {
+      "path": "..\\..\\Shared\\styles\\main.css",
+      "size": 71818,
+      "extension": ".css"
+    },
+    {
+      "path": "..\\..\\dist\\Infraestructura\\data-providers\\product-data.js",
+      "size": 66887,
+      "extension": ".js"
+    },
+    {
+      "path": "..\\..\\dist\\Interfaces\\web\\ui-adapters\\components\\product-table.js",
+      "size": 64834,
+      "extension": ".js"
+    },
+    {
+      "path": "..\\..\\Interfaces\\web\\ui-adapters\\components\\product-table.js",
+      "size": 59102,
+      "extension": ".js"
+    },
+    {
+      "path": "..\\..\\Infraestructura\\data-providers\\product-data.js",
+      "size": 58934,
+      "extension": ".js"
+    },
+    {
+      "path": "..\\..\\dist\\Shared\\config\\app-init.js",
+      "size": 42589,
+      "extension": ".js"
+    },
+    {
+      "path": "..\\..\\Shared\\config\\app-init.js",
+      "size": 38077,
+      "extension": ".js"
+    },
+    {
+      "path": "..\\..\\dist\\Shared\\testing\\e2e-framework.js",
+      "size": 24590,
+      "extension": ".js"
+    }
+  ],
+  "duplicateNames": [
+    {
+      "name": "order-system.js",
+      "paths": [
+        "..\\..\\dist\\Interfaces\\web\\ui-adapters\\components\\order-system.js",
+        "..\\..\\Interfaces\\web\\ui-adapters\\components\\order-system.js"
+      ]
+    },
+    {
+      "name": "product-data.js",
+      "paths": [
+        "..\\..\\dist\\Infraestructura\\data-providers\\product-data.js",
+        "..\\..\\Infraestructura\\data-providers\\product-data.js"
+      ]
+    },
+    {
+      "name": "product-table.js",
+      "paths": [
+        "..\\..\\dist\\Interfaces\\web\\ui-adapters\\components\\product-table.js",
+        "..\\..\\Interfaces\\web\\ui-adapters\\components\\product-table.js"
+      ]
+    },
+    {
+      "name": "app-init.js",
+      "paths": [
+        "..\\..\\dist\\Shared\\config\\app-init.js",
+        "..\\..\\Shared\\config\\app-init.js"
+      ]
+    },
+    {
+      "name": "e2e-framework.js",
+      "paths": [
+        "..\\..\\dist\\Shared\\testing\\e2e-framework.js",
+        "..\\..\\Shared\\testing\\e2e-framework.js"
+      ]
+    },
+    {
+      "name": "hexagonal-bootstrap.js",
+      "paths": [
+        "..\\..\\dist\\hexagonal-bootstrap.js",
+        "..\\..\\hexagonal-bootstrap.js"
+      ]
+    },
+    {
+      "name": "ProductDataAdapter.js",
+      "paths": [
+        "..\\..\\dist\\Infraestructura\\adapters\\ProductDataAdapter.js",
+        "..\\..\\Infraestructura\\adapters\\ProductDataAdapter.js"
+      ]
+    },
+    {
+      "name": "PerformanceOptimizer.js",
+      "paths": [
+        "..\\..\\Interfaces\\web\\performance\\PerformanceOptimizer.js",
+        "..\\..\\dist\\Interfaces\\web\\performance\\PerformanceOptimizer.js"
+      ]
+    },
+    {
+      "name": "UIIntegrationTests.js",
+      "paths": [
+        "..\\..\\Tests\\Integration\\Phase4\\UIIntegrationTests.js",
+        "..\\..\\dist\\Tests\\Integration\\Phase4\\UIIntegrationTests.js"
+      ]
+    },
+    {
+      "name": "ProductGridComponent.js",
+      "paths": [
+        "..\\..\\Interfaces\\web\\components\\ProductGridComponent.js",
+        "..\\..\\dist\\Interfaces\\web\\components\\ProductGridComponent.js"
+      ]
+    },
+    {
+      "name": "EnvironmentManager.js",
+      "paths": [
+        "..\\..\\dist\\Shared\\config\\EnvironmentManager.js",
+        "..\\..\\Shared\\config\\EnvironmentManager.js"
+      ]
+    },
+    {
+      "name": "phase3-integration-tests.js",
+      "paths": [
+        "..\\..\\dist\\Shared\\testing\\phase3-integration-tests.js",
+        "..\\..\\Shared\\testing\\phase3-integration-tests.js"
+      ]
+    },
+    {
+      "name": "EventHandler.js",
+      "paths": [
+        "..\\..\\Interfaces\\web\\events\\EventHandler.js",
+        "..\\..\\dist\\Interfaces\\web\\events\\EventHandler.js"
+      ]
+    },
+    {
+      "name": "ProductPresenter.js",
+      "paths": [
+        "..\\..\\Interfaces\\web\\presenters\\ProductPresenter.js",
+        "..\\..\\dist\\Interfaces\\web\\presenters\\ProductPresenter.js"
+      ]
+    },
+    {
+      "name": "CSSClassManager.js",
+      "paths": [
+        "..\\..\\dist\\Shared\\js\\CSSClassManager.js",
+        "..\\..\\Shared\\js\\CSSClassManager.js"
+      ]
+    },
+    {
+      "name": "top-nav-independent.js",
+      "paths": [
+        "..\\..\\dist\\Shared\\js\\top-nav-independent.js",
+        "..\\..\\Shared\\js\\top-nav-independent.js"
+      ]
+    },
+    {
+      "name": "HexagonalContainer.js",
+      "paths": [
+        "..\\..\\compiled\\Infraestructura\\DI\\HexagonalContainer.js",
+        "..\\..\\dist\\Infraestructura\\DI\\HexagonalContainer.js"
+      ]
+    },
+    {
+      "name": "ProductController.js",
+      "paths": [
+        "..\\..\\Interfaces\\web\\controllers\\ProductController.js",
+        "..\\..\\dist\\Interfaces\\web\\controllers\\ProductController.js"
+      ]
+    },
+    {
+      "name": "OrderPresenter.js",
+      "paths": [
+        "..\\..\\Interfaces\\web\\presenters\\OrderPresenter.js",
+        "..\\..\\dist\\Interfaces\\web\\presenters\\OrderPresenter.js"
+      ]
+    },
+    {
+      "name": "order-system-validations.js",
+      "paths": [
+        "..\\..\\dist\\Interfaces\\web\\ui-adapters\\components\\order-system-validations.js",
+        "..\\..\\Interfaces\\web\\ui-adapters\\components\\order-system-validations.js"
+      ]
+    },
+    {
+      "name": "test-framework.js",
+      "paths": [
+        "..\\..\\dist\\Shared\\testing\\test-framework.js",
+        "..\\..\\Shared\\testing\\test-framework.js"
+      ]
+    },
+    {
+      "name": "phase3-global-exposure-test.js",
+      "paths": [
+        "..\\..\\dist\\Shared\\testing\\phase3-global-exposure-test.js",
+        "..\\..\\Shared\\testing\\phase3-global-exposure-test.js"
+      ]
+    },
+    {
+      "name": "ValidateOrderUseCase.js",
+      "paths": [
+        "..\\..\\compiled\\Aplicacion\\UseCases\\ValidateOrderUseCase.js",
+        "..\\..\\Aplicacion\\UseCases\\ValidateOrderUseCase.js",
+        "..\\..\\dist\\Aplicacion\\UseCases\\ValidateOrderUseCase.js"
+      ]
+    },
+    {
+      "name": "OrderSystemComponent.js",
+      "paths": [
+        "..\\..\\Interfaces\\web\\components\\OrderSystemComponent.js",
+        "..\\..\\dist\\Interfaces\\web\\components\\OrderSystemComponent.js"
+      ]
+    },
+    {
+      "name": "ProductDataRepositoryAdapter.js",
+      "paths": [
+        "..\\..\\dist\\Infraestructura\\adapters\\ProductDataRepositoryAdapter.js",
+        "..\\..\\compiled\\Infraestructura\\adapters\\ProductDataRepositoryAdapter.js"
+      ]
+    },
+    {
+      "name": "validator.js",
+      "paths": [
+        "..\\..\\dist\\Shared\\utils\\validator.js",
+        "..\\..\\Shared\\utils\\validator.js"
+      ]
+    },
+    {
+      "name": "AppConfig.js",
+      "paths": [
+        "..\\..\\dist\\Shared\\core\\AppConfig.js",
+        "..\\..\\Shared\\core\\AppConfig.js"
+      ]
+    },
+    {
+      "name": "utils.test.js",
+      "paths": [
+        "..\\..\\dist\\Shared\\testing\\utils.test.js",
+        "..\\..\\Shared\\testing\\utils.test.js"
+      ]
+    },
+    {
+      "name": "DrinkRulesServiceAdapter.js",
+      "paths": [
+        "..\\..\\compiled\\Infraestructura\\adapters\\DrinkRulesServiceAdapter.js",
+        "..\\..\\dist\\Infraestructura\\adapters\\DrinkRulesServiceAdapter.js"
+      ]
+    },
+    {
+      "name": "AddProductToOrderUseCase.js",
+      "paths": [
+        "..\\..\\Aplicacion\\UseCases\\AddProductToOrderUseCase.js",
+        "..\\..\\dist\\Aplicacion\\UseCases\\AddProductToOrderUseCase.js",
+        "..\\..\\compiled\\Aplicacion\\UseCases\\AddProductToOrderUseCase.js"
+      ]
+    },
+    {
+      "name": "domUtils.test.js",
+      "paths": [
+        "..\\..\\dist\\Shared\\utils\\domUtils.test.js",
+        "..\\..\\Shared\\utils\\domUtils.test.js"
+      ]
+    },
+    {
+      "name": "OrderController.js",
+      "paths": [
+        "..\\..\\dist\\Interfaces\\web\\controllers\\OrderController.js",
+        "..\\..\\Interfaces\\web\\controllers\\OrderController.js"
+      ]
+    },
+    {
+      "name": "screen-manager.js",
+      "paths": [
+        "..\\..\\dist\\Interfaces\\web\\ui-adapters\\screens\\screen-manager.js",
+        "..\\..\\Interfaces\\web\\ui-adapters\\screens\\screen-manager.js"
+      ]
+    },
+    {
+      "name": "Order.js",
+      "paths": [
+        "..\\..\\compiled\\Domain\\Entities\\Order.js",
+        "..\\..\\Domain\\Entities\\Order.js",
+        "..\\..\\dist\\Domain\\Entities\\Order.js"
+      ]
+    },
+    {
+      "name": "constants.js",
+      "paths": [
+        "..\\..\\dist\\Shared\\config\\constants.js",
+        "..\\..\\Shared\\config\\constants.js"
+      ]
+    },
+    {
+      "name": "ValidateProductUseCase.js",
+      "paths": [
+        "..\\..\\compiled\\Aplicacion\\UseCases\\ValidateProductUseCase.js",
+        "..\\..\\dist\\Aplicacion\\UseCases\\ValidateProductUseCase.js"
+      ]
+    },
+    {
+      "name": "CreateOrderUseCase.js",
+      "paths": [
+        "..\\..\\compiled\\Aplicacion\\UseCases\\CreateOrderUseCase.js",
+        "..\\..\\Aplicacion\\UseCases\\CreateOrderUseCase.js",
+        "..\\..\\dist\\Aplicacion\\UseCases\\CreateOrderUseCase.js"
+      ]
+    },
+    {
+      "name": "ProductCarousel.js",
+      "paths": [
+        "..\\..\\dist\\Interfaces\\web\\ui-adapters\\components\\ProductCarousel.js",
+        "..\\..\\Interfaces\\web\\ui-adapters\\components\\ProductCarousel.js"
+      ]
+    },
+    {
+      "name": "OrderSystem.integration.test.js",
+      "paths": [
+        "..\\..\\dist\\Shared\\testing\\OrderSystem.integration.test.js",
+        "..\\..\\Shared\\testing\\OrderSystem.integration.test.js"
+      ]
+    },
+    {
+      "name": "syncMonitor.js",
+      "paths": [
+        "..\\..\\dist\\Shared\\utils\\syncMonitor.js",
+        "..\\..\\Shared\\utils\\syncMonitor.js"
+      ]
+    },
+    {
+      "name": "errorHandler.js",
+      "paths": [
+        "..\\..\\dist\\Shared\\utils\\errorHandler.js",
+        "..\\..\\Shared\\utils\\errorHandler.js"
+      ]
+    },
+    {
+      "name": "SafeModal.js",
+      "paths": [
+        "..\\..\\dist\\Interfaces\\web\\ui-adapters\\components\\SafeModal.js",
+        "..\\..\\Interfaces\\web\\ui-adapters\\components\\SafeModal.js"
+      ]
+    },
+    {
+      "name": "DataSyncService.js",
+      "paths": [
+        "..\\..\\dist\\Shared\\services\\DataSyncService.js",
+        "..\\..\\Shared\\services\\DataSyncService.js"
+      ]
+    },
+    {
+      "name": "syncConfig.js",
+      "paths": [
+        "..\\..\\dist\\Shared\\config\\syncConfig.js",
+        "..\\..\\Shared\\config\\syncConfig.js"
+      ]
+    },
+    {
+      "name": "DIContainer.js",
+      "paths": [
+        "..\\..\\dist\\Shared\\core\\DIContainer.js",
+        "..\\..\\Shared\\core\\DIContainer.js"
+      ]
+    },
+    {
+      "name": "Product.js",
+      "paths": [
+        "..\\..\\Domain\\Entities\\Product.js",
+        "..\\..\\dist\\Domain\\Entities\\Product.js",
+        "..\\..\\compiled\\Domain\\Entities\\Product.js"
+      ]
+    },
+    {
+      "name": "SupabaseAdapter.js",
+      "paths": [
+        "..\\..\\dist\\Infraestructura\\adapters\\SupabaseAdapter.js",
+        "..\\..\\Infraestructura\\adapters\\SupabaseAdapter.js"
+      ]
+    },
+    {
+      "name": "OrderItem.js",
+      "paths": [
+        "..\\..\\Domain\\Entities\\OrderItem.js",
+        "..\\..\\dist\\Domain\\Entities\\OrderItem.js",
+        "..\\..\\compiled\\Domain\\Entities\\OrderItem.js"
+      ]
+    },
+    {
+      "name": "LoadCocktailsUseCase.test.js",
+      "paths": [
+        "..\\..\\dist\\Shared\\testing\\LoadCocktailsUseCase.test.js",
+        "..\\..\\Shared\\testing\\LoadCocktailsUseCase.test.js"
+      ]
+    },
+    {
+      "name": "simpleCache.js",
+      "paths": [
+        "..\\..\\dist\\Shared\\utils\\simpleCache.js",
+        "..\\..\\Shared\\utils\\simpleCache.js"
+      ]
+    },
+    {
+      "name": "MemoizationManager.js",
+      "paths": [
+        "..\\..\\dist\\Shared\\performance\\MemoizationManager.js",
+        "..\\..\\Shared\\performance\\MemoizationManager.js"
+      ]
+    },
+    {
+      "name": "formatters.js",
+      "paths": [
+        "..\\..\\dist\\Shared\\utils\\formatters.js",
+        "..\\..\\Shared\\utils\\formatters.js"
+      ]
+    },
+    {
+      "name": "InMemoryOrderRepository.js",
+      "paths": [
+        "..\\..\\compiled\\Infraestructura\\adapters\\InMemoryOrderRepository.js",
+        "..\\..\\dist\\Infraestructura\\adapters\\InMemoryOrderRepository.js"
+      ]
+    },
+    {
+      "name": "BaseAdapter.js",
+      "paths": [
+        "..\\..\\dist\\Infraestructura\\adapters\\BaseAdapter.js",
+        "..\\..\\Infraestructura\\adapters\\BaseAdapter.js"
+      ]
+    },
+    {
+      "name": "EventBusPort.js",
+      "paths": [
+        "..\\..\\Domain\\Ports\\EventBusPort.js",
+        "..\\..\\dist\\Domain\\Ports\\EventBusPort.js",
+        "..\\..\\compiled\\Domain\\Ports\\EventBusPort.js"
+      ]
+    },
+    {
+      "name": "calculationUtils.js",
+      "paths": [
+        "..\\..\\dist\\Shared\\utils\\calculationUtils.js",
+        "..\\..\\Shared\\utils\\calculationUtils.js"
+      ]
+    },
+    {
+      "name": "domUtils.js",
+      "paths": [
+        "..\\..\\dist\\Shared\\utils\\domUtils.js",
+        "..\\..\\Shared\\utils\\domUtils.js"
+      ]
+    },
+    {
+      "name": "ProductRepositoryPort.js",
+      "paths": [
+        "..\\..\\Dominio\\ports\\ProductRepositoryPort.js",
+        "..\\..\\compiled\\Domain\\Ports\\ProductRepositoryPort.js",
+        "..\\..\\Domain\\Ports\\ProductRepositoryPort.js",
+        "..\\..\\dist\\Domain\\Ports\\ProductRepositoryPort.js"
+      ]
+    },
+    {
+      "name": "sanitizer.js",
+      "paths": [
+        "..\\..\\dist\\Shared\\utils\\sanitizer.js",
+        "..\\..\\Shared\\utils\\sanitizer.js"
+      ]
+    },
+    {
+      "name": "ReservationInterface.js",
+      "paths": [
+        "..\\..\\dist\\Infraestructura\\integrations\\ReservationInterface.js",
+        "..\\..\\Infraestructura\\integrations\\ReservationInterface.js"
+      ]
+    },
+    {
+      "name": "diUtils.js",
+      "paths": [
+        "..\\..\\dist\\Shared\\utils\\diUtils.js",
+        "..\\..\\Shared\\utils\\diUtils.js"
+      ]
+    },
+    {
+      "name": "BaseEntity.js",
+      "paths": [
+        "..\\..\\dist\\Shared\\base\\BaseEntity.js",
+        "..\\..\\Shared\\base\\BaseEntity.js"
+      ]
+    },
+    {
+      "name": "LoadCocktailsUseCase.js",
+      "paths": [
+        "..\\..\\dist\\Aplicacion\\use-cases\\LoadCocktailsUseCase.js",
+        "..\\..\\Aplicacion\\use-cases\\LoadCocktailsUseCase.js"
+      ]
+    },
+    {
+      "name": "AIInterface.js",
+      "paths": [
+        "..\\..\\dist\\Infraestructura\\integrations\\AIInterface.js",
+        "..\\..\\Infraestructura\\integrations\\AIInterface.js"
+      ]
+    },
+    {
+      "name": "OrderCore.js",
+      "paths": [
+        "..\\..\\dist\\Aplicacion\\services\\OrderCore.js",
+        "..\\..\\Aplicacion\\services\\OrderCore.js"
+      ]
+    },
+    {
+      "name": "logger.js",
+      "paths": [
+        "..\\..\\dist\\Shared\\utils\\logger.js",
+        "..\\..\\Shared\\utils\\logger.js"
+      ]
+    },
+    {
+      "name": "BillingInterface.js",
+      "paths": [
+        "..\\..\\dist\\Infraestructura\\integrations\\BillingInterface.js",
+        "..\\..\\Infraestructura\\integrations\\BillingInterface.js"
+      ]
+    },
+    {
+      "name": "ProductCategory.js",
+      "paths": [
+        "..\\..\\compiled\\Domain\\ValueObjects\\ProductCategory.js",
+        "..\\..\\Domain\\ValueObjects\\ProductCategory.js",
+        "..\\..\\dist\\Domain\\ValueObjects\\ProductCategory.js"
+      ]
+    },
+    {
+      "name": "Money.js",
+      "paths": [
+        "..\\..\\compiled\\Domain\\ValueObjects\\Money.js",
+        "..\\..\\Domain\\ValueObjects\\Money.js",
+        "..\\..\\dist\\Domain\\ValueObjects\\Money.js"
+      ]
+    },
+    {
+      "name": "storage.js",
+      "paths": [
+        "..\\..\\dist\\Shared\\config\\storage.js",
+        "..\\..\\Shared\\config\\storage.js"
+      ]
+    },
+    {
+      "name": "DrinkRulesPort.js",
+      "paths": [
+        "..\\..\\compiled\\Domain\\Ports\\DrinkRulesPort.js",
+        "..\\..\\Domain\\Ports\\DrinkRulesPort.js",
+        "..\\..\\dist\\Domain\\Ports\\DrinkRulesPort.js"
+      ]
+    },
+    {
+      "name": "Result.js",
+      "paths": [
+        "..\\..\\Shared\\core\\Result.js",
+        "..\\..\\dist\\Shared\\core\\Result.js"
+      ]
+    },
+    {
+      "name": "GetProductByIdUseCase.js",
+      "paths": [
+        "..\\..\\Aplicacion\\UseCases\\GetProductByIdUseCase.js",
+        "..\\..\\dist\\Aplicacion\\UseCases\\GetProductByIdUseCase.js"
+      ]
+    },
+    {
+      "name": "ProductName.js",
+      "paths": [
+        "..\\..\\compiled\\Domain\\ValueObjects\\ProductName.js",
+        "..\\..\\Domain\\ValueObjects\\ProductName.js",
+        "..\\..\\dist\\Domain\\ValueObjects\\ProductName.js"
+      ]
+    },
+    {
+      "name": "OrderItemId.js",
+      "paths": [
+        "..\\..\\compiled\\Domain\\ValueObjects\\OrderItemId.js",
+        "..\\..\\Domain\\ValueObjects\\OrderItemId.js",
+        "..\\..\\dist\\Domain\\ValueObjects\\OrderItemId.js"
+      ]
+    },
+    {
+      "name": "OrderId.js",
+      "paths": [
+        "..\\..\\compiled\\Domain\\ValueObjects\\OrderId.js",
+        "..\\..\\Domain\\ValueObjects\\OrderId.js",
+        "..\\..\\dist\\Domain\\ValueObjects\\OrderId.js"
+      ]
+    },
+    {
+      "name": "GetProductsUseCase.js",
+      "paths": [
+        "..\\..\\Aplicacion\\UseCases\\GetProductsUseCase.js",
+        "..\\..\\dist\\Aplicacion\\UseCases\\GetProductsUseCase.js"
+      ]
+    },
+    {
+      "name": "ProductId.js",
+      "paths": [
+        "..\\..\\Domain\\ValueObjects\\ProductId.js",
+        "..\\..\\compiled\\Domain\\ValueObjects\\ProductId.js",
+        "..\\..\\dist\\Domain\\ValueObjects\\ProductId.js"
+      ]
+    },
+    {
+      "name": "CocktailRepositoryPort.js",
+      "paths": [
+        "..\\..\\dist\\Dominio\\ports\\CocktailRepositoryPort.js",
+        "..\\..\\Dominio\\ports\\CocktailRepositoryPort.js"
+      ]
+    },
+    {
+      "name": "ValidationError.js",
+      "paths": [
+        "..\\..\\dist\\Dominio\\exceptions\\ValidationError.js",
+        "..\\..\\Dominio\\exceptions\\ValidationError.js"
+      ]
+    },
+    {
+      "name": "InfrastructureError.js",
+      "paths": [
+        "..\\..\\dist\\Shared\\exceptions\\InfrastructureError.js",
+        "..\\..\\Shared\\exceptions\\InfrastructureError.js"
+      ]
+    },
+    {
+      "name": "DomainError.js",
+      "paths": [
+        "..\\..\\dist\\Dominio\\exceptions\\DomainError.js",
+        "..\\..\\Dominio\\exceptions\\DomainError.js"
+      ]
+    },
+    {
+      "name": "OrderRepositoryPort.js",
+      "paths": [
+        "..\\..\\compiled\\Domain\\Ports\\OrderRepositoryPort.js",
+        "..\\..\\Domain\\Ports\\OrderRepositoryPort.js",
+        "..\\..\\dist\\Domain\\Ports\\OrderRepositoryPort.js"
+      ]
+    },
+    {
+      "name": "SupabaseAdapter.integration.test.js",
+      "paths": [
+        "..\\..\\dist\\Shared\\testing\\SupabaseAdapter.integration.test.js",
+        "..\\..\\Shared\\testing\\SupabaseAdapter.integration.test.js"
+      ]
+    }
+  ]
+}
