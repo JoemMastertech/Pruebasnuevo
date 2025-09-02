@@ -28,6 +28,8 @@ restore-backup.ps1
 cleanup-candidates.json
 compiled-cleanup-report.json
 duplicate-validation-results.json
+build-cleanup.log
+build-process.log
 *.log
 
 # Node modules y dependencias

@@ -11,6 +11,19 @@ Esta carpeta contiene toda la documentación técnica del proyecto organizada po
 - `SECURITY.md` - Documentación de seguridad
 - `SUPABASE_SETUP.md` - Configuración de Supabase
 - `DEPENDENCY_INVENTORY.md` - Inventario de dependencias para arquitectura hexagonal
+- `BUILD_ARTIFACTS_MANAGEMENT.md` - Gestión de artefactos de compilación
+
+### 📁 guides/
+Guías de implementación y documentación de fases:
+- `GUIA-IMPLEMENTACION-COMPLETA.md` - Guía completa de implementación
+- `PHASE3_CLOSURE_CHECKLIST.md` - Lista de verificación Fase 3
+- `PHASE4_CLOSURE_CHECKLIST.md` - Lista de verificación Fase 4
+- `PHASE5_CLOSURE_CHECKLIST.md` - Lista de verificación Fase 5
+- `PHASE5_FINAL_DOCUMENTATION.md` - Documentación final Fase 5
+- `Plan_ejecucion.md` - Plan de ejecución
+- `README-ESTRATEGIA-FALLAS-INVISIBLES.md` - Estrategia para fallas invisibles
+- `RESUMEN_FILTRADO_ARCHIVOS_FUENTE.md` - Resumen de filtrado de archivos
+- `RESUMEN_IMPLEMENTACION_FINAL.md` - Resumen de implementación final
 
 ### 📁 analisis/
 Contiene análisis técnicos y evaluaciones del código:

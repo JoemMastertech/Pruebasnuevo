@@ -1,0 +1,63 @@
+name: Hexagonal Structure Validation
+
+# Ejecutar en push y pull requests a main
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+# También permitir ejecución manual
+  workflow_dispatch:
+
+jobs:
+  validate-structure:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Install dependencies (if needed)
+      run: |
+        if [ -f package.json ]; then
+          npm ci
+        fi
+        
+    - name: Run Hexagonal Structure Validation
+      run: node cicd-preventive-rules.js
+      
+    - name: Upload validation reports
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: structure-validation-reports
+        path: |
+          structure-validation.json
+          STRUCTURE_VALIDATION.md
+        retention-days: 30
+        
+    - name: Comment PR with validation results
+      if: github.event_name == 'pull_request' && failure()
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const fs = require('fs');
+          
+          try {
+            const report = fs.readFileSync('STRUCTURE_VALIDATION.md', 'utf8');
+            
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `## 🏗️ Validación de Estructura Hexagonal\n\n❌ **La validación de estructura falló**\n\n<details>\n<summary>Ver detalles del reporte</summary>\n\n\`\`\`\n${report}\n\`\`\`\n\n</details>\n\n**Acción requerida:** Corrige los errores de estructura antes de hacer merge.`
+            });
+          } catch (error) {
+            console.log('No se pudo leer el reporte de validación:', error.message);
+          }

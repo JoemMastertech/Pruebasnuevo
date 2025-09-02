@@ -1,0 +1,39 @@
+﻿{
+    "backupLocation":  "C:\\Users\\joerl\\OneDrive\\UNAM\\PRUEBAS\\__CONSOLIDATION_BACKUP__",
+    "timestamp":  "2025-09-01T20:42:26.209Z",
+    "nextSteps":  [
+                      "Verificar que la aplicacion funciona correctamente",
+                      "Ejecutar tests si estan disponibles",
+                      "Actualizar documentacion",
+                      "Eliminar respaldo si todo funciona bien"
+                  ],
+    "errors":  [
+
+               ],
+    "summary":  {
+                    "failedConsolidations":  0,
+                    "filesProcessed":  64,
+                    "totalConsolidations":  2,
+                    "successfulConsolidations":  2
+                },
+    "consolidations":  [
+                           {
+                               "source":  "Dominio",
+                               "errors":  [
+
+                                          ],
+                               "filesProcessed":  33,
+                               "target":  "Domain",
+                               "status":  "completed"
+                           },
+                           {
+                               "source":  "Infrastructure",
+                               "errors":  [
+
+                                          ],
+                               "filesProcessed":  31,
+                               "target":  "Infraestructura",
+                               "status":  "completed"
+                           }
+                       ]
+}

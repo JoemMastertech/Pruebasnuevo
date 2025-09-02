@@ -29,9 +29,9 @@ Este documento describe la nueva organización del proyecto siguiendo los princi
 
 ### 🔧 Infraestructura Técnica
 
-#### `Infrastructure/` - Nueva Organización
+#### `Infraestructura/` - Nueva Organización
 
-##### `Infrastructure/Scripts/`
+##### `Infraestructura/Scripts/`
 - `bundle-analyzer-setup.js` - Configuración del analizador de bundles
 - `cicd-preventive-rules.js` - Reglas preventivas para CI/CD
 - `e2e-clean-environment-validator.js` - Validador de entorno E2E
@@ -44,17 +44,17 @@ Este documento describe la nueva organización del proyecto siguiendo los princi
 - `filter-source-files.ps1` - Filtro de archivos fuente
 - `review-unreferenced-files.ps1` - Revisión de archivos no referenciados
 
-##### `Infrastructure/Config/`
+##### `Infraestructura/Config/`
 - `package.json` - Configuración de dependencias
 - `tsconfig.json` - Configuración de TypeScript
 - `docker-compose.yml` - Configuración de Docker
 - `alert-thresholds-config.json` - Configuración de umbrales de alerta
 
-##### `Infrastructure/CI-CD/`
+##### `Infraestructura/CI-CD/`
 - `Jenkinsfile` - Pipeline de Jenkins
 - `.github/workflows/` - Workflows de GitHub Actions
 
-##### `Infrastructure/Testing/`
+##### `Infraestructura/Testing/`
 - Configuraciones de testing específicas de infraestructura
 
 ### 📚 Documentación
@@ -119,9 +119,9 @@ Este documento describe la nueva organización del proyecto siguiendo los princi
 
 ## Migración Completada
 
-✅ **Scripts organizados** en `Infrastructure/Scripts/`
-✅ **Configuraciones centralizadas** en `Infrastructure/Config/`
-✅ **CI/CD organizado** en `Infrastructure/CI-CD/`
+✅ **Scripts organizados** en `Infraestructura/Scripts/`
+✅ **Configuraciones centralizadas** en `Infraestructura/Config/`
+✅ **CI/CD organizado** en `Infraestructura/CI-CD/`
 ✅ **Documentación estructurada** en `Documentation/`
 ✅ **Assets web organizados** en `Web/`
 ✅ **Archivos de backup eliminados**
