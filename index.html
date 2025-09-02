@@ -5,7 +5,7 @@
   <title>Master Technology Bar - Coctelería Premium</title>
   
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="/favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="Web/Static/favicon.ico">
   
   <!-- SEO Meta Tags -->
   <meta name="description" content="Master Technology Bar - Experiencia premium en coctelería con tecnología avanzada. Descubre nuestros cócteles únicos y ambiente innovador.">
@@ -197,9 +197,10 @@
   <!-- Load hexagonal architecture bootstrap -->
   <script type="module" src="./hexagonal-bootstrap.js"></script>
   <!-- Load compiled HexagonalContainer with all adapters -->
-  <script type="module" src="./dist/Infraestructura/DI/HexagonalContainer.js"></script>
+  <!-- <script type="module" src="./dist/Infraestructura/DI/HexagonalContainer.js"></script> -->
+  <!-- Comentado temporalmente: archivo no existe en dist/ -->
   <!-- Test de exposición global Fase 3 -->
-  <script src="Shared/testing/phase3-global-exposure-test.js"></script>
+  <script src="Shared/testing/phase3-integration-tests.js"></script>
   <!-- Initialize app -->
   <script type="module">
     import AppInit from './Shared/config/app-init.js';
