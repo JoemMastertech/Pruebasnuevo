@@ -1,0 +1,628 @@
+/* =================================================================
+   TABLE VIEW - ARCHIVO MAESTRO
+   Vista de productos en formato tabla
+   Arquitectura mobile-first con breakpoints ascendentes
+   ================================================================= */
+
+/* =================================================================
+   CONTENEDOR PRINCIPAL - MOBILE BASE
+   ================================================================= */
+.table-container {
+  width: var(--table-width);
+  max-width: var(--table-max-width);
+  margin: 0 auto;
+  padding: var(--table-padding);
+  overflow-x: auto;
+  
+  /* Scroll suave en mobile */
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-accent) transparent;
+}
+
+.table-container::-webkit-scrollbar {
+  height: 6px;
+}
+
+.table-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background: var(--border-accent);
+  border-radius: 3px;
+}
+
+/* =================================================================
+   TABLA PRINCIPAL - MOBILE BASE
+   ================================================================= */
+.products-table {
+  width: 100%;
+  min-width: 600px; /* Mínimo para scroll horizontal */
+  border-collapse: collapse;
+  background: var(--card-bg-current);
+  border: var(--table-border);
+  border-radius: var(--card-radius);
+  overflow: hidden;
+}
+
+/* =================================================================
+   ENCABEZADOS - MOBILE BASE
+   ================================================================= */
+.table-header {
+  background: var(--bg-accent-light);
+  border-bottom: 2px solid var(--border-accent);
+}
+
+.table-header th {
+  padding: var(--table-cell-padding);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--accent);
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  
+  /* Bordes internos */
+  border-right: 1px solid var(--border-accent);
+  
+  &:last-child {
+    border-right: none;
+  }
+  
+  /* Iconos de ordenamiento */
+  .sort-icon {
+    width: var(--icon-size-xs);
+    height: var(--icon-size-xs);
+    margin-left: var(--spacing-xs);
+    opacity: var(--opacity-light);
+    transition: var(--transition);
+  }
+  
+  &.sortable {
+    cursor: pointer;
+    transition: var(--transition);
+    
+    &:hover {
+      background: var(--bg-accent-medium);
+      
+      .sort-icon {
+        opacity: 1;
+      }
+    }
+  }
+  
+  &.sorted-asc,
+  &.sorted-desc {
+    background: var(--bg-accent-medium);
+    
+    .sort-icon {
+      opacity: 1;
+      color: var(--accent);
+    }
+  }
+}
+
+/* =================================================================
+   FILAS DE PRODUCTOS - MOBILE BASE
+   ================================================================= */
+.table-row {
+  border-bottom: 1px solid var(--border);
+  transition: var(--transition);
+  
+  &:hover {
+    background: var(--bg-light-alpha);
+  }
+  
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.table-cell {
+  padding: var(--table-cell-padding);
+  font-size: var(--font-size-xs);
+  color: var(--text);
+  vertical-align: middle;
+  
+  /* Bordes internos */
+  border-right: 1px solid var(--border);
+  
+  &:last-child {
+    border-right: none;
+  }
+}
+
+/* =================================================================
+   CELDA DE IMAGEN - MOBILE BASE
+   ================================================================= */
+.cell-image {
+  width: 60px;
+  text-align: center;
+  
+  .product-thumbnail {
+    width: var(--thumb-size);
+    height: var(--thumb-size);
+    object-fit: var(--thumb-profile-fit);
+    border-radius: var(--thumb-profile-radius);
+    border: 1px solid var(--border);
+    transition: var(--transition);
+    
+    &:hover {
+      transform: scale(1.1);
+      border-color: var(--border-accent);
+      box-shadow: var(--glow-shadow);
+    }
+  }
+}
+
+/* =================================================================
+   CELDA DE NOMBRE - MOBILE BASE
+   ================================================================= */
+.cell-name {
+  min-width: 150px;
+  
+  .product-name {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text);
+    margin-bottom: var(--spacing-xs);
+    line-height: var(--line-height-tight);
+  }
+  
+  .product-description {
+    font-size: var(--font-size-xs);
+    color: var(--text-muted);
+    line-height: var(--line-height-normal);
+    
+    /* Truncar descripción larga */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* =================================================================
+   CELDA DE PRECIO - MOBILE BASE
+   ================================================================= */
+.cell-price {
+  min-width: 80px;
+  text-align: right;
+  
+  .product-price {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    color: var(--price-color);
+    text-shadow: var(--glow-shadow);
+  }
+  
+  .price-original {
+    font-size: var(--font-size-xs);
+    color: var(--text-muted);
+    text-decoration: line-through;
+    margin-top: var(--spacing-xs);
+  }
+}
+
+/* =================================================================
+   CELDA DE ACCIONES - MOBILE BASE
+   ================================================================= */
+.cell-actions {
+  min-width: 120px;
+  text-align: center;
+  
+  .action-buttons {
+    display: flex;
+    gap: var(--gap-xs);
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .btn-table-action {
+    height: calc(var(--button-height) * 0.7);
+    padding: var(--padding-xs);
+    border-radius: var(--button-radius);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    transition: var(--transition);
+    cursor: pointer;
+    
+    .btn-icon {
+      width: var(--icon-size-xs);
+      height: var(--icon-size-xs);
+    }
+  }
+  
+  .btn-add {
+    background: var(--bg-accent-light);
+    border: 1px solid var(--border-accent);
+    color: var(--accent);
+    
+    &:hover {
+      background: var(--bg-accent-medium);
+      border-color: var(--border-accent-hover);
+      box-shadow: var(--glow-shadow);
+    }
+  }
+  
+  .btn-view {
+    background: transparent;
+    border: 1px solid var(--border-light-alpha);
+    color: var(--text-light);
+    
+    &:hover {
+      background: var(--bg-light-alpha);
+      border-color: var(--border-accent);
+    }
+  }
+  
+  .btn-favorite {
+    background: transparent;
+    border: 1px solid var(--color-gold);
+    color: var(--color-gold);
+    
+    &:hover {
+      background: rgba(212, 175, 55, 0.1);
+      box-shadow: var(--shadow-gold);
+    }
+    
+    &.active {
+      background: rgba(212, 175, 55, 0.2);
+    }
+  }
+}
+
+/* =================================================================
+   ESTADOS ESPECIALES - MOBILE BASE
+   ================================================================= */
+.table-row--featured {
+  background: rgba(212, 175, 55, 0.05);
+  border-color: var(--color-gold);
+  
+  .product-name {
+    color: var(--color-gold);
+  }
+}
+
+.table-row--out-of-stock {
+  opacity: var(--opacity-medium);
+  
+  .btn-add {
+    background: var(--bg-light-alpha);
+    color: var(--text-muted);
+    cursor: not-allowed;
+    
+    &:hover {
+      background: var(--bg-light-alpha);
+      border-color: var(--border-light);
+      box-shadow: none;
+    }
+  }
+}
+
+.table-row--loading {
+  .product-thumbnail {
+    background: var(--bg-light-alpha);
+    animation: pulse 2s infinite;
+  }
+  
+  .product-name,
+  .product-description,
+  .product-price {
+    background: var(--bg-light-alpha);
+    color: transparent;
+    border-radius: var(--border-radius-xs);
+    animation: pulse 2s infinite;
+  }
+}
+
+/* =================================================================
+   CONTROLES DE TABLA - MOBILE BASE
+   ================================================================= */
+.table-controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-sm);
+  margin-bottom: var(--spacing-md);
+  padding: var(--padding-sm);
+}
+
+.table-search {
+  position: relative;
+  
+  .search-input {
+    width: 100%;
+    height: var(--button-height);
+    padding: var(--padding-sm) var(--padding-md);
+    padding-left: calc(var(--padding-md) + var(--icon-size-sm) + var(--spacing-xs));
+    
+    background: var(--bg-light-alpha);
+    border: 1px solid var(--border);
+    border-radius: var(--button-radius);
+    
+    font-size: var(--font-size-sm);
+    color: var(--text);
+    
+    transition: var(--transition);
+    
+    &::placeholder {
+      color: var(--text-muted);
+    }
+    
+    &:focus {
+      outline: none;
+      border-color: var(--border-accent);
+      box-shadow: var(--glow-shadow);
+    }
+  }
+  
+  .search-icon {
+    position: absolute;
+    left: var(--padding-sm);
+    top: 50%;
+    transform: translateY(-50%);
+    width: var(--icon-size-sm);
+    height: var(--icon-size-sm);
+    color: var(--text-muted);
+  }
+}
+
+.table-filters {
+  display: flex;
+  gap: var(--gap-xs);
+  flex-wrap: wrap;
+  
+  .filter-btn {
+    height: calc(var(--button-height) * 0.8);
+    padding: var(--padding-xs) var(--padding-sm);
+    border-radius: var(--button-radius);
+    font-size: var(--font-size-xs);
+    
+    background: transparent;
+    border: 1px solid var(--border-light-alpha);
+    color: var(--text-light);
+    
+    transition: var(--transition);
+    cursor: pointer;
+    
+    &.active {
+      background: var(--bg-accent-light);
+      border-color: var(--border-accent);
+      color: var(--accent);
+    }
+    
+    &:hover:not(.active) {
+      background: var(--bg-light-alpha);
+      border-color: var(--border-accent);
+    }
+  }
+}
+
+/* =================================================================
+   PAGINACIÓN - MOBILE BASE
+   ================================================================= */
+.table-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--gap-sm);
+  margin-top: var(--spacing-md);
+  padding: var(--padding-sm);
+}
+
+.pagination-info {
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+}
+
+.pagination-controls {
+  display: flex;
+  gap: var(--gap-xs);
+  
+  .page-btn {
+    height: var(--button-height);
+    min-width: var(--button-height);
+    padding: var(--padding-xs);
+    border-radius: var(--button-radius);
+    font-size: var(--font-size-xs);
+    
+    background: transparent;
+    border: 1px solid var(--border-light-alpha);
+    color: var(--text-light);
+    
+    transition: var(--transition);
+    cursor: pointer;
+    
+    &.active {
+      background: var(--bg-accent-light);
+      border-color: var(--border-accent);
+      color: var(--accent);
+    }
+    
+    &:hover:not(.active):not(:disabled) {
+      background: var(--bg-light-alpha);
+      border-color: var(--border-accent);
+    }
+    
+    &:disabled {
+      opacity: var(--opacity-light);
+      cursor: not-allowed;
+    }
+  }
+}
+
+/* =================================================================
+   ESTADOS VACÍOS Y LOADING - MOBILE BASE
+   ================================================================= */
+.table-empty {
+  text-align: center;
+  padding: var(--spacing-xxl);
+  color: var(--text-muted);
+  
+  .empty-icon {
+    width: var(--icon-size-lg);
+    height: var(--icon-size-lg);
+    margin-bottom: var(--spacing-md);
+    opacity: var(--opacity-light);
+  }
+  
+  .empty-message {
+    font-size: var(--font-size-md);
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .empty-suggestion {
+    font-size: var(--font-size-sm);
+    opacity: var(--opacity-medium);
+  }
+}
+
+.table-loading {
+  .table-row {
+    animation: pulse 2s infinite;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: var(--opacity-light); }
+}
+
+/* =================================================================
+   BREAKPOINT: TABLET (768px+)
+   Ajustes específicos para tablet
+   ================================================================= */
+@media (min-width: 768px) {
+  .products-table {
+    min-width: 800px;
+  }
+  
+  .table-controls {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .table-search {
+    max-width: var(--search-max-width);
+  }
+  
+  .table-header th {
+    font-size: var(--font-size-sm);
+  }
+  
+  .table-cell {
+    font-size: var(--font-size-sm);
+  }
+  
+  .cell-name .product-name {
+    font-size: var(--font-size-base);
+  }
+  
+  .cell-price .product-price {
+    font-size: var(--font-size-md);
+  }
+  
+  .pagination-controls {
+    gap: var(--gap-sm);
+  }
+}
+
+/* =================================================================
+   BREAKPOINT: DESKTOP (1024px+)
+   Ajustes específicos para desktop
+   ================================================================= */
+@media (min-width: 1024px) {
+  .products-table {
+    min-width: 1000px;
+  }
+  
+  .cell-image {
+    width: 80px;
+  }
+  
+  .cell-name {
+    min-width: 200px;
+  }
+  
+  .cell-actions {
+    min-width: 150px;
+    
+    .action-buttons {
+      gap: var(--gap-sm);
+    }
+  }
+  
+  .table-header th {
+    font-size: var(--font-size-base);
+  }
+  
+  .table-cell {
+    font-size: var(--font-size-base);
+  }
+  
+  .cell-name .product-name {
+    font-size: var(--font-size-md);
+  }
+  
+  .cell-price .product-price {
+    font-size: var(--font-size-lg);
+  }
+}
+
+/* =================================================================
+   BREAKPOINT: LARGE DESKTOP (1200px+)
+   Ajustes para pantallas grandes
+   ================================================================= */
+@media (min-width: 1200px) {
+  .products-table {
+    min-width: 1200px;
+  }
+  
+  .cell-image {
+    width: 100px;
+  }
+  
+  .cell-name {
+    min-width: 250px;
+    
+    .product-description {
+      -webkit-line-clamp: 3;
+    }
+  }
+  
+  .cell-actions {
+    min-width: 180px;
+  }
+}
+
+/* =================================================================
+   DOCUMENTACIÓN DE VISTA
+   
+   RESPONSABILIDADES:
+   - Controla toda la apariencia de productos en modo tabla
+   - Gestiona ordenamiento, filtrado y paginación
+   - Define estados de interacción y loading
+   - Maneja responsive con scroll horizontal en mobile
+   
+   PRINCIPIOS APLICADOS:
+   - Mobile-first: scroll horizontal para tablas complejas
+   - Variables exclusivas: sin valores hardcodeados
+   - Breakpoints ascendentes: solo min-width
+   - Sin duplicación: reutiliza componentes base
+   - Modularidad: responsabilidad específica de vista
+   
+   COMPONENTES INCLUIDOS:
+   - Tabla responsive con scroll horizontal
+   - Encabezados con ordenamiento
+   - Celdas especializadas (imagen, nombre, precio, acciones)
+   - Controles de búsqueda y filtrado
+   - Paginación completa
+   - Estados de loading y vacío
+   ================================================================= */

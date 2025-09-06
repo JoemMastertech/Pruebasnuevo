@@ -18,18 +18,18 @@
   min-height: var(--top-nav-height);
   max-height: var(--top-nav-height);
   background: var(--top-nav-bg);
-  border-bottom: 1px solid rgba(0, 247, 255, 0.3);
-  backdrop-filter: blur(10px);
-  z-index: 1000;
+  border-bottom: var(--border-width-sm) solid var(--accent-border);
+  backdrop-filter: blur(var(--blur-sm));
+  z-index: var(--z-nav);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
+  padding: 0 var(--spacing-md);
   box-shadow: var(--glow-shadow);
   /* Ocultar inicialmente hasta que termine la inicialización */
-  opacity: 0;
+  opacity: var(--opacity-hidden);
   transform: translateY(-100%);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition: opacity var(--transition-slow) ease, transform var(--transition-slow) ease;
   /* Prevent content from affecting the navbar size */
   flex-shrink: 0;
   flex-grow: 0;
@@ -38,7 +38,7 @@
 
 /* Mostrar la barra superior cuando la app esté lista */
 #top-nav.show {
-  opacity: 1;
+  opacity: var(--opacity-full);
   transform: translateY(0);
 }
 
@@ -64,54 +64,54 @@
 
 #nav-title {
   color: var(--accent-color);
-  font-size: 1.2rem;
+  font-size: var(--font-size-lg);
   font-weight: bold;
-  text-shadow: 0 0 10px rgba(0, 247, 255, 0.5);
+  text-shadow: var(--text-glow);
   line-height: 1;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-height: 40px;
+  max-height: var(--height-sm);
   display: flex;
   align-items: center;
 }
 
 .top-nav-btn {
   background: var(--card-bg);
-  border: 2px solid var(--primary-color);
+  border: var(--border-width-md) solid var(--primary-color);
   color: var(--text-color);
-  font-size: 1.2rem;
-  width: 40px;
-  height: 40px;
-  min-width: 40px;
-  min-height: 40px;
-  max-width: 40px;
-  max-height: 40px;
-  border-radius: 8px;
+  font-size: var(--font-size-lg);
+  width: var(--height-sm);
+  height: var(--height-sm);
+  min-width: var(--height-sm);
+  min-height: var(--height-sm);
+  max-width: var(--height-sm);
+  max-height: var(--height-sm);
+  border-radius: var(--border-radius-sm);
   cursor: pointer;
   transition: all var(--transition-time) ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 5px;
-  backdrop-filter: blur(5px);
+  margin: 0 var(--spacing-xs);
+  backdrop-filter: blur(var(--blur-xs));
   flex-shrink: 0;
   flex-grow: 0;
   overflow: hidden;
   line-height: 1;
-  box-shadow: 0 0 8px rgba(0, 247, 255, 0.2);
+  box-shadow: var(--shadow-sm);
 }
 
 .top-nav-btn:hover, .top-nav-btn.active {
   background-color: transparent;
-  transform: scale(1.02);
+  transform: scale(var(--scale-hover));
   border-color: var(--price-color);
   color: var(--price-color);
-  box-shadow: 0 0 15px var(--price-color);
+  box-shadow: var(--price-glow);
 }
 
 .top-nav-btn:active {
-  transform: scale(0.95);
+  transform: scale(var(--scale-active));
 }
 
 /* BEM Modifier for hidden state */
@@ -122,7 +122,7 @@
 /* Ajustes para el contenido principal */
 body {
   padding-top: 0;
-  transition: padding-top 0.5s ease;
+  transition: padding-top var(--transition-slow) ease;
 }
 
 /* Agregar padding cuando la barra superior esté visible */
@@ -141,50 +141,50 @@ body.top-nav-visible {
 /* Desktop */
 @media (min-width: 1025px) {
   #top-nav {
-    height: var(--top-nav-height-desktop) !important;
-    min-height: var(--top-nav-height-desktop) !important;
-    max-height: var(--top-nav-height-desktop) !important;
+    height: var(--top-nav-height-desktop);
+    min-height: var(--top-nav-height-desktop);
+    max-height: var(--top-nav-height-desktop);
   }
   
   body.top-nav-visible {
-    padding-top: var(--top-nav-height-desktop) !important;
+    padding-top: var(--top-nav-height-desktop);
   }
 }
 
 /* Tablet */
 @media (min-width: 769px) and (max-width: 1024px) {
   :root {
-    --top-nav-height-tablet: 60px;
+    --top-nav-height-tablet: var(--nav-height-tablet);
   }
   
   #top-nav {
-    height: var(--top-nav-height-tablet) !important;
-    min-height: var(--top-nav-height-tablet) !important;
-    max-height: var(--top-nav-height-tablet) !important;
+    height: var(--top-nav-height-tablet);
+    min-height: var(--top-nav-height-tablet);
+    max-height: var(--top-nav-height-tablet);
     background: var(--top-nav-bg);
-    border-bottom: 1px solid var(--top-nav-border);
+    border-bottom: var(--border-width-sm) solid var(--top-nav-border);
   }
   
   body.top-nav-visible {
-    padding-top: var(--top-nav-height-tablet) !important;
+    padding-top: var(--top-nav-height-tablet);
   }
 }
 
 /* Mobile */
 @media (max-width: 768px) {
   :root {
-    --top-nav-height-mobile: 60px;
+    --top-nav-height-mobile: var(--nav-height-mobile);
   }
   
   #top-nav {
-    height: var(--top-nav-height-mobile) !important;
-    min-height: var(--top-nav-height-mobile) !important;
-    max-height: var(--top-nav-height-mobile) !important;
+    height: var(--top-nav-height-mobile);
+    min-height: var(--top-nav-height-mobile);
+    max-height: var(--top-nav-height-mobile);
     background: var(--top-nav-bg);
     border-bottom: 1px solid var(--top-nav-border);
   }
   
   body.top-nav-visible {
-    padding-top: var(--top-nav-height-mobile) !important;
+    padding-top: var(--top-nav-height-mobile);
   }
 }

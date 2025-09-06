@@ -1,0 +1,616 @@
+/* =====================================================================
+   NAVIGATION COMPONENTS - MOBILE FIRST ARCHITECTURE
+   Componentes de navegación migrados a arquitectura mobile-first
+   ===================================================================== */
+
+/* =====================================================================
+   MIGRATION DOCUMENTATION
+   - Migrated from: navigation.css, top-navigation.css
+   - Architecture: Mobile-first with ascending breakpoints
+   - Variables: All values from _variables-unified.css
+   - Principles: No duplication, consolidated media queries
+   ===================================================================== */
+
+/* =====================================================================
+   SECTION 1: MAIN NAVIGATION - MOBILE FIRST
+   ===================================================================== */
+
+/* Main navigation container - Mobile optimized */
+.main-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--nav-height-mobile);
+  background: var(--nav-bg);
+  border-bottom: var(--nav-border);
+  z-index: var(--z-nav);
+  transition: var(--transition);
+  backdrop-filter: blur(var(--blur-sm));
+  -webkit-backdrop-filter: blur(var(--blur-sm));
+}
+
+.main-nav--transparent {
+  background: var(--overlay-bg);
+}
+
+.main-nav--hidden {
+  transform: translateY(-100%);
+}
+
+.main-nav--scrolled {
+  box-shadow: var(--shadow-glow);
+  background: var(--bg-dark);
+}
+
+/* Navigation container - Mobile first */
+.main-nav__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding: 0 var(--spacing-sm);
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* =====================================================================
+   SECTION 2: NAVIGATION BRAND - MOBILE FIRST
+   ===================================================================== */
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  text-decoration: none;
+  color: var(--text);
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+
+.nav-brand:hover {
+  color: var(--accent);
+  text-shadow: var(--text-glow);
+}
+
+.nav-brand__logo {
+  height: var(--icon-size-sm);
+  width: auto;
+  transition: var(--transition);
+}
+
+.nav-brand__logo:hover {
+  filter: drop-shadow(var(--drop-shadow-glow));
+}
+
+.nav-brand__text {
+  font-family: 'Playfair Display', serif;
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.nav-brand__subtitle {
+  display: none; /* Hidden on mobile */
+  font-size: var(--font-size-sm);
+  opacity: var(--opacity-medium);
+  margin: 0;
+  color: var(--text-secondary);
+}
+
+/* =====================================================================
+   SECTION 3: MOBILE NAVIGATION TOGGLE - MOBILE FIRST
+   ===================================================================== */
+
+.nav-toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--spacing-xs);
+  border-radius: var(--border-radius-sm);
+  transition: var(--transition);
+}
+
+.nav-toggle:hover {
+  background: var(--overlay-bg);
+}
+
+.nav-toggle__line {
+  width: 24px;
+  height: 2px;
+  background: var(--text);
+  transition: var(--transition);
+  margin: 2px 0;
+  border-radius: 1px;
+}
+
+.nav-toggle--active .nav-toggle__line:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.nav-toggle--active .nav-toggle__line:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle--active .nav-toggle__line:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* =====================================================================
+   SECTION 4: NAVIGATION MENU - MOBILE FIRST
+   ===================================================================== */
+
+/* Desktop menu - Hidden on mobile */
+.nav-menu {
+  display: none;
+}
+
+/* Mobile menu */
+.nav-menu--mobile {
+  display: none;
+  position: fixed;
+  top: var(--nav-height-mobile);
+  left: 0;
+  width: 100%;
+  height: calc(100vh - var(--nav-height-mobile));
+  background: var(--nav-bg);
+  backdrop-filter: blur(var(--blur-md));
+  -webkit-backdrop-filter: blur(var(--blur-md));
+  flex-direction: column;
+  padding: var(--spacing-lg) var(--spacing-md);
+  gap: var(--spacing-md);
+  overflow-y: auto;
+  z-index: var(--z-nav-menu);
+  animation: slideDown 0.3s ease-out;
+}
+
+.nav-menu--mobile.nav-menu--open {
+  display: flex;
+}
+
+.nav-menu__item {
+  list-style: none;
+  margin: 0;
+}
+
+.nav-menu__link {
+  display: block;
+  padding: var(--spacing-sm) var(--spacing-md);
+  color: var(--text);
+  text-decoration: none;
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  border-radius: var(--border-radius-sm);
+  transition: var(--transition);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-menu__link:hover,
+.nav-menu__link--active {
+  background: var(--overlay-bg);
+  color: var(--accent);
+  text-shadow: var(--text-glow);
+}
+
+.nav-menu__link--mobile {
+  font-size: var(--font-size-lg);
+  padding: var(--spacing-md);
+  text-align: center;
+}
+
+/* =====================================================================
+   SECTION 5: NAVIGATION DROPDOWN - MOBILE FIRST
+   ===================================================================== */
+
+.nav-dropdown {
+  position: static;
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  box-shadow: none;
+  border: none;
+  background: transparent;
+  margin-top: var(--spacing-sm);
+  padding-left: var(--spacing-md);
+}
+
+.nav-dropdown__link {
+  display: block;
+  padding: var(--spacing-sm) var(--spacing-md);
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: var(--font-size-sm);
+  transition: var(--transition);
+  border-radius: var(--border-radius-sm);
+}
+
+.nav-dropdown__link:hover {
+  background: var(--overlay-bg);
+  color: var(--accent);
+}
+
+/* =====================================================================
+   SECTION 6: NAVIGATION SEARCH - MOBILE FIRST
+   ===================================================================== */
+
+.nav-search {
+  display: none; /* Hidden on mobile by default */
+}
+
+.nav-search--mobile {
+  display: block;
+  width: 100%;
+  margin: var(--spacing-md) 0;
+}
+
+.nav-search__form {
+  position: relative;
+  width: 100%;
+}
+
+.nav-search__input {
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-lg) var(--spacing-sm) var(--spacing-md);
+  background: var(--input-bg);
+  border: var(--input-border);
+  border-radius: var(--border-radius-md);
+  color: var(--text);
+  font-size: var(--font-size-base);
+  transition: var(--transition);
+}
+
+.nav-search__input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-alpha);
+}
+
+.nav-search__input::placeholder {
+  color: var(--text-secondary);
+}
+
+.nav-search__button {
+  position: absolute;
+  right: var(--spacing-xs);
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: var(--spacing-xs);
+  border-radius: var(--border-radius-sm);
+  transition: var(--transition);
+}
+
+.nav-search__button:hover {
+  color: var(--accent);
+  background: var(--overlay-bg);
+}
+
+/* =====================================================================
+   SECTION 7: NAVIGATION ACTIONS - MOBILE FIRST
+   ===================================================================== */
+
+.nav-actions {
+  display: none; /* Hidden on mobile by default */
+}
+
+.nav-actions--mobile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--border);
+}
+
+.nav-action {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  color: var(--text);
+  text-decoration: none;
+  font-size: var(--font-size-base);
+  border-radius: var(--border-radius-sm);
+  transition: var(--transition);
+  border: 1px solid var(--border);
+  justify-content: center;
+}
+
+.nav-action:hover {
+  background: var(--overlay-bg);
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.nav-action--primary {
+  background: var(--accent);
+  color: var(--bg);
+  border-color: var(--accent);
+}
+
+.nav-action--primary:hover {
+  background: var(--accent-hover);
+  box-shadow: var(--shadow-glow);
+}
+
+/* =====================================================================
+   SECTION 8: ANIMATIONS
+   ===================================================================== */
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* =====================================================================
+   TABLET BREAKPOINT (768px+)
+   Ascending media queries for tablet enhancements
+   ===================================================================== */
+
+@media (min-width: 768px) {
+  /* Main navigation tablet */
+  .main-nav {
+    height: var(--nav-height-tablet);
+  }
+  
+  .main-nav__container {
+    padding: 0 var(--spacing-md);
+  }
+  
+  /* Brand tablet */
+  .nav-brand {
+    gap: var(--spacing-sm);
+  }
+  
+  .nav-brand__logo {
+    height: var(--icon-size-md);
+  }
+  
+  .nav-brand__text {
+    font-size: var(--font-size-lg);
+  }
+  
+  .nav-brand__subtitle {
+    display: block;
+  }
+  
+  /* Toggle hidden on tablet+ */
+  .nav-toggle {
+    display: none;
+  }
+  
+  /* Desktop menu visible */
+  .nav-menu {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav-menu__link {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-bottom: none;
+    font-size: var(--font-size-base);
+  }
+  
+  .nav-menu__link:hover {
+    background: var(--overlay-bg);
+  }
+  
+  /* Mobile menu hidden */
+  .nav-menu--mobile {
+    display: none !important;
+  }
+  
+  /* Search visible */
+  .nav-search {
+    display: block;
+    max-width: var(--search-max-width-tablet);
+  }
+  
+  .nav-search--mobile {
+    display: none;
+  }
+  
+  .nav-search__input {
+    padding: var(--spacing-xs) var(--spacing-md);
+  }
+  
+  /* Actions visible */
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+  
+  .nav-actions--mobile {
+    display: none;
+  }
+  
+  .nav-action {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-size-sm);
+    border: none;
+    justify-content: flex-start;
+  }
+  
+  /* Dropdown positioning */
+  .nav-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--nav-bg);
+    border: var(--nav-border);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-elevated);
+    padding: var(--spacing-sm);
+    margin-top: var(--spacing-xs);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: var(--transition);
+    min-width: 200px;
+    z-index: var(--z-dropdown);
+  }
+  
+  .nav-menu__item:hover .nav-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  
+  .nav-dropdown__link {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-size-sm);
+  }
+}
+
+/* =====================================================================
+   DESKTOP BREAKPOINT (1024px+)
+   Ascending media queries for desktop enhancements
+   ===================================================================== */
+
+@media (min-width: 1024px) {
+  /* Main navigation desktop */
+  .main-nav {
+    height: var(--nav-height-desktop);
+  }
+  
+  .main-nav__container {
+    max-width: var(--container-max-width);
+    padding: 0 var(--spacing-lg);
+  }
+  
+  /* Brand desktop */
+  .nav-brand__logo {
+    height: var(--icon-size-lg);
+  }
+  
+  .nav-brand__text {
+    font-size: var(--font-size-xl);
+  }
+  
+  /* Menu desktop */
+  .nav-menu {
+    gap: var(--spacing-xl);
+  }
+  
+  .nav-menu__link {
+    font-size: var(--font-size-md);
+    padding: var(--spacing-sm) var(--spacing-lg);
+  }
+  
+  /* Search desktop */
+  .nav-search {
+    max-width: var(--search-max-width-desktop);
+  }
+  
+  /* Actions desktop */
+  .nav-actions {
+    gap: var(--spacing-md);
+  }
+  
+  .nav-action {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-base);
+  }
+}
+
+/* =====================================================================
+   LARGE DESKTOP BREAKPOINT (1200px+)
+   Final enhancements for large screens
+   ===================================================================== */
+
+@media (min-width: 1200px) {
+  .nav-menu {
+    gap: var(--spacing-xxl);
+  }
+  
+  .nav-search {
+    max-width: var(--search-max-width-large);
+  }
+}
+
+/* =====================================================================
+   ACCESSIBILITY & PREFERENCES
+   ===================================================================== */
+
+/* Focus styles */
+.nav-menu__link:focus,
+.nav-toggle:focus,
+.nav-search__input:focus,
+.nav-search__button:focus,
+.nav-action:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .main-nav,
+  .nav-menu--mobile,
+  .nav-dropdown,
+  .nav-menu__link,
+  .nav-toggle__line,
+  .nav-brand__logo,
+  .nav-search__input,
+  .nav-action {
+    transition: none;
+  }
+  
+  .nav-menu--mobile {
+    animation: none;
+  }
+}
+
+/* High contrast */
+@media (prefers-contrast: high) {
+  .nav-menu__link,
+  .nav-action {
+    border: 1px solid var(--text);
+  }
+  
+  .nav-search__input {
+    border: 2px solid var(--text);
+  }
+}
+
+/* Touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .nav-menu__link,
+  .nav-action,
+  .nav-toggle {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Print styles */
+@media print {
+  .main-nav {
+    display: none;
+  }
+}

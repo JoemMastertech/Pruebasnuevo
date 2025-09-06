@@ -8,27 +8,27 @@
    ================================================================= */
 
 :root {
-  /* Grid Columns por Breakpoint */
+  /* Grid Columns por Breakpoint - Usando variables unificadas */
   --grid-columns-mobile: 1;
-  --grid-columns-mobile-large: 2;
-  --grid-columns-tablet: 2;
-  --grid-columns-tablet-large: 3;
-  --grid-columns-desktop: 3;
+  --grid-columns-mobile-large: var(--grid-columns-sm, 2);
+  --grid-columns-tablet: var(--grid-columns-sm, 2);
+  --grid-columns-tablet-large: var(--grid-columns-md, 3);
+  --grid-columns-desktop: var(--grid-columns-md, 3);
   --grid-columns-desktop-large: 4;
   
   /* Grid Columns para Categorías */
-  --category-grid-columns-mobile: 2;
-  --category-grid-columns-tablet: 3;
-  --category-grid-columns-desktop: 5;
+  --category-grid-columns-mobile: var(--grid-columns-sm, 2);
+  --category-grid-columns-tablet: var(--grid-columns-md, 3);
+  --category-grid-columns-desktop: var(--grid-columns-lg, 5);
   
-  /* Gaps y Padding */
-  --grid-gap-compact: clamp(10px, 2vw, 20px);
-  --grid-gap-standard: clamp(15px, 2.5vw, 25px);
-  --grid-gap-spacious: clamp(20px, 3vw, 30px);
+  /* Gaps y Padding - Usando variables unificadas */
+  --grid-gap-compact: clamp(var(--gap-xs, 10px), 2vw, var(--gap-md, 20px));
+  --grid-gap-standard: clamp(var(--gap-sm, 15px), 2.5vw, var(--gap-lg, 25px));
+  --grid-gap-spacious: clamp(var(--gap-md, 20px), 3vw, 30px);
   
-  --grid-padding-compact: clamp(10px, 2vw, 20px);
-  --grid-padding-standard: clamp(15px, 2.5vw, 25px);
-  --grid-padding-spacious: clamp(20px, 3vw, 30px);
+  --grid-padding-compact: clamp(var(--padding-xs, 10px), 2vw, var(--padding-md, 20px));
+  --grid-padding-standard: clamp(var(--padding-sm, 15px), 2.5vw, var(--padding-lg, 25px));
+  --grid-padding-spacious: clamp(var(--padding-md, 20px), 3vw, 30px);
 }
 
 /* =================================================================
@@ -41,7 +41,7 @@
   gap: var(--gap, var(--grid-gap-standard));
   padding: var(--padding, var(--grid-padding-standard));
   width: 100%;
-  max-width: var(--container-max, 1200px);
+  max-width: var(--container-max-width, 1200px);
   margin: 0 auto;
   box-sizing: border-box;
 }
@@ -53,7 +53,7 @@
 /* GRID PARA PRODUCTOS */
 .grid--products,
 .product-grid {
-  grid-auto-rows: minmax(200px, auto);
+  grid-auto-rows: minmax(var(--card-height-compact, 200px), auto);
   gap: var(--grid-gap-standard);
   padding: var(--grid-padding-standard);
 }
@@ -62,7 +62,7 @@
 .grid--categories,
 .category-grid {
   grid-template-columns: repeat(var(--category-grid-columns-desktop), 1fr);
-  grid-auto-rows: minmax(120px, auto);
+  grid-auto-rows: minmax(var(--category-height-mobile, 120px), auto);
   gap: var(--grid-gap-standard);
   padding: var(--grid-padding-standard);
 }
@@ -88,15 +88,15 @@
 }
 
 .grid-type-2 .product-card {
-  min-height: 180px; /* Más compacto para bebidas */
+  min-height: var(--card-height-compact, 180px); /* Más compacto para bebidas */
 }
 
 /* GRID TYPE 3 - Grid para categorías especiales */
 .grid-type-3,
 .category-grid.grid-type-3 {
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: clamp(12px, 2.2vw, 22px);
-  padding: clamp(12px, 2.2vw, 22px);
+  grid-template-columns: repeat(auto-fit, minmax(var(--category-min-width, 140px), 1fr));
+  gap: clamp(var(--gap-xs, 12px), 2.2vw, 22px);
+  padding: clamp(var(--padding-xs, 12px), 2.2vw, 22px);
 }
 
 /* GRID TYPE 4 - Grid para categorías de licores (5 columnas desktop) */
@@ -144,7 +144,7 @@
   }
   
   .grid-type-4 {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(var(--grid-columns-desktop-large, 4), 1fr);
   }
 }
 
@@ -174,13 +174,13 @@
 /* Redirección de clases legacy a componentes BEM */
 .product-grid:not(.grid-type-1):not(.grid-type-2):not(.grid-type-3):not(.grid-type-4) {
   /* Aplicar estilos de grid estándar para productos */
-  grid-auto-rows: minmax(200px, auto);
+  grid-auto-rows: minmax(var(--card-height-compact, 200px), auto);
 }
 
 .category-grid:not(.grid-type-1):not(.grid-type-2):not(.grid-type-3):not(.grid-type-4) {
   /* Aplicar estilos de grid estándar para categorías */
   grid-template-columns: repeat(var(--category-grid-columns-desktop), 1fr);
-  grid-auto-rows: minmax(120px, auto);
+  grid-auto-rows: minmax(var(--category-height-mobile, 120px), auto);
 }
 
 /* =================================================================
@@ -234,24 +234,24 @@
 body.grid-enhanced .grid,
 body.grid-enhanced .product-grid,
 body.grid-enhanced .category-grid {
-  transition: all 0.3s ease;
+  transition: var(--transition, all 0.3s ease);
 }
 
 /* Grid en modo orden */
 body.order-mode-active .grid .product-card,
 body.order-mode-active .product-grid .product-card {
   cursor: pointer;
-  transition: transform 0.2s ease;
+  transition: var(--transition-fast, transform 0.2s ease);
 }
 
 body.order-mode-active .grid .product-card:hover,
 body.order-mode-active .product-grid .product-card:hover {
-  transform: scale(1.02);
+  transform: scale(var(--scale-active, 1.02));
 }
 
 /* Grid loading state */
 .grid--loading {
-  opacity: 0.7;
+  opacity: var(--opacity-medium, 0.7);
   pointer-events: none;
 }
 
@@ -261,10 +261,10 @@ body.order-mode-active .product-grid .product-card:hover {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 40px;
-  height: 40px;
-  border: 3px solid rgba(0, 247, 255, 0.3);
-  border-top: 3px solid #00f7ff;
+  width: var(--icon-size-md, 40px);
+  height: var(--icon-size-md, 40px);
+  border: 3px solid var(--border-accent, rgba(0, 247, 255, 0.3));
+  border-top: 3px solid var(--accent, #00f7ff);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }

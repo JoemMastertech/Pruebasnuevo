@@ -41,16 +41,16 @@
   /* Reemplaza: .product-card.liquor-card .product-name */
   font-size: clamp(0.9rem, 2vw, 1.1rem);
   font-weight: 600;
-  color: #333;
-  margin-bottom: 8px;
+  color: var(--text-dark, #333);
+  margin-bottom: var(--spacing-xs, 8px);
   line-height: 1.2;
 }
 
 .product-card__description {
   /* Reemplaza: .product-ingredients */
   font-size: clamp(0.8rem, 1.8vw, 0.95rem);
-  color: #666;
-  margin-bottom: 8px;
+  color: var(--text-muted, #666);
+  margin-bottom: var(--spacing-xs, 8px);
   line-height: 1.3;
   font-style: italic;
 }
@@ -60,7 +60,7 @@
   width: 100%;
   height: var(--image-height-current);
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: var(--border-radius-sm, 8px);
   transition: var(--transition);
 }
 
@@ -70,16 +70,16 @@
   min-height: var(--media-height-current);
   position: relative;
   overflow: hidden;
-  border-radius: 8px;
-  background: #f8f9fa;
+  border-radius: var(--border-radius-sm, 8px);
+  background: var(--bg-light, #f8f9fa);
 }
 
 .product-card__prices {
   /* Reemplaza: .product-card.liquor-card .product-prices */
   display: flex;
   flex-wrap: wrap;
-  gap: 4px;
-  margin-top: 8px;
+  gap: var(--spacing-xxs);
+  margin-top: var(--spacing-xs);
   justify-content: center;
 }
 
@@ -88,7 +88,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 60px;
+  min-width: var(--width-element-sm);
 }
 
 /* MODIFICADORES DE ELEMENTO */
@@ -103,27 +103,27 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(0, 0, 0, 0.7);
-  color: white;
+  background: var(--overlay-bg, rgba(0, 0, 0, 0.7));
+  color: var(--text-light, white);
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: var(--icon-size-md, 40px);
+  height: var(--icon-size-md, 40px);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
+  font-size: var(--font-size-sm, 14px);
 }
 
 .product-card__image--large {
   /* Para imágenes grandes (bebidas, licores) */
-  max-width: 120px;
-  max-height: 120px;
+  max-width: var(--image-size-lg, 120px);
+  max-height: var(--image-size-lg, 120px);
 }
 
 .product-card__image--small {
   /* Para imágenes pequeñas (comidas) */
-  max-width: 80px;
-  max-height: 80px;
+  max-width: var(--image-size-md, 80px);
+  max-height: var(--image-size-md, 80px);
 }
 
 .product-card__media--compact {
@@ -135,14 +135,14 @@
 /* BLOQUE BASE */
 .price-button {
   /* Estilos base para todos los price buttons */
-  border: 1px solid rgba(0, 247, 255, 0.3);
-  border-radius: 6px;
-  padding: 4px 8px;
+  border: 1px solid var(--border-accent, rgba(0, 247, 255, 0.3));
+  border-radius: var(--border-radius-sm, 6px);
+  padding: var(--spacing-xs, 4px) var(--spacing-xs, 8px);
   font-size: clamp(0.7rem, 1.5vw, 0.9rem);
   font-weight: 500;
-  color: #333;
+  color: var(--text-dark, #333);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: var(--transition, all 0.3s ease);
   background: transparent;
   min-height: var(--price-button-height-current);
   display: flex;
@@ -153,23 +153,23 @@
 /* MODIFICADORES DE BLOQUE */
 .price-button--liquor {
   /* Reemplaza: .product-grid .product-card.liquor-card .price-button */
-  background: rgba(0, 247, 255, 0.1);
-  border-color: rgba(0, 247, 255, 0.3);
+  background: var(--bg-accent-light, rgba(0, 247, 255, 0.1));
+  border-color: var(--border-accent, rgba(0, 247, 255, 0.3));
 }
 
 .price-button--standard {
   /* Para productos no-licor */
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.3);
+  background: var(--bg-light-alpha, rgba(255, 255, 255, 0.1));
+  border-color: var(--border-light-alpha, rgba(255, 255, 255, 0.3));
 }
 
 /* ESTADOS */
 .price-button--active {
   /* Reemplaza: .price-selection-mode .product-grid .product-card.liquor-card .price-button */
-  background: rgba(0, 247, 255, 0.2);
+  background: var(--bg-accent-medium, rgba(0, 247, 255, 0.2));
   animation: pulse 2s infinite;
-  transform: scale(1.02);
-  border-color: rgba(0, 247, 255, 0.6);
+  transform: scale(var(--scale-active, 1.02));
+  border-color: var(--border-accent-strong, rgba(0, 247, 255, 0.6));
 }
 
 .price-button--disabled {
@@ -194,8 +194,8 @@
 .price-button__label {
   /* Reemplaza: .product-card.liquor-card .price-label */
   font-size: clamp(0.6rem, 1.2vw, 0.8rem);
-  color: #666;
-  margin-bottom: 2px;
+  color: var(--text-muted, #666);
+  margin-bottom: var(--spacing-xs, 2px);
   text-align: center;
 }
 
@@ -207,9 +207,9 @@
 
 /* HOVER STATES */
 .price-button:hover:not(.price-button--disabled):not(.price-button--non-selectable) {
-  transform: scale(1.05);
-  background: rgba(0, 247, 255, 0.15);
-  border-color: rgba(0, 247, 255, 0.5);
+  transform: scale(var(--scale-hover, 1.05));
+  background: var(--bg-accent-hover, rgba(0, 247, 255, 0.15));
+  border-color: var(--border-accent-hover, rgba(0, 247, 255, 0.5));
 }
 
 /* =====================================================================
@@ -242,13 +242,14 @@
 .category-card--enhanced {
   /* Modificador para modo enhanced */
   box-shadow: var(--glow-shadow-hover);
+  border-color: var(--color-gold, #d4af37);
 }
 
 .category-card__image {
   /* Reemplaza: .category-card .category-image */
   width: 100%;
   height: auto;
-  max-height: 120px;
+  max-height: var(--width-element-lg);
   object-fit: contain;
   margin-bottom: var(--spacing-sm);
   border-radius: var(--card-radius);
@@ -256,11 +257,13 @@
 
 .category-card__name {
   /* Reemplaza: .category-card .category-name */
-  font-size: var(--font-size-lg);
-  font-weight: 600;
-  color: var(--text);
+  font-size: var(--font-size-lg, 1.2rem);
+  font-weight: 700;
+  color: var(--text-dark, #333);
   margin: 0;
+  margin-bottom: var(--spacing-sm, 15px);
   line-height: 1.2;
+  text-align: center;
 }
 
 /* =====================================================================
@@ -292,9 +295,11 @@
 .category-grid__card {
   /* Reemplaza: .category-grid[data-category="licores"] .category-card */
   min-height: var(--category-height-current);
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-  border-radius: var(--card-radius);
-  padding: var(--card-padding);
+  background: var(--bg-light, #f8f9fa);
+  border: 2px solid var(--border-light, #e9ecef);
+  border-radius: var(--border-radius-md, 12px);
+  padding: var(--spacing-md, 20px);
+  margin-bottom: var(--spacing-md, 20px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -309,7 +314,7 @@
   height: var(--category-image-current);
   object-fit: cover;
   border-radius: 50%;
-  margin-bottom: 12px;
+  margin-bottom: var(--spacing-sm);
   transition: var(--transition);
 }
 
@@ -317,7 +322,7 @@
   /* Reemplaza: .category-grid[data-category="licores"] .category-name */
   font-size: clamp(0.8rem, 1.8vw, 1rem);
   font-weight: 600;
-  color: #333;
+  color: var(--color-text-fallback);
   text-align: center;
   min-height: var(--category-name-height-current);
   display: flex;
@@ -328,9 +333,9 @@
 .category-grid__prompt {
   /* Reemplaza: .category-grid[data-category="licores"] .subcategory-prompt */
   font-size: clamp(0.7rem, 1.4vw, 0.9rem);
-  color: #666;
+  color: var(--color-text-muted-fallback);
   text-align: center;
-  margin-top: 8px;
+  margin-top: var(--spacing-xs);
   font-style: italic;
 }
 
@@ -353,6 +358,11 @@
   border-collapse: collapse;
   margin: var(--spacing) auto;
   max-width: var(--container-max);
+  background: var(--bg-white, white);
+  border: 1px solid var(--border-light, #ddd);
+  border-radius: var(--border-radius-sm, 8px);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm, 0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 /* MODIFICADORES DE BLOQUE */
@@ -372,9 +382,9 @@
 .product-table--beverages th,
 .product-table--beverages td {
   /* Reemplaza: .product-table[data-category="refrescos"] th, .product-table[data-category="cervezas"] th */
-  padding: 8px 12px;
+  padding: var(--spacing-xs, 8px) var(--spacing-sm, 12px);
   text-align: left;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid var(--border-light-alpha, rgba(255, 255, 255, 0.1));
 }
 
 .product-table--beverages th:first-child,
@@ -407,14 +417,14 @@
 /* MODIFICADORES DE MODAL */
 .modal-content--beverages {
   /* Reemplaza: .modal-content[data-category="refrescos"], .modal-content[data-category="cervezas"] */
-  width: 33.6%;
-  max-width: 336px;
+  width: var(--modal-width-beverages, 33.6%);
+  max-width: var(--modal-max-width-beverages, 336px);
 }
 
 .modal-content--standard {
   /* Para modales estándar */
-  width: 50%;
-  max-width: 500px;
+  width: var(--modal-width-standard, 50%);
+  max-width: var(--modal-max-width-standard, 500px);
 }
 
 /* =====================================================================
@@ -459,10 +469,10 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 20px;
-  height: 20px;
-  border: 2px solid rgba(0, 247, 255, 0.3);
-  border-top: 2px solid var(--accent);
+  width: var(--icon-size-sm);
+  height: var(--icon-size-sm);
+  border: var(--border-width-medium) solid var(--border-accent);
+  border-top: var(--border-width-medium) solid var(--accent);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -485,7 +495,7 @@
     transform: scale(1.02);
   }
   50% {
-    opacity: 0.8;
+    opacity: var(--opacity-medium, 0.8);
     transform: scale(1.05);
   }
 }
@@ -522,15 +532,15 @@
 
 /* ASPECTOS ESPECÍFICOS */
 .aspect-card {
-  aspect-ratio: 3/4; /* Proporción consistente para cards */
+  aspect-ratio: var(--aspect-card, 3/4); /* Proporción consistente para cards */
 }
 
 .aspect-media {
-  aspect-ratio: 16/9; /* Proporción para media */
+  aspect-ratio: var(--aspect-media, 16/9); /* Proporción para media */
 }
 
 .aspect-square {
-  aspect-ratio: 1/1; /* Para elementos cuadrados */
+  aspect-ratio: var(--aspect-square, 1/1); /* Para elementos cuadrados */
 }
 
 /* VISIBILIDAD RESPONSIVA */
@@ -568,12 +578,12 @@
 .grid-type-2,
 .product-grid.grid-type-2 {
   grid-template-columns: repeat(var(--grid-columns), 1fr);
-  gap: clamp(10px, 2vw, 20px);
-  padding: clamp(10px, 2vw, 20px);
+  gap: clamp(var(--gap-sm, 10px), 2vw, var(--gap-md, 20px));
+  padding: clamp(var(--padding-sm, 10px), 2vw, var(--padding-md, 20px));
 }
 
 .grid-type-2 .product-card {
-  min-height: 180px; /* Más compacto para bebidas */
+  min-height: var(--card-height-compact, 180px); /* Más compacto para bebidas */
 }
 
 /* GRID TYPE 3 - Grid para categorías especiales */
@@ -587,20 +597,20 @@
 /* GRID TYPE 4 - Grid para categorías de licores (5 columnas desktop) */
 .grid-type-4,
 .category-grid.grid-type-4 {
-  grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
-  padding: 20px;
+  grid-template-columns: repeat(var(--grid-columns-lg, 5), 1fr);
+  gap: var(--gap-md, 20px);
+  padding: var(--padding-md, 20px);
 }
 
 @media (max-width: 1024px) {
   .grid-type-4 {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(var(--grid-columns-md, 3), 1fr);
   }
 }
 
 @media (max-width: 768px) {
   .grid-type-4 {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(var(--grid-columns-sm, 2), 1fr);
   }
 }
 
@@ -624,14 +634,49 @@
 /* FALLBACKS PARA NAVEGADORES ANTIGUOS */
 @supports not (min-height: clamp(180px, 25vh, 220px)) {
   .product-card--liquor {
-    min-height: 260px; /* Fallback fijo */
+    min-height: var(--card-height-fallback, 260px); /* Fallback fijo */
   }
   
   .product-card__media {
-    min-height: 140px; /* Fallback fijo */
+    min-height: var(--media-height-fallback, 140px); /* Fallback fijo */
   }
   
   .category-grid__card {
-    min-height: 173px; /* Fallback fijo */
+    min-height: var(--category-height-fallback, 173px); /* Fallback fijo */
+  }
+}
+
+/* =====================================================================
+   SECTION 10: RESPONSIVE MEDIA QUERIES
+   ===================================================================== */
+
+/* === TABLET BREAKPOINT === */
+@media (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--gap-sm, 15px);
+    padding: var(--padding-sm, 15px);
+  }
+
+  .product-card {
+    min-height: var(--card-height-mobile, 160px);
+  }
+
+  .category-card {
+    min-height: var(--category-height-mobile, 120px);
+  }
+}
+
+/* === MOBILE BREAKPOINT === */
+@media (max-width: 480px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+    gap: var(--gap-xs, 12px);
+    padding: var(--padding-xs, 12px);
+  }
+
+  .modal-content {
+    width: var(--modal-width-mobile, 95%);
+    padding: var(--padding-sm, 16px);
   }
 }

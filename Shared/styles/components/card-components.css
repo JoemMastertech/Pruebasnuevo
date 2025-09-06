@@ -1,0 +1,461 @@
+/* =====================================================================
+   CARD COMPONENTS - MOBILE FIRST ARCHITECTURE
+   Componentes de tarjetas migrados a arquitectura mobile-first
+   ===================================================================== */
+
+/* =====================================================================
+   MIGRATION DOCUMENTATION
+   - Migrated from: Various card styles across the system
+   - Architecture: Mobile-first with ascending breakpoints
+   - Variables: All values from _variables-unified.css
+   - Principles: No duplication, BEM methodology, extraction over copying
+   ===================================================================== */
+
+/* =====================================================================
+   SECTION 1: BASE CARD COMPONENT - MOBILE FIRST
+   ===================================================================== */
+
+/* Base card - Mobile optimized */
+.card {
+  background: var(--card-bg-current);
+  border-radius: var(--card-radius);
+  padding: var(--card-padding);
+  box-shadow: var(--shadow-base);
+  transition: var(--transition);
+  border: var(--card-border);
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  min-height: var(--card-min-height);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
+}
+
+.card--interactive {
+  cursor: pointer;
+}
+
+.card--interactive:hover {
+  box-shadow: var(--shadow-glow);
+}
+
+.card--bordered {
+  border: 2px solid var(--accent);
+}
+
+.card--elevated {
+  box-shadow: var(--shadow-elevated);
+}
+
+/* =====================================================================
+   SECTION 2: PRODUCT CARD COMPONENT - MOBILE FIRST
+   ===================================================================== */
+
+/* Product card base - Mobile optimized */
+.product-card {
+  background: var(--card-bg-current);
+  border-radius: var(--card-radius);
+  padding: var(--card-padding);
+  box-shadow: var(--shadow-base);
+  transition: var(--transition);
+  border: var(--card-border);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  min-height: var(--card-min-height);
+}
+
+.product-card:hover {
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-2px);
+}
+
+/* Product card modifiers */
+.product-card--selected {
+  border: 2px solid var(--accent);
+  box-shadow: var(--shadow-glow);
+}
+
+.product-card--unavailable {
+  opacity: var(--opacity-disabled);
+  cursor: not-allowed;
+}
+
+.product-card--featured {
+  border: 2px solid var(--primary);
+  background: var(--card-bg-featured);
+}
+
+/* =====================================================================
+   SECTION 3: PRODUCT CARD ELEMENTS - MOBILE FIRST
+   ===================================================================== */
+
+/* Product image container */
+.product-card__image-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: var(--card-aspect-ratio);
+  overflow: hidden;
+  border-radius: var(--border-radius-sm);
+  background: var(--bg-secondary);
+}
+
+.product-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition);
+}
+
+.product-card:hover .product-card__image {
+  transform: scale(1.05);
+}
+
+/* Product badge */
+.product-card__badge {
+  position: absolute;
+  top: var(--spacing-xs);
+  right: var(--spacing-xs);
+  background: var(--accent);
+  color: var(--bg);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  z-index: 2;
+}
+
+.product-card__badge--new {
+  background: var(--success);
+}
+
+.product-card__badge--sale {
+  background: var(--warning);
+}
+
+.product-card__badge--out-of-stock {
+  background: var(--error);
+}
+
+/* Product content */
+.product-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  flex: 1;
+}
+
+.product-card__name {
+  font-family: 'Playfair Display', serif;
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--text);
+  margin: 0;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.product-card__description {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.product-card__price {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--accent);
+  margin: 0;
+}
+
+.product-card__price--original {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  text-decoration: line-through;
+  margin-right: var(--spacing-xs);
+}
+
+/* Product actions */
+.product-card__actions {
+  display: flex;
+  gap: var(--spacing-xs);
+  margin-top: auto;
+}
+
+.product-card__btn {
+  flex: 1;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border: none;
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  text-align: center;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+}
+
+.product-card__btn--primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.product-card__btn--primary:hover {
+  background: var(--accent-hover);
+  box-shadow: var(--shadow-glow);
+}
+
+.product-card__btn--secondary {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+.product-card__btn--secondary:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* =====================================================================
+   SECTION 4: CARD GRID LAYOUT - MOBILE FIRST
+   ===================================================================== */
+
+.card-grid {
+  display: grid;
+  gap: var(--spacing-md);
+  grid-template-columns: 1fr;
+  width: 100%;
+}
+
+.card-grid--auto-fit {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+/* =====================================================================
+   SECTION 5: SPECIAL CARD VARIANTS - MOBILE FIRST
+   ===================================================================== */
+
+/* Info card */
+.info-card {
+  background: var(--card-bg-info);
+  border-left: 4px solid var(--info);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-sm);
+}
+
+.info-card__title {
+  color: var(--info);
+  font-weight: 600;
+  margin: 0 0 var(--spacing-xs) 0;
+}
+
+.info-card__content {
+  color: var(--text);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Warning card */
+.warning-card {
+  background: var(--card-bg-warning);
+  border-left: 4px solid var(--warning);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-sm);
+}
+
+.warning-card__title {
+  color: var(--warning);
+  font-weight: 600;
+  margin: 0 0 var(--spacing-xs) 0;
+}
+
+.warning-card__content {
+  color: var(--text);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Error card */
+.error-card {
+  background: var(--card-bg-error);
+  border-left: 4px solid var(--error);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-sm);
+}
+
+.error-card__title {
+  color: var(--error);
+  font-weight: 600;
+  margin: 0 0 var(--spacing-xs) 0;
+}
+
+.error-card__content {
+  color: var(--text);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* =====================================================================
+   TABLET BREAKPOINT (768px+)
+   Ascending media queries for tablet enhancements
+   ===================================================================== */
+
+@media (min-width: 768px) {
+  /* Card grid tablet */
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-lg);
+  }
+  
+  .card-grid--auto-fit {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  }
+  
+  /* Product card tablet */
+  .product-card {
+    padding: var(--card-padding-tablet);
+    gap: var(--spacing-md);
+  }
+  
+  .product-card__name {
+    font-size: var(--font-size-md);
+  }
+  
+  .product-card__description {
+    -webkit-line-clamp: 3;
+  }
+  
+  .product-card__actions {
+    gap: var(--spacing-sm);
+  }
+  
+  .product-card__btn {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-base);
+    min-height: 40px;
+  }
+  
+  /* Badge tablet */
+  .product-card__badge {
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-sm);
+  }
+}
+
+/* =====================================================================
+   DESKTOP BREAKPOINT (1024px+)
+   Ascending media queries for desktop enhancements
+   ===================================================================== */
+
+@media (min-width: 1024px) {
+  /* Card grid desktop */
+  .card-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-xl);
+  }
+  
+  .card-grid--auto-fit {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  }
+  
+  /* Product card desktop */
+  .product-card {
+    padding: var(--card-padding-desktop);
+  }
+  
+  .product-card__name {
+    font-size: var(--font-size-lg);
+  }
+  
+  .product-card__price {
+    font-size: var(--font-size-xl);
+  }
+  
+  /* Enhanced hover effects */
+  .product-card:hover {
+    transform: translateY(-4px);
+  }
+  
+  .product-card:hover .product-card__image {
+    transform: scale(1.08);
+  }
+}
+
+/* =====================================================================
+   LARGE DESKTOP BREAKPOINT (1200px+)
+   Final enhancements for large screens
+   ===================================================================== */
+
+@media (min-width: 1200px) {
+  /* Card grid large desktop */
+  .card-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .card-grid--auto-fit {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+
+/* =====================================================================
+   REDUCED MOTION PREFERENCES
+   ===================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .product-card,
+  .product-card__image,
+  .product-card__btn {
+    transition: none;
+  }
+  
+  .product-card:hover,
+  .card:hover {
+    transform: none;
+  }
+  
+  .product-card:hover .product-card__image {
+    transform: none;
+  }
+}
+
+/* =====================================================================
+   HIGH CONTRAST MODE
+   ===================================================================== */
+
+@media (prefers-contrast: high) {
+  .card,
+  .product-card {
+    border: 2px solid var(--text);
+  }
+  
+  .product-card__badge {
+    border: 1px solid var(--text);
+  }
+  
+  .product-card__btn--secondary {
+    border: 2px solid var(--accent);
+  }
+}

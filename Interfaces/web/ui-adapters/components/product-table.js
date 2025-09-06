@@ -1487,8 +1487,8 @@ const ProductRenderer = {
     // if (toggleElement) container.appendChild(toggleElement);
     
     // Default fields and headers for food items
-    const defaultFields = ['nombre', 'ingredientes', 'video', 'precio'];
-    const defaultHeaders = ['NOMBRE', 'INGREDIENTES', 'VIDEO', 'PRECIO'];
+    const defaultFields = ['nombre', 'ingredientes', 'precio', 'video'];
+    const defaultHeaders = ['NOMBRE', 'INGREDIENTES', 'PRECIO', 'VIDEO'];
     
     const finalFields = fields || defaultFields;
     const finalHeaders = headers || defaultHeaders;

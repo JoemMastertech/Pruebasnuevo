@@ -1,0 +1,538 @@
+/* =====================================================================
+   BASE COMPONENTS - MOBILE FIRST ARCHITECTURE
+   Componentes base migrados a arquitectura mobile-first
+   ===================================================================== */
+
+/* =====================================================================
+   MIGRATION DOCUMENTATION
+   - Migrated from: _bem-base.css, navigation.css
+   - Architecture: Mobile-first with ascending breakpoints
+   - Variables: All values from _variables-unified.css
+   - Principles: No duplication, extraction over copying
+   ===================================================================== */
+
+/* =====================================================================
+   SECTION 1: GLOBAL RESET & BASE STYLES
+   Mobile-first base configuration
+   ===================================================================== */
+
+/* CSS Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Base body styles - Mobile first */
+body {
+  font-family: 'Montserrat', sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  min-height: 100vh;
+  overflow-y: auto;
+  line-height: 1.6;
+  font-size: var(--font-size-base);
+}
+
+/* Base app container - Mobile first */
+#app {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  margin: 0 auto;
+  transition: margin-left var(--transition) ease-in-out;
+  padding: 0 var(--spacing-sm);
+}
+
+/* Screen layout utility - Mobile optimized */
+.screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  padding: var(--spacing-md);
+}
+
+/* =====================================================================
+   SECTION 2: LAYOUT COMPONENTS - MOBILE FIRST
+   ===================================================================== */
+
+/* Container - Mobile first */
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 var(--spacing-sm);
+}
+
+/* Grid system - Mobile first */
+.grid {
+  display: grid;
+  gap: var(--spacing-sm);
+  grid-template-columns: 1fr;
+}
+
+.grid--auto-fit {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+/* Flex utilities - Mobile optimized */
+.flex {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.flex--center {
+  justify-content: center;
+  align-items: center;
+}
+
+.flex--wrap {
+  flex-wrap: wrap;
+}
+
+/* =====================================================================
+   SECTION 3: TYPOGRAPHY COMPONENTS - MOBILE FIRST
+   ===================================================================== */
+
+/* Base text - Mobile optimized */
+.text {
+  color: var(--text);
+  line-height: 1.5;
+  font-size: var(--font-size-base);
+}
+
+.text--primary { color: var(--primary); }
+.text--accent { color: var(--accent); }
+.text--center { text-align: center; }
+.text--small { font-size: var(--font-size-sm); }
+.text--large { font-size: var(--font-size-lg); }
+
+/* Titles - Mobile first sizing */
+.title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--text);
+  text-align: center;
+}
+
+.title--h1 { font-size: var(--font-size-lg); }
+.title--h2 { font-size: var(--font-size-md); }
+.title--h3 { font-size: var(--font-size-base); }
+
+/* Special typography classes */
+.welcome-text,
+.title-text,
+.category-title {
+  font-family: 'Playfair Display', serif;
+  color: var(--text);
+  text-align: center;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.welcome-text { font-size: var(--font-size-xl); }
+.title-text,
+.category-title { font-size: var(--font-size-lg); }
+
+/* =====================================================================
+   SECTION 4: BUTTON COMPONENTS - MOBILE FIRST
+   ===================================================================== */
+
+/* Base button - Mobile optimized */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-sm);
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+  font-family: inherit;
+  font-size: var(--font-size-base);
+  line-height: 1;
+  min-height: 44px; /* Touch target size */
+  width: 100%; /* Full width on mobile */
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.btn--primary:hover {
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-1px);
+}
+
+.btn--secondary {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+.btn--secondary:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* =====================================================================
+   SECTION 5: NAVIGATION COMPONENTS - MOBILE FIRST
+   ===================================================================== */
+
+/* Main navigation - Mobile first */
+.main-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--nav-height-mobile);
+  background: var(--nav-bg);
+  border-bottom: var(--nav-border);
+  z-index: var(--z-nav);
+  transition: var(--transition);
+  backdrop-filter: blur(var(--blur-sm));
+  -webkit-backdrop-filter: blur(var(--blur-sm));
+}
+
+.main-nav--transparent {
+  background: var(--overlay-bg);
+}
+
+.main-nav--hidden {
+  transform: translateY(-100%);
+}
+
+.main-nav--scrolled {
+  box-shadow: var(--shadow-glow);
+  background: var(--bg-dark);
+}
+
+/* Navigation container - Mobile first */
+.main-nav__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding: 0 var(--spacing-sm);
+}
+
+/* Navigation brand - Mobile optimized */
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  text-decoration: none;
+  color: var(--text);
+  transition: var(--transition);
+}
+
+.nav-brand:hover {
+  color: var(--accent);
+  text-shadow: var(--text-glow);
+}
+
+.nav-brand__logo {
+  height: var(--icon-size-sm);
+  width: auto;
+  transition: var(--transition);
+}
+
+.nav-brand__text {
+  font-family: 'Playfair Display', serif;
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  margin: 0;
+}
+
+.nav-brand__subtitle {
+  display: none; /* Hidden on mobile */
+}
+
+/* =====================================================================
+   SECTION 6: UTILITY CLASSES - MOBILE FIRST
+   ===================================================================== */
+
+/* Display utilities */
+.d-none { display: none; }
+.d-block { display: block; }
+.d-flex { display: flex; }
+.d-grid { display: grid; }
+
+/* Text alignment */
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+/* Spacing utilities */
+.m-0 { margin: 0; }
+.p-0 { padding: 0; }
+.mt-sm { margin-top: var(--spacing-sm); }
+.mb-sm { margin-bottom: var(--spacing-sm); }
+.pt-sm { padding-top: var(--spacing-sm); }
+.pb-sm { padding-bottom: var(--spacing-sm); }
+
+/* Overflow utilities */
+.overflow-hidden { overflow: hidden; }
+.overflow-auto { overflow: auto; }
+.overflow-scroll { overflow: scroll; }
+
+/* =====================================================================
+   SECTION 7: ANIMATION UTILITIES
+   ===================================================================== */
+
+.fade-in { animation: fadeIn 0.5s ease-in-out; }
+.slide-up { animation: slideUp 0.3s ease-out; }
+.scale-in { animation: scaleIn 0.2s ease-out; }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* =====================================================================
+   SECTION 8: ACCESSIBILITY
+   ===================================================================== */
+
+.focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* =====================================================================
+   TABLET BREAKPOINT (768px+)
+   Ascending media queries for tablet enhancements
+   ===================================================================== */
+
+@media (min-width: 768px) {
+  /* App container adjustments */
+  #app {
+    width: var(--container-width-tablet);
+    padding: 0 var(--spacing-md);
+  }
+  
+  /* Container enhancements */
+  .container {
+    padding: 0 var(--spacing-md);
+  }
+  
+  /* Grid system tablet */
+  .grid {
+    gap: var(--spacing-md);
+    grid-template-columns: repeat(var(--grid-columns-tablet), 1fr);
+  }
+  
+  /* Flex adjustments */
+  .flex {
+    flex-direction: row;
+    gap: var(--spacing-md);
+  }
+  
+  /* Typography scaling */
+  .title--h1 { font-size: var(--font-size-xl); }
+  .title--h2 { font-size: var(--font-size-lg); }
+  .title--h3 { font-size: var(--font-size-md); }
+  
+  .welcome-text { font-size: var(--font-size-xxl); }
+  .title-text,
+  .category-title { font-size: var(--font-size-xl); }
+  
+  /* Button adjustments */
+  .btn {
+    width: auto; /* Reset full width */
+    min-width: 120px;
+  }
+  
+  /* Navigation tablet */
+  .main-nav {
+    height: var(--nav-height-tablet);
+  }
+  
+  .main-nav__container {
+    padding: 0 var(--spacing-md);
+  }
+  
+  .nav-brand__logo {
+    height: var(--icon-size-md);
+  }
+  
+  .nav-brand__text {
+    font-size: var(--font-size-lg);
+  }
+  
+  .nav-brand__subtitle {
+    display: block;
+    font-size: var(--font-size-sm);
+    opacity: var(--opacity-medium);
+    margin: 0;
+    color: var(--text-secondary);
+  }
+  
+  /* Responsive utilities */
+  .tablet\:d-none { display: none; }
+  .tablet\:d-block { display: block; }
+  .tablet\:d-flex { display: flex; }
+  .tablet\:d-grid { display: grid; }
+  
+  .tablet\:text-left { text-align: left; }
+  .tablet\:text-center { text-align: center; }
+  .tablet\:text-right { text-align: right; }
+}
+
+/* =====================================================================
+   DESKTOP BREAKPOINT (1024px+)
+   Ascending media queries for desktop enhancements
+   ===================================================================== */
+
+@media (min-width: 1024px) {
+  /* App container desktop */
+  #app {
+    width: var(--container-width-desktop);
+    padding: 0 var(--spacing-lg);
+  }
+  
+  /* Container desktop */
+  .container {
+    max-width: var(--container-max-width);
+    padding: 0 var(--spacing-lg);
+  }
+  
+  /* Grid system desktop */
+  .grid {
+    gap: var(--spacing-lg);
+    grid-template-columns: repeat(var(--grid-columns-desktop), 1fr);
+  }
+  
+  /* Flex desktop */
+  .flex {
+    gap: var(--spacing-lg);
+  }
+  
+  /* Typography desktop scaling */
+  .title--h1 { font-size: var(--font-size-xxl); }
+  .title--h2 { font-size: var(--font-size-xl); }
+  .title--h3 { font-size: var(--font-size-lg); }
+  
+  .welcome-text { font-size: var(--font-size-hero); }
+  .title-text,
+  .category-title { font-size: var(--font-size-xxl); }
+  
+  /* Button desktop enhancements */
+  .btn:hover {
+    transform: translateY(-2px);
+  }
+  
+  /* Navigation desktop */
+  .main-nav {
+    height: var(--nav-height-desktop);
+  }
+  
+  .main-nav__container {
+    max-width: var(--container-max-width);
+    padding: 0 var(--spacing-lg);
+  }
+  
+  .nav-brand__logo {
+    height: var(--icon-size-lg);
+  }
+  
+  .nav-brand__text {
+    font-size: var(--font-size-xl);
+  }
+  
+  /* Responsive utilities */
+  .desktop\:d-none { display: none; }
+  .desktop\:d-block { display: block; }
+  .desktop\:d-flex { display: flex; }
+  .desktop\:d-grid { display: grid; }
+  
+  .desktop\:text-left { text-align: left; }
+  .desktop\:text-center { text-align: center; }
+  .desktop\:text-right { text-align: right; }
+}
+
+/* =====================================================================
+   LARGE DESKTOP BREAKPOINT (1200px+)
+   Final enhancements for large screens
+   ===================================================================== */
+
+@media (min-width: 1200px) {
+  /* App container large desktop */
+  #app {
+    width: var(--container-width-large);
+  }
+  
+  /* Grid system large desktop */
+  .grid {
+    grid-template-columns: repeat(var(--grid-columns-large), 1fr);
+  }
+  
+  /* Typography large desktop */
+  .welcome-text { font-size: var(--font-size-display); }
+}
+
+/* =====================================================================
+   PRINT STYLES
+   ===================================================================== */
+
+@media print {
+  .no-print { display: none; }
+  .print-only { display: block; }
+  
+  .main-nav { display: none; }
+  
+  body {
+    font-size: 12pt;
+    line-height: 1.4;
+    color: black;
+    background: white;
+  }
+  
+  .btn {
+    border: 1px solid black;
+    background: white;
+    color: black;
+  }
+}

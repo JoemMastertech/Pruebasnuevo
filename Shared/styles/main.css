@@ -2,40 +2,16 @@
    MASTER TECHNOLOGY BAR - MODULAR STYLESHEET
    ===================================================================== */
 
-/* === IMPORTS === */
-@import '_variables-unified.css';  /* Variables responsivas unificadas */
-@import '_bem-base.css';           /* Base BEM y tokens de componentes */
-@import '_bem-architecture.css';   /* Arquitectura BEM específica */
+/* === IMPORTS - MOBILE FIRST ARCHITECTURE === */
+@import '_variables-unified.css';              /* Variables mobile-first unificadas */
+@import 'components/base-components.css';       /* Componentes base mobile-first */
+@import 'components/card-components.css';       /* Componentes de tarjetas mobile-first */
+@import 'components/navigation-components.css'; /* Componentes de navegación mobile-first */
+@import 'views/grid-view.css';                 /* Vista grid mobile-first */
+@import 'views/table-view.css';                /* Vista tabla mobile-first */
+@import '_bem-architecture.css';               /* Arquitectura BEM específica */
 
-:root {
-  /* Primary Colors */
-  --primary-color: #f3f6f6;
-  --accent-color: #00f7ff;
-  --background-color: #000;
-  --text-color: #ECE9D8;
-  --price-color: #00f7ff;
-  
-  /* Component Colors */
-  --card-bg: rgba(0,0,0,0.7);
-  --border-color: #00f7ff40;
-  --glow-shadow: 0 0 10px rgba(0, 247, 255, 0.3);
-  --glow-shadow-hover: 0 0 20px rgba(0, 247, 255, 0.6);
-  
-  /* Layout Variables */
-  --transition-time: 0.3s;
-  --table-width: 95%;
-  --table-max-width: 1400px;
-  --table-margin: 20px;
-  
-  /* Legacy support */
-  --primary: #f3f6f6;
-  --accent: #00f7ff;
-  --bg: #000;
-  --text: #ECE9D8;
-  --card: rgba(0,0,0,0.7);
-  --border: #00f7ff40;
-  --transition: 0.3s;
-}
+/* DUPLICADO ELIMINADO: Variables ya definidas en _variables-unified.css */
 
 /* Background video styles */
 #background-video {
@@ -46,80 +22,47 @@
   height: 100%;
   object-fit: cover;
   z-index: -1;
-  opacity: 0.4;
+  opacity: var(--bg-video-opacity, 0.4);
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Montserrat', sans-serif; color: var(--text); background: var(--background-color); min-height: 100vh; overflow-y: auto; }
-#app { 
-  width: 70%; 
-  min-height: 100vh; 
-  position: relative; 
-  margin: 0 auto;
-  transition: margin-left 0.3s ease-in-out;
-}
-.screen { position: absolute; top: 0; left: 0; width: 100%; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 1; }
-
-/* =====================================================================
-   SECTION 1: CORE FOUNDATION
-   ===================================================================== */
-
-/* === RESET & BASE STYLES === */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Montserrat', sans-serif; color: var(--text); background: var(--background-color); min-height: 100vh; overflow-y: auto; }
-#app { 
-  width: 70%; 
-  min-height: 100vh; 
-  position: relative; 
-  margin: 0 auto;
-  transition: margin-left 0.3s ease-in-out;
-}
-.screen { position: absolute; top: 0; left: 0; width: 100%; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 1; }
+/* GLOBAL STYLES MOVED: Reset, body, #app, and .screen styles moved to _bem-base.css */
 
 /* =====================================================================
    SECTION 2: TYPOGRAPHY & BRANDING
    ===================================================================== */
-.welcome-text, .title-text, .category-title {
-  font-family: 'Playfair Display', serif;
-  color: var(--text-color);
-  text-align: center;
-  animation: fadeIn 1s ease-in-out;
-}
-
-.welcome-text { font-size: 3rem; }
-.title-text, .category-title { font-size: 2.5rem; }
+/* TYPOGRAPHY MOVED: Global typography classes moved to _bem-base.css */
 
 .logo-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: var(--spacing-xl);
 }
 
 .logo {
-  max-width: 300px;
+  max-width: var(--logo-max-width, 300px);
   height: auto;
   animation: fadeIn 1s ease-in-out;
-  filter: drop-shadow(0 0 10px rgba(0, 247, 255, 0.3));
-  transition: all var(--transition-time) ease;
+  filter: drop-shadow(var(--glow-shadow));
+  transition: all var(--transition) ease;
 }
 
 .logo:hover {
   transform: scale(1.05);
-  filter: drop-shadow(0 0 20px rgba(0, 247, 255, 0.6));
+  filter: drop-shadow(var(--glow-shadow-hover));
 }
 
 /* Logo específico para la página */
 .main-logo {
   content: url('https://udtlqjmrtbcpdqknwuro.supabase.co/storage/v1/object/public/productos/recursos/logos/Logo5.webp');
-  max-width: 300px;
+  max-width: var(--logo-max-width, 300px);
   height: auto;
   display: block;
   margin: 0 auto;
 }
 
 .main-content-screen {
-  padding: 20px;
+  padding: var(--spacing-xl);
   justify-content: flex-start;
   background-color: transparent;
 }
@@ -133,42 +76,42 @@ body { font-family: 'Montserrat', sans-serif; color: var(--text); background: va
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-xl);
 }
 
 .nav-row {
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: var(--spacing-sm);
   flex-wrap: wrap;
 }
 
 .nav-button, .view-toggle-btn {
   background: transparent;
-  border: 2px solid var(--primary-color);
-  color: var(--text-color);
-  padding: 8px 15px;
-  font: 600 1rem 'Montserrat', sans-serif;
+  border: 2px solid var(--primary);
+  color: var(--text);
+  padding: var(--button-padding);
+  font: 600 var(--font-size-base) 'Montserrat', sans-serif;
   cursor: pointer;
-  transition: all var(--transition-time) ease;
+  transition: all var(--transition) ease;
 }
 
 .view-toggle-btn {
-  font-size: 1.2rem;
-  width: 50px;
-  height: 50px;
+  font-size: var(--font-size-lg);
+  width: var(--button-size, 50px);
+  height: var(--button-size, 50px);
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: var(--border-radius-lg);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(var(--blur-amount, 10px));
   font-weight: bold;
 }
 
 .nav-button:hover, .nav-button.active, .view-toggle-btn:hover {
-  background-color: var(--primary-color);
-  color: var(--background-color);
+  background-color: var(--primary);
+  color: var(--bg);
 }
 
 .view-toggle-btn:hover {
@@ -176,46 +119,13 @@ body { font-family: 'Montserrat', sans-serif; color: var(--text); background: va
 }
 
 .view-toggle-btn.active {
-  background-color: var(--primary-color);
-  color: var(--background-color);
+  background-color: var(--primary);
+  color: var(--bg);
 }
 
-/* === BUTTON COMPONENTS === */
-.nav-button, .view-toggle-btn {
-  background: transparent;
-  border: 2px solid var(--primary-color);
-  color: var(--text-color);
-  padding: 8px 15px;
-  font: 600 1rem 'Montserrat', sans-serif;
-  cursor: pointer;
-  transition: all var(--transition-time) ease;
-}
+/* Duplicated button styles removed - already defined above */
 
-.view-toggle-btn {
-  font-size: 1.2rem;
-  width: 50px;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: var(--border-radius-lg);
-  backdrop-filter: blur(10px);
-  font-weight: bold;
-}
-
-.nav-button:hover, .nav-button.active, .view-toggle-btn:hover {
-  background-color: var(--primary-color);
-  color: var(--background-color);
-}
-
-.view-toggle-btn:hover {
-  transform: scale(1.05);
-}
-
-.view-toggle-btn.active {
-  background-color: var(--primary-color);
-  color: var(--background-color);
-}
+/* Duplicated view-toggle-btn styles removed - already defined above */
 
 /* =====================================================================
    SECTION 4: LAYOUT COMPONENTS
@@ -235,21 +145,21 @@ body { font-family: 'Montserrat', sans-serif; color: var(--text); background: va
 
 .page-title {
   font-family: 'Playfair Display', serif;
-  color: var(--text-color);
-  font-size: 2rem;
+  color: var(--text);
+  font-size: var(--font-size-title, 2rem);
   text-align: center;
   width: 100%;
   margin: 0;
-  padding: 15px 20px;
+  padding: var(--spacing-md) var(--spacing-xl);
   background: transparent;
-  border-bottom: 2px solid var(--border-color);
-  margin-bottom: 15px;
+  border-bottom: 2px solid var(--border);
+  margin-bottom: var(--spacing-md);
 }
 
 #create-order-btn, #orders-btn {
   position: relative;
   z-index: 1;
-  min-width: 120px; 
+  min-width: var(--min-width-standard); 
 }
 
 #create-order-btn {
@@ -258,16 +168,16 @@ body { font-family: 'Montserrat', sans-serif; color: var(--text); background: va
 
 .orders-screen {
   width: 100%;
-  max-width: 1200px;
+  max-width: var(--max-width-orders);
   margin: 0 auto;
-  padding: 20px;
+  padding: var(--padding-standard);
 }
 
 .orders-screen-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: var(--margin-standard);
   width: 100%;
   position: relative;
 }
@@ -297,10 +207,10 @@ body { font-family: 'Montserrat', sans-serif; color: var(--text); background: va
 .content-wrapper {
   display: flex;
   width: 100%;
-  gap: 0px;
+  gap: var(--gap-none, 0);
   position: relative;
-  margin-top: 0;
-  padding-right: 0px;
+  margin-top: var(--spacing-none, 0);
+  padding-right: var(--padding-none, 0);
 }
 
 #content-container {
@@ -314,17 +224,17 @@ body { font-family: 'Montserrat', sans-serif; color: var(--text); background: va
   align-items: flex-start;
   justify-content: flex-start;
   width: 100%;
-  gap: 20px;
+  gap: var(--gap-lg);
 }
 
 .content-container-flex .hamburger-btn {
   position: relative;
   top: unset;
   left: unset;
-  margin-right: 20px;
-  margin-top: 20px;
+  margin-right: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
   position: sticky;
-  top: 20px;
+  top: var(--spacing-lg);
   z-index: 1000;
 }
 
@@ -337,8 +247,8 @@ body { font-family: 'Montserrat', sans-serif; color: var(--text); background: va
 }
 
 .video-thumb {
-  width: 80px;
-  height: 56px;
+  width: var(--video-thumb-width);
+  height: var(--video-thumb-height);
   object-fit: cover;
   border-radius: var(--border-radius-lg);
   cursor: pointer;
@@ -349,20 +259,13 @@ body { font-family: 'Montserrat', sans-serif; color: var(--text); background: va
   transform: scale(1.05);
 }
 
-/* === THUMBNAILS ESTANDARIZADOS PARA MODO TABLA === */
-.video-thumb {
-  width: var(--table-thumb-width);
-  height: var(--table-thumb-height);
-  border-radius: var(--table-thumb-radius);
-}
-
 /* Efectos específicos por categoría (mantener únicamente efectos únicos) */
 [data-category="postres"] .video-thumb:hover {
   transform: rotate(-2deg) scale(1.05);
 }
 
 [data-category="sopas"] .video-thumb {
-  border: 1px solid rgba(255, 165, 0, 0.3);
+  border: var(--border-width-sm, 1px) solid var(--border-warning, rgba(255, 165, 0, 0.3));
 }
 
 /* Las reglas responsive para thumbnails ahora se manejan automáticamente 
@@ -378,20 +281,20 @@ body { font-family: 'Montserrat', sans-serif; color: var(--text); background: va
   max-width: var(--table-max-width);
   margin: var(--table-margin) auto;
   background: var(--card-bg);
-  border-radius: 15px;
-  box-shadow: 0 0 20px var(--border-color);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-lg);
   position: relative;
 }
 
 .container {
-  border: 1px solid var(--primary-color);
+  border: var(--border-width-sm, 1px) solid var(--primary-color);
   background: var(--card-bg);
 }
 
 .product-table, .liquor-table {
   border-collapse: separate;
   border-spacing: 0 10px;
-  padding: 20px;
+  padding: var(--padding-standard);
 }
 
 .product-table::before, .liquor-table::before, .category-grid::before {
@@ -410,7 +313,7 @@ body { font-family: 'Montserrat', sans-serif; color: var(--text); background: va
   padding: var(--table-cell-padding);
   border-bottom: 2px solid var(--border-color);
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: var(--letter-spacing-standard);
 }
 
 .product-table th:first-child, .liquor-table th:first-child {
@@ -492,17 +395,17 @@ body { font-family: 'Montserrat', sans-serif; color: var(--text); background: va
 
 .product-table td.image-icon {
   text-align: left;
-  padding-left: 10px;
-  width: 60px;
+  padding-left: var(--padding-sm);
+  width: var(--thumb-size-sm, 60px);
 }
 
 @keyframes glow {
   0%, 100% { box-shadow: var(--glow-shadow); }
-  50% { box-shadow: 0 0 15px rgba(0, 247, 255, 0.5); }
+  50% { box-shadow: var(--glow-shadow-medium, 0 0 15px rgba(0, 247, 255, 0.5)); }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(var(--translate-md)); }
   to { opacity: 1; transform: translateY(0); }
 }
 
@@ -525,9 +428,9 @@ body { font-family: 'Montserrat', sans-serif; color: var(--text); background: va
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: auto auto auto;
-  gap: 20px;
-  row-gap: 10px;
-  padding: 20px;
+  gap: var(--gap-lg);
+  row-gap: var(--gap-sm);
+  padding: var(--padding-lg);
 }
 
 .product-grid {
@@ -546,36 +449,15 @@ body { font-family: 'Montserrat', sans-serif; color: var(--text); background: va
   grid-column: 1 / -1;
   text-align: center;
   border-bottom: 2px solid var(--border-color);
-  padding-bottom: 15px;
-  margin-bottom: 20px;
+  padding-bottom: var(--padding-sm);
+  margin-bottom: var(--spacing-lg);
 }
 
 .category-grid .page-title {
-  margin-bottom: 5px;
+  margin-bottom: var(--spacing-xs);
 }
 
-/* =====================================================================
-   SECTION 8: CARD COMPONENTS
-   ===================================================================== */
-
-/* === CARD STYLES === */
-.category-card, .product-card {
-  background: var(--card-bg);
-  border-radius: 10px;
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 15px;
-  box-shadow: 0 0 10px var(--border-color);
-}
-
-.category-card:hover, .product-card:hover {
-  transform: translateY(-5px) scale(1.02);
-  box-shadow: 0 5px 20px var(--price-color);
-}
+/* DUPLICADO ELIMINADO: Card styles ya definidos en _bem-architecture.css */
 
 .category-image {
   /* Tamaño responsivo que se adapta al grid de 5 columnas */
@@ -595,288 +477,21 @@ body { font-family: 'Montserrat', sans-serif; color: var(--text); background: va
   text-align: center;
 }
 
-/* Product Card - Adaptación dentro del espacio asignado */
-.product-card {
-  /* Altura flexible que se adapta al contenido pero mantiene consistencia */
-  min-height: clamp(300px, 35vh, 400px);
-  /* max-height: removido para permitir expansión según contenido */
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  padding: clamp(15px, 1.8vw, 20px);
-  gap: clamp(10px, 1.2vw, 15px);
-}
+/* DUPLICADO ELIMINADO: Product card ya definido en _bem-architecture.css */
 
-/* Product Card Elements - Sistema responsive de dos niveles */
-.product-card .product-name {
-  font: 600 1.1rem 'Montserrat', sans-serif;
-  color: white;
-  margin-bottom: 10px;
-  text-align: center;
-  order: 1;
-  
-  /* NIVEL 1: Espacio fijo asignado al componente - reducido 20% */
-  height: clamp(1.92rem, 2.88vw + 0.8rem, 2.56rem);
-  
-  /* NIVEL 2: Contenido se adapta al espacio disponible - aumentado 25% */
-  font-size: clamp(0.69rem, 1.46vw + 0.406rem, 0.975rem);
-  line-height: clamp(1.2, 1.5vw + 1rem, 1.4);
-  
-  /* Configuración sin truncamiento - texto completo visible */
-  display: block;
-  overflow: visible;
-  text-overflow: unset;
-  word-wrap: break-word;
-  hyphens: auto;
-  
-  /* Sin limitación de líneas - mostrar todo el contenido */
-  -webkit-line-clamp: unset;
-  line-clamp: unset;
-  
-  /* Forzar ellipsis cuando el contenido excede el espacio */
-  position: relative;
-}
+/* DUPLICADO ELIMINADO: Product card elements ya definidos en _bem-architecture.css */
 
-/* Configuración específica para títulos de licores - aumentado 50% del tamaño anterior */
-.product-card.liquor-card .product-name {
-  /* Aumentar tamaño de fuente en 50% del tamaño anterior */
-  font-size: clamp(0.63rem, 1.35vw + 0.375rem, 0.9rem);
-  line-height: clamp(1.15, 1.8vw + 0.9rem, 1.35);
-  
-  /* Eliminar truncamiento para mostrar texto completo */
-  -webkit-line-clamp: unset;
-  line-clamp: unset;
-  overflow: visible;
-  text-overflow: unset;
-  
-  /* Permitir que el texto se ajuste naturalmente - altura reducida 30% */
-  display: block;
-  height: clamp(1.62rem, 2.16vw + 0.864rem, 2.376rem);
-  min-height: unset;
-  
-  /* Asegurar que el texto sea legible */
-  font-weight: 700;
-  letter-spacing: 0.02em;
-}
+/* DUPLICADO ELIMINADO: Configuraciones específicas ya definidas en _bem-architecture.css */
 
-/* Pseudo-elemento removido - ya no se necesita truncamiento */
+/* DUPLICADO ELIMINADO: Product ingredients ya definidos en _bem-architecture.css */
 
-.product-card .product-media {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 15px;
-  min-height: 180px;
-  order: 2;
-  width: 100%;
-}
+/* DUPLICADO ELIMINADO: Configuraciones de imágenes ya definidas en _bem-architecture.css */
 
-.product-card .product-ingredients {
-  color: var(--text-color);
-  margin-bottom: 15px;
-  text-align: justify;
-  text-justify: inter-word;
-  opacity: 0.8;
-  flex-grow: 1;
-  order: 3;
-  
-  /* NIVEL 1: Altura completamente flexible - se adapta al contenido */
-  /* height: removido para permitir expansión natural */
-  
-  /* NIVEL 2: Contenido se adapta al espacio disponible - aumentado 25% */
-  font-size: clamp(0.7rem, 1.5vw + 0.3rem, 0.9rem);
-  line-height: clamp(1.2, 1.3vw + 1rem, 1.4);
-  
-  /* Configuración para texto 100% responsivo - sin restricciones */
-  display: block;
-  overflow: visible;
-  text-overflow: unset;
-  word-wrap: break-word;
-  hyphens: auto;
-  
-  /* Sin límite de líneas - texto libre */
-  -webkit-line-clamp: unset;
-  line-clamp: unset;
-  
-  /* Permitir expansión natural del texto */
-  position: relative;
-  height: auto;
-  min-height: clamp(3.96rem, 4.95vw + 2.2rem, 5.5rem);
-  max-height: none;
-}
+/* DUPLICADO ELIMINADO: Video thumbnails y hover effects ya definidos en _bem-architecture.css */
 
-/* Pseudo-elemento removido - ya no es necesario para texto libre */
-.product-card .product-ingredients::after {
-  display: none;
-}
+/* DUPLICADO ELIMINADO: Product prices ya definidos en _bem-architecture.css */
 
-/* Configuración removida - sin truncamiento */
-.product-card .product-ingredients[data-truncated="true"]::after {
-  display: none;
-}
-
-/* Configuración general para imágenes de productos (nueva configuración mejorada) */
-.product-card .product-image {
-  width: 100%;
-  height: 180px;
-  object-fit: contain;
-  background: white;
-  border-radius: var(--border-radius-lg);
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-/* Configuración específica para imágenes de licores - completamente responsiva */
-.product-card.liquor-card .product-image {
-  /* Altura responsiva que se adapta al tamaño del grid */
-  height: clamp(120px, 15vw + 2vh, 200px);
-  width: 100%;
-  
-  /* Mantener proporciones y centrado */
-  object-fit: contain;
-  object-position: center;
-  background: white;
-  
-  /* Transición suave para cambios de tamaño */
-  transition: all 0.3s ease;
-}
-
-/* Ajustar el contenedor de media para licores */
-.product-card.liquor-card .product-media {
-  /* Altura responsiva del contenedor */
-  min-height: clamp(120px, 15vw + 2vh, 200px);
-  height: auto;
-  
-  /* Centrado perfecto */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  
-  /* Margen responsivo */
-  margin-bottom: clamp(8px, 1.2vw, 15px);
-}
-
-/* Configuración específica para thumbnails de video (mantener tamaño anterior) */
-.product-card .video-thumbnail {
-  width: 100%;
-  height: 140px; /* Tamaño anterior */
-  object-fit: cover; /* Tamaño anterior */
-  border-radius: 8px;
-  padding: 0;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-/* Hover effects separados */
-.product-card .product-image:hover {
-  transform: scale(1.1);
-}
-
-.product-card .video-thumbnail:hover {
-  transform: scale(1.1);
-}
-
-/* Ajustar el contenedor de media para thumbnails */
-.product-card:has(.video-thumbnail) .product-media {
-  min-height: 140px; /* Mantener altura anterior para videos */
-}
-
-.product-card:has(.product-image) .product-media {
-  min-height: 180px; /* Nueva altura para imágenes */
-}
-
-.product-card .product-prices {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: center;
-  order: 4;
-  margin-top: auto;
-}
-
-/* =================================================================
-   LIQUOR CARD LAYOUT STYLES - CLEANED
-   ================================================================= */
-.product-card.liquor-card .product-prices {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(3px, 1.5%, 8px);
-  align-items: flex-start;
-  width: 100%;
-  min-height: clamp(75px, 25%, 140px);
-  justify-content: space-between;
-}
-
-.product-card.liquor-card .price-item {
-  display: flex;
-  align-items: center;
-  gap: clamp(4px, 2%, 10px);
-  width: 100%;
-  min-height: clamp(20px, 8%, 36px);
-  flex-shrink: 0;
-}
-
-.product-card.liquor-card .price-label {
-  color: var(--text-color);
-  font-size: clamp(0.55rem, 3% + 0.1rem, 0.8rem);
-  font-weight: 500;
-  min-width: clamp(35px, 20%, 60px);
-  opacity: 0.9;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  line-height: 1.2;
-}
-
-/* Liquor card price buttons - compact thumbnail style */
-.product-card.liquor-card .price-button,
-.liquor-price-button {
-  padding: 4px 8px;
-  font-size: 0.75rem;
-  min-width: 50px;
-  max-width: 100%;
-  flex: 1;
-  min-height: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  font-weight: 600;
-  line-height: 1.1;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  transition: all 0.2s ease;
-}
-
-/* Optimized responsive styles for liquor cards */
-@media (max-width: 1200px) {
-  .product-card.liquor-card .price-button {
-    font-size: 0.7rem;
-    padding: 3px 6px;
-    min-width: 45px;
-  }
-  .product-card.liquor-card .price-label {
-    font-size: clamp(0.5rem, 3.5% + 0.05rem, 0.7rem);
-    min-width: clamp(30px, 25%, 50px);
-  }
-}
-
-@media (max-width: 900px) {
-  .product-card.liquor-card .price-button {
-    font-size: 0.65rem;
-    padding: 2px 5px;
-    min-width: 40px;
-  }
-  .product-card.liquor-card .price-label {
-    font-size: clamp(0.45rem, 4% + 0.02rem, 0.65rem);
-    min-width: clamp(25px, 30%, 45px);
-  }
-  .product-card.liquor-card .product-prices {
-    gap: clamp(2px, 1%, 6px);
-    min-height: clamp(60px, 30%, 120px);
-  }
-}
+/* DUPLICADO ELIMINADO: Liquor card price buttons ya definidos en _bem-architecture.css */
 
 /* Price Buttons */
 .price-button {
@@ -888,7 +503,7 @@ body { font-family: 'Montserrat', sans-serif; color: var(--text); background: va
   cursor: pointer;
   transition: all var(--transition-time) ease;
   font: 600 0.9rem 'Montserrat', sans-serif;
-  min-height: 32px;
+  min-height: var(--min-height-button);
 }
 
 .price-button:hover {
@@ -1457,7 +1072,7 @@ body { font-family: 'Montserrat', sans-serif; color: var(--text); background: va
 }
 
 .order-item-customization {
-  color: #ccc;
+  color: var(--color-muted-light);
   font-size: 0.85rem;
   font-style: italic;
   margin-top: 5px;
@@ -1716,7 +1331,7 @@ textarea:focus {
 .remove-order-item {
   background: transparent;
   border: none;
-  color: #ff6b6b;
+  color: var(--color-error-light);
   cursor: pointer;
   font-size: 1rem;
   margin-left: 10px;
@@ -2751,21 +2366,21 @@ body.order-mode-active #app {
 
 /* Screen display utilities */
 .screen-hidden {
-  display: none !important;
+  display: none;
 }
 
 .screen-visible {
-  display: flex !important;
+  display: flex;
   opacity: 1;
   visibility: visible;
 }
 
 .screen-flex {
-  display: flex !important;
+  display: flex;
 }
 
 .screen-block {
-  display: block !important;
+  display: block;
 }
 
 /* Hamburger menu visibility */
@@ -2779,11 +2394,11 @@ body.order-mode-active #app {
 
 /* Sidebar and container display states */
 .sidebar-hidden {
-  display: none !important;
+  display: none;
 }
 
 .sidebar-visible {
-  display: block !important;
+  display: block;
 }
 
 .content-hidden {
@@ -2855,21 +2470,21 @@ body.order-mode-active #app {
 
 /* === SIZE UTILITIES === */
 .product-image-small {
-  width: 40px !important;
-  height: 40px !important;
+  width: var(--image-size-sm);
+  height: var(--image-size-sm);
 }
 
 .product-image-large {
-  width: 70px !important;
-  height: 70px !important;
+  width: var(--image-size-lg);
+  height: var(--image-size-lg);
 }
 
 .height-auto {
-  height: auto !important;
+  height: auto;
 }
 
 .min-height-auto {
-  min-height: auto !important;
+  min-height: auto;
 }
 
 /* === COLOR UTILITIES === */

@@ -4,6 +4,50 @@
    ===================================================================== */
 
 /* =====================================================================
+   SECTION 0: GLOBAL RESET & BASE STYLES
+   ===================================================================== */
+
+/* CSS Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Base body styles */
+body {
+  font-family: 'Montserrat', sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  min-height: 100vh;
+  overflow-y: auto;
+  line-height: 1.6;
+}
+
+/* Base app container */
+#app {
+  width: var(--app-width, 70%);
+  min-height: 100vh;
+  position: relative;
+  margin: 0 auto;
+  transition: margin-left var(--transition) ease-in-out;
+}
+
+/* Screen layout utility */
+.screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+/* =====================================================================
    SECTION 1: BEM NAMING CONVENTIONS
    ===================================================================== */
 
@@ -48,7 +92,7 @@
   --btn-secondary-bg: transparent;
   --btn-secondary-color: var(--accent);
   --btn-secondary-border: var(--accent);
-  --btn-radius: 8px;
+  --btn-radius: var(--border-radius-sm);
   --btn-padding: var(--spacing-sm) var(--spacing-md);
   --btn-transition: var(--transition);
   
@@ -56,7 +100,7 @@
   --form-input-bg: rgba(255, 255, 255, 0.1);
   --form-input-border: var(--border);
   --form-input-color: var(--text);
-  --form-input-radius: 6px;
+  --form-input-radius: var(--table-thumb-radius);
   --form-input-padding: var(--spacing-sm);
   
   /* === TABLE TOKENS === */
@@ -74,7 +118,7 @@
   /* === GRID TOKENS === */
   --grid-gap: var(--gap);
   --grid-columns: var(--grid-columns);
-  --grid-min-item-width: 250px;
+  --grid-min-item-width: var(--search-max-width);
 }
 
 /* =====================================================================
@@ -148,6 +192,17 @@
   font-weight: 600;
   line-height: 1.2;
 }
+
+/* Global typography classes */
+.welcome-text, .title-text, .category-title {
+  font-family: 'Playfair Display', serif;
+  color: var(--text);
+  text-align: center;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.welcome-text { font-size: var(--font-size-hero, 3rem); }
+.title-text, .category-title { font-size: var(--font-size-title, 2.5rem); }
 
 .title--h1 {
   font-size: var(--font-size-xxl);
@@ -278,11 +333,11 @@
 }
 
 .form-input--error {
-  border-color: #ff4444;
+  border-color: var(--color-error-light);
 }
 
 .form-error {
-  color: #ff4444;
+  color: var(--color-error-light);
   font-size: var(--font-size-xs);
   margin-top: var(--spacing-xs);
 }
@@ -442,10 +497,10 @@
 
 @media print {
   .no-print {
-    display: none !important;
+    display: none;
   }
   
   .print-only {
-    display: block !important;
+    display: block;
   }
 }
