@@ -98,6 +98,7 @@
      NAVEGACIÓN - MOBILE BASE
      ================================================================= */
   --nav-height: 50px;
+  --top-nav-height: 60px;
   --nav-bg: rgba(0, 0, 0, 0.95);
   --nav-border: var(--accent);
   --nav-padding: var(--padding-sm);
@@ -125,6 +126,7 @@
      BOTONES - MOBILE BASE
      ================================================================= */
   --button-height: 40px;
+  --height-sm: 40px;
   --button-padding: var(--padding-sm) var(--padding-md);
   --button-radius: 6px;
   --button-font-size: var(--font-size-sm);
@@ -250,6 +252,7 @@
   :root {
     /* Navegación */
     --nav-height: 55px;
+    --top-nav-height: 65px;
     --nav-padding: var(--padding-md);
     --nav-gap: var(--gap-md);
     
@@ -281,6 +284,7 @@
     
     /* Botones más grandes */
     --button-height: 44px;
+    --height-sm: 44px;
     --button-font-size: var(--font-size-base);
     
     /* Modales más amplios */
@@ -323,6 +327,7 @@
   :root {
     /* Navegación desktop */
     --nav-height: 60px;
+    --top-nav-height: 70px;
     --nav-padding: var(--padding-lg);
     --nav-gap: var(--gap-lg);
     
@@ -352,6 +357,7 @@
     
     /* Botones desktop */
     --button-height: 48px;
+    --height-sm: 48px;
     --button-padding: var(--padding-md) var(--padding-lg);
     --button-font-size: var(--font-size-md);
     
