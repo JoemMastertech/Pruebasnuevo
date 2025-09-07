@@ -92,3 +92,10 @@ export const toggleElementClass = (elementId, className, force) => {
   const element = getElementSafely(elementId);
   if (element && element.classList) element.classList.toggle(className, force);
 };
+
+// Default export for compatibility with index.js
+export default {
+  getElementSafely,
+  updateElementText,
+  toggleElementClass
+};

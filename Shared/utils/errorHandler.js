@@ -65,15 +65,18 @@ class ErrorHandler {
     const message = `Validation failed for field '${field}' with value '${value}': ${rule}`;
     this.handle(message, 'Validation', { field, value, rule });
     
-    // Import ValidationError dynamically to avoid circular dependencies
-    import('../../Dominio/exceptions/ValidationError.js')
-      .then(({ default: ValidationError }) => {
-        throw new ValidationError(message);
-      })
-      .catch(importError => {
-        // Fallback if ValidationError is not available
+    // Try to use ValidationError if available, otherwise use generic Error
+    try {
+      // Check if ValidationError is available globally
+      if (typeof window !== 'undefined' && window.ValidationError) {
+        throw new window.ValidationError(message);
+      } else {
         throw new Error(message);
-      });
+      }
+    } catch (error) {
+      // Re-throw the error to maintain the expected behavior
+      throw error;
+    }
   }
 
   static showUserError(message, elementId = null) {
@@ -106,8 +109,8 @@ class ErrorHandler {
       additionalInfo: `XSS attempt detected in ${context}`
     });
     
-    // Trigger debugger in development
-    if (process.env.NODE_ENV === 'development') {
+    // Trigger debugger in development (check if we're not in production)
+    if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
       debugger;
     }
   }
@@ -123,9 +126,8 @@ class ErrorHandler {
   }
 }
 
-// Export the main ErrorHandler class
+// Export the ErrorHandler class
 export { ErrorHandler };
-export default ErrorHandler;
 
 // Legacy exports for backward compatibility
 export const logError = (message, error = null, context = {}) => {
@@ -134,30 +136,32 @@ export const logError = (message, error = null, context = {}) => {
   });
 };
 
-// Expose ErrorHandler globally
-// Expose ErrorHandler globally (only in browser environment)
-if (typeof window !== 'undefined') {
-  window.ErrorHandler = ErrorHandler;
-}
-if (typeof window !== 'undefined') {
-  window.logError = logError;
-  window.logWarning = ErrorHandler.logWarning;
-}
-if (typeof window !== 'undefined') {
-  window.handleValidationError = ErrorHandler.handleValidationError;
-  window.handleMissingElementError = ErrorHandler.handle;
-}
-if (typeof window !== 'undefined') {
-  window.showUserError = ErrorHandler.showUserError;
-  window.clearUserError = ErrorHandler.clearUserError;
-}
-if (typeof window !== 'undefined') {
-  window.handleXSSError = ErrorHandler.handleXSSError;
-}
-
 export const logWarning = ErrorHandler.logWarning;
 export const handleValidationError = ErrorHandler.handleValidationError;
 export const handleMissingElementError = ErrorHandler.handle;
 export const showUserError = ErrorHandler.showUserError;
 export const clearUserError = ErrorHandler.clearUserError;
 export const handleXSSError = ErrorHandler.handleXSSError;
+
+// Expose ErrorHandler globally (only in browser environment)
+if (typeof window !== 'undefined') {
+  window.ErrorHandler = ErrorHandler;
+  window.logError = logError;
+  window.logWarning = ErrorHandler.logWarning;
+  window.handleValidationError = ErrorHandler.handleValidationError;
+  window.handleMissingElementError = ErrorHandler.handle;
+  window.showUserError = ErrorHandler.showUserError;
+  window.clearUserError = ErrorHandler.clearUserError;
+  window.handleXSSError = ErrorHandler.handleXSSError;
+}
+
+// Export default object with all functions
+export default {
+  logError,
+  logWarning,
+  handleValidationError,
+  handleMissingElementError,
+  showUserError,
+  clearUserError,
+  handleXSSError
+};

@@ -68,3 +68,12 @@ export function safeResolveService(serviceName, fallback = null) {
     return fallback;
   }
 }
+
+// Export default object with all functions
+export default {
+  getProductRepository,
+  resolveService,
+  isDIContainerAvailable,
+  getDIContainer,
+  safeResolveService
+};

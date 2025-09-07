@@ -1,10 +1,13 @@
 import OrderSystemCore from './../../../../Aplicacion/services/OrderCore.js';
-import { formatPrice } from './../../../../Shared/utils/formatters.js';
-import { getProductRepository } from './../../../../Shared/utils/diUtils.js';
-import { setSafeInnerHTML, showModal, hideModal } from './../../../../Shared/utils/domUtils.js';
-import { ErrorHandler, logError, logWarning, handleMissingElementError } from './../../../../Shared/utils/errorHandler.js';
-import { calculateTotalDrinkCount, calculateTotalJuiceCount, calculateTotalJagerDrinkCount, isJuiceOption } from './../../../../Shared/utils/calculationUtils.js';
-import Logger from './../../../../Shared/utils/logger.js';
+// Usando el nuevo archivo índice para imports más limpios
+import { 
+  formatPrice,
+  getProductRepository,
+  setSafeInnerHTML, showModal, hideModal,
+  ErrorHandler, logError, logWarning, handleMissingElementError,
+  calculateTotalDrinkCount, calculateTotalJuiceCount, calculateTotalJagerDrinkCount, isJuiceOption,
+  Logger
+} from './../../../../Shared/utils/index.js';
 import { OrderSystemValidations } from './order-system-validations.js';
 
 // Constants

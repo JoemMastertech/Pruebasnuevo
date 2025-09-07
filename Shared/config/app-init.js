@@ -32,11 +32,13 @@ import ProductDataAdapter from '../../Infraestructura/adapters/ProductDataAdapte
 import BaseAdapter from '../../Infraestructura/adapters/BaseAdapter.js';
 import AIInterface from '../../Infraestructura/integrations/AIInterface.js';
 import AppConfig from '../core/AppConfig.js';
-// Import shared utilities
-import { setSafeInnerHTML } from '../utils/domUtils.js';
-import { ErrorHandler, logError, logWarning } from '../utils/errorHandler.js';
-import Logger from '../utils/logger.js';
-import SimpleCache from '../utils/simpleCache.js';
+// Import shared utilities usando el nuevo archivo índice
+import { 
+  setSafeInnerHTML,
+  ErrorHandler, logError, logWarning,
+  Logger,
+  SimpleCache
+} from '../utils/index.js';
 import { DEBUG, UI, PERFORMANCE, CACHE_KEYS } from './constants.js';
 
 /* initial view timing in milliseconds */

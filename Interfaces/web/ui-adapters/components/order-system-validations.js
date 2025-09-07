@@ -1,6 +1,5 @@
 import { BUSINESS_RULES, VALIDATION, MESSAGES } from '../../../../Shared/config/constants.js';
-import Logger from '../../../../Shared/utils/logger.js';
-import { isJuiceOption } from '../../../../Shared/utils/calculationUtils.js';
+import { Logger, isJuiceOption } from '../../../../Shared/utils/index.js';
 
 /**
  * Centralized validation module for OrderSystem

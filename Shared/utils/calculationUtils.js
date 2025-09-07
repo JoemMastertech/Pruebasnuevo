@@ -79,9 +79,20 @@ export function isJuiceOption(option) {
     .some(keyword => normalized.includes(keyword));
 }
 
-const getIngredientPrice = ingredient => ({
+export const getIngredientPrice = ingredient => ({
   'extra_cheese': 2.0,
   'extra_bacon': 3.0,
   'extra_sauce': 1.0,
   'premium_meat': 5.0
 })[ingredient] || 0;
+
+// Export default object with all functions
+export default {
+  calculateTotalDrinkCount,
+  calculateTotalJuiceCount,
+  calculateTotalJagerDrinkCount,
+  calculatePrice,
+  calculateOrderTotal,
+  isJuiceOption,
+  getIngredientPrice
+};

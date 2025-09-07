@@ -1,9 +1,11 @@
 // ProductData is now accessed through DI Container
-// Import shared utilities
-import { getProductRepository } from '../../../../Shared/utils/diUtils.js';
-import { setSafeInnerHTML } from '../../../../Shared/utils/domUtils.js';
-import { logError, logWarning } from '../../../../Shared/utils/errorHandler.js';
-import Logger from '../../../../Shared/utils/logger.js';
+// Import shared utilities usando el nuevo archivo índice
+import { 
+  getProductRepository,
+  setSafeInnerHTML,
+  logError, logWarning,
+  Logger
+} from '../../../../Shared/utils/index.js';
 
 const ProductRenderer = {
   // Current view mode: 'table' or 'grid'

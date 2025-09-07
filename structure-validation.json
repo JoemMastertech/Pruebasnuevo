@@ -1,0 +1,70 @@
+{
+  "timestamp": "2025-09-07T17:30:05.951Z",
+  "projectRoot": "C:\\Users\\joerl\\OneDrive\\UNAM\\PRUEBAS",
+  "validation": {
+    "passed": true,
+    "errors": 0,
+    "warnings": 4
+  },
+  "errors": [],
+  "warnings": [
+    "⚠️ Archivo no documentado en raíz: build-cleanup.log",
+    "⚠️ Archivo no documentado en raíz: favicon.ico",
+    "⚠️ Archivo no documentado en raíz: robots.txt",
+    "⚠️ Archivo no documentado en raíz: sitemap.xml"
+  ],
+  "officialStructure": {
+    "directories": [
+      "Domain",
+      "Aplicacion",
+      "Infraestructura",
+      "Adapters",
+      "Shared",
+      "Tests",
+      "docs",
+      "Components",
+      "Documentation",
+      "Interfaces",
+      "Web",
+      "compiled",
+      "dist"
+    ],
+    "rootFiles": [
+      ".env.example",
+      ".gitattributes",
+      ".gitignore",
+      "index.html",
+      "package.json",
+      "package-lock.json",
+      "tsconfig.json",
+      "vite.config.ts",
+      "README.md",
+      "ESTRUCTURA_PROYECTO.md",
+      "audit-structure.js",
+      "detect-references.js",
+      "consolidate-duplicates.js",
+      "consolidate-duplicates.ps1",
+      "cicd-preventive-rules.js",
+      "audit-report.json",
+      "AUDIT_REPORT.md",
+      "reference-analysis.json",
+      "REFERENCE_ANALYSIS.md",
+      "consolidation-report.json",
+      "CONSOLIDATION_REPORT.md",
+      "consolidation-report-ps.json",
+      "CONSOLIDATION_REPORT_PS.md"
+    ],
+    "specialDirectories": [
+      ".git",
+      ".github",
+      "node_modules",
+      "__CONSOLIDATION_BACKUP__"
+    ],
+    "forbiddenPatterns": [
+      {},
+      {},
+      {},
+      {}
+    ]
+  }
+}
