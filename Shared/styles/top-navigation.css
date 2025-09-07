@@ -14,9 +14,9 @@
   left: 0;
   right: 0;
   width: 100%;
-  height: var(--top-nav-height) !important;
-  min-height: var(--top-nav-height) !important;
-  max-height: var(--top-nav-height) !important;
+  height: var(--top-nav-height);
+  min-height: var(--top-nav-height);
+  max-height: var(--top-nav-height);
   background: var(--top-nav-bg);
   border-bottom: var(--border-width-sm) solid var(--accent-border);
   backdrop-filter: blur(var(--blur-sm));
@@ -81,12 +81,12 @@
   border: var(--border-width-md) solid white;
   color: var(--text-color);
   font-size: var(--font-size-lg);
-  width: var(--height-sm) !important;
-  height: var(--height-sm) !important;
-  min-width: var(--height-sm) !important;
-  min-height: var(--height-sm) !important;
-  max-width: var(--height-sm) !important;
-  max-height: var(--height-sm) !important;
+  width: var(--height-sm);
+  height: var(--height-sm);
+  min-width: var(--height-sm);
+  min-height: var(--height-sm);
+  max-width: var(--height-sm);
+  max-height: var(--height-sm);
   border-radius: var(--border-radius-lg);
   cursor: pointer;
   transition: all var(--transition-time) ease;
@@ -150,13 +150,13 @@ body.top-nav-visible {
 /* Desktop */
 @media (min-width: 1025px) {
   #top-nav {
-    height: var(--top-nav-height) !important;
-    min-height: var(--top-nav-height) !important;
-    max-height: var(--top-nav-height) !important;
+    height: var(--top-nav-height);
+    min-height: var(--top-nav-height);
+    max-height: var(--top-nav-height);
   }
   
   body.top-nav-visible {
-    padding-top: var(--top-nav-height) !important;
+    padding-top: var(--top-nav-height);
   }
 }
 
@@ -167,15 +167,15 @@ body.top-nav-visible {
   }
   
   #top-nav {
-    height: var(--top-nav-height) !important;
-    min-height: var(--top-nav-height) !important;
-    max-height: var(--top-nav-height) !important;
+    height: var(--top-nav-height);
+    min-height: var(--top-nav-height);
+    max-height: var(--top-nav-height);
     background: var(--top-nav-bg);
     border-bottom: var(--border-width-sm) solid var(--top-nav-border);
   }
   
   body.top-nav-visible {
-    padding-top: var(--top-nav-height) !important;
+    padding-top: var(--top-nav-height);
   }
 }
 
