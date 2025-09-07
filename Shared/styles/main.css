@@ -283,22 +283,16 @@
 }
 
 /* Tablas tienen sus propios estilos en product-table.css */
-.product-table, .liquor-table {
-  /* Estilos específicos movidos a product-table.css para evitar conflictos */
-}
 
 .container {
   border: var(--border-width-sm, 1px) solid var(--primary-color);
   background: var(--card-bg);
 }
 
-.product-table, .liquor-table {
-  border-collapse: separate;
-  border-spacing: 0 10px;
-  padding: var(--padding-standard);
-}
+/* Estilos de .product-table y .liquor-table movidos a product-table.css */
 
-.product-table::before, .liquor-table::before, .category-grid::before {
+/* Estilos ::before de .product-table y .liquor-table movidos a product-table.css */
+.category-grid::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -307,65 +301,11 @@
   pointer-events: none;
 }
 
-.product-table th, .liquor-table th {
-  font: var(--table-font-header);
-  color: var(--primary-color);
-  text-align: center;
-  padding: var(--table-cell-padding);
-  border-bottom: 2px solid var(--border-color);
-  text-transform: uppercase;
-  letter-spacing: var(--letter-spacing-standard);
-}
+/* Estilos de th y td de .product-table y .liquor-table movidos a product-table.css */
 
-.product-table th:first-child, .liquor-table th:first-child {
-  text-align: left;
-  padding: var(--table-cell-padding-first);
-}
+/* Estilos específicos de celdas td movidos a product-table.css */
 
-.product-table td, .liquor-table td {
-  padding: var(--table-cell-padding);
-  background: transparent;
-  transition: all 0.3s ease;
-  text-align: center;
-  vertical-align: middle;
-}
-
-.product-table td:first-child, .liquor-table td:first-child {
-  text-align: left;
-  padding: var(--table-cell-padding-first);
-}
-
-.product-table td.product-name, .liquor-table td.product-name {
-  font: var(--table-font-name);
-  color: var(--primary-color);
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-}
-
-.product-table td.image-icon, .liquor-table td.image-icon,
-.product-table td.video-icon, .liquor-table td.video-icon,
-.product-table td.product-price, .liquor-table td.product-price {
-  text-align: center;
-  padding: 10px;
-  vertical-align: middle;
-}
-
-.product-table td.image-icon img, .liquor-table td.image-icon img {
-  display: block;
-  margin: 0 auto;
-}
-
-.product-table td.product-ingredients {
-  text-align: left;
-  padding: 15px 10px;
-}
-
-.product-table tr:hover td,
-.liquor-table tr:hover td {
-  background-color: rgba(0, 0, 0, 0.4);
-  transform: none;
-  box-shadow: none;
-}
+/* Estilos de imágenes y hover de product-table movidos a product-table.css */
 
 /* =====================================================================
    SECTION 6: MEDIA & VISUAL ELEMENTS
@@ -384,21 +324,14 @@
   display: block;
 }
 
-.liquor-table td.image-icon img {
-  width: 52px;
-  height: 52px;
-}
+/* Estilos de liquor-table movidos a product-table.css */
 
 .image-icon img:hover, .category-image:hover {
   transform: scale(1.2);
   box-shadow: var(--glow-shadow-hover);
 }
 
-.product-table td.image-icon {
-  text-align: left;
-  padding-left: var(--padding-sm);
-  width: var(--thumb-size-sm, 60px);
-}
+/* Estilos de product-table td.image-icon movidos a product-table.css */
 
 @keyframes glow {
   0%, 100% { box-shadow: var(--glow-shadow); }
