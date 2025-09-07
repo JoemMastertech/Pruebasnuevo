@@ -15,7 +15,13 @@
   border-radius: var(--card-radius);
   box-shadow: var(--shadow-base);
   overflow: hidden;
-  border: var(--border-width-sm) solid var(--border);
+  border: var(--border-width-sm) solid var(--price-color);
+  transition: all var(--transition-time) ease;
+}
+
+.product-table:hover {
+  border-color: var(--price-color);
+  box-shadow: 0 0 15px rgba(0, 247, 255, 0.3);
 }
 
 .product-table--loading {

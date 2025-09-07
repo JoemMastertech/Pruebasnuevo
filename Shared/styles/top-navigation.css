@@ -87,7 +87,7 @@
   min-height: var(--height-sm) !important;
   max-width: var(--height-sm) !important;
   max-height: var(--height-sm) !important;
-  border-radius: var(--border-radius-md);
+  border-radius: var(--border-radius-lg);
   cursor: pointer;
   transition: all var(--transition-time) ease;
   display: flex;

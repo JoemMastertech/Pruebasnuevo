@@ -148,7 +148,7 @@
   --table-width: 98%;
   --table-max-width: 100%;
   --table-padding: var(--padding-xs);
-  --table-cell-padding: 8px 5px;
+  --table-cell-padding: 8px 12px;
   --table-border: 1px solid var(--border);
   
   /* =================================================================
@@ -295,7 +295,7 @@
     /* Tablas más espaciosas */
     --table-width: 95%;
     --table-padding: var(--padding-sm);
-    --table-cell-padding: 10px 8px;
+    --table-cell-padding: 10px 15px;
     
     /* Imágenes más grandes */
     --thumb-size: 80px;
@@ -370,7 +370,7 @@
     --table-width: 90%;
     --table-max-width: 1200px;
     --table-padding: var(--padding-md);
-    --table-cell-padding: 12px 10px;
+    --table-cell-padding: 12px 18px;
     
     /* Imágenes desktop */
     --thumb-size: 90px;
