@@ -358,11 +358,17 @@
   border-collapse: collapse;
   margin: var(--spacing) auto;
   max-width: var(--container-max);
-  background: var(--bg-white, white);
-  border: 1px solid var(--border-light, #ddd);
+  background: var(--bg-dark-transparent, rgba(0, 0, 0, 0.8));
+  border: 2px solid var(--cyan-primary, #00ffff);
   border-radius: var(--border-radius-sm, 8px);
   overflow: hidden;
   box-shadow: var(--shadow-sm, 0 2px 4px rgba(0, 0, 0, 0.1));
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-table:hover {
+  border-color: var(--cyan-bright, #00ffff);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
 }
 
 /* MODIFICADORES DE BLOQUE */
