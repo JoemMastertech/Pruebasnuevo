@@ -87,7 +87,7 @@
   min-height: var(--height-sm) !important;
   max-width: var(--height-sm) !important;
   max-height: var(--height-sm) !important;
-  border-radius: var(--border-radius-sm);
+  border-radius: var(--border-radius-md);
   cursor: pointer;
   transition: all var(--transition-time) ease;
   display: flex;
@@ -106,8 +106,17 @@
   background-color: transparent;
   transform: scale(var(--scale-hover));
   border-color: var(--price-color);
-  color: var(--price-color);
   box-shadow: var(--price-glow);
+}
+
+/* Efecto hover específico para botón hamburguesa - solo borde cyan */
+#top-hamburger-btn:hover, #top-hamburger-btn.active {
+  color: var(--text-color); /* Mantener color original del símbolo */
+}
+
+/* Efecto hover para otros botones - color cyan completo */
+.top-nav-btn:not(#top-hamburger-btn):hover, .top-nav-btn:not(#top-hamburger-btn).active {
+  color: var(--price-color);
 }
 
 .top-nav-btn:active {
