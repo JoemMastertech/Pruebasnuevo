@@ -11,6 +11,7 @@
   width: 100%;
   max-width: var(--table-max-width);
   margin: var(--table-margin) auto;
+  padding: var(--table-padding);
   background: var(--table-bg);
   border-radius: var(--card-radius);
   box-shadow: var(--shadow-base);

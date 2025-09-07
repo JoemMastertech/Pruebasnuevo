@@ -272,7 +272,7 @@
    ===================================================================== */
 
 /* === TABLES & GRID CONTAINERS === */
-.container, .product-table, .liquor-table, .category-grid, .product-grid {
+.container, .category-grid, .product-grid {
   width: var(--table-width);
   max-width: var(--table-max-width);
   margin: var(--table-margin) auto;
@@ -280,6 +280,11 @@
   border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-lg);
   position: relative;
+}
+
+/* Tablas tienen sus propios estilos en product-table.css */
+.product-table, .liquor-table {
+  /* Estilos específicos movidos a product-table.css para evitar conflictos */
 }
 
 .container {
@@ -816,11 +821,7 @@
   50% { box-shadow: 0 0 30px rgba(0, 247, 255, 0.5); }
 }
 
-/* Product table and image styles */
-.product-table {
-  width: var(--table-width);
-  max-width: var(--table-max-width);
-}
+/* Product table styles moved to product-table.css to avoid conflicts */
 
 .product-image {
   object-fit: contain;
@@ -1855,12 +1856,12 @@ textarea:focus {
     max-width: 100%;
   }
   
-  /* Tabla de productos - ancho completo */
-  .product-table {
+  /* Tabla de productos - estilos movidos a product-table.css */
+  /* .product-table {
     width: 100%;
     max-width: 100%;
     margin: 0;
-  }
+  } */
   
   #content-container {
     padding: 0;
@@ -1999,12 +2000,12 @@ textarea:focus {
     max-width: 100%;
   }
   
-  /* Tablas de productos - ancho completo */
-  .product-table {
+  /* Tablas de productos - estilos movidos a product-table.css */
+  /* .product-table {
     width: 100%;
     max-width: 100%;
     margin: 0;
-  }
+  } */
   
   /* Botones hamburguesa y volver superpuestos */
   .hamburger-btn,

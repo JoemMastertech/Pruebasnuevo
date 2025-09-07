@@ -128,7 +128,7 @@
   --button-height: 40px;
   --height-sm: 40px;
   --button-padding: var(--padding-sm) var(--padding-md);
-  --button-radius: 6px;
+  --button-radius: 3px;
   --button-font-size: var(--font-size-sm);
   --button-font-weight: var(--font-weight-medium);
   
@@ -150,6 +150,10 @@
   --table-padding: var(--padding-xs);
   --table-cell-padding: 8px 12px;
   --table-border: 1px solid var(--border);
+  --table-margin: 10px;
+  --table-bg: var(--card-bg);
+  --table-compact-width: 600px;
+  --table-expanded-width: 100%;
   
   /* =================================================================
      IMÁGENES Y MEDIA - MOBILE BASE
@@ -178,6 +182,7 @@
   --transition: 0.3s ease;
   --transition-fast: 0.2s ease;
   --transition-slow: 0.5s ease;
+  --transition-time: 0.3s;
   
   /* Sombras */
   --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -226,6 +231,7 @@
   /* Alturas específicas */
   --category-height: 120px;
   --category-min-width: 140px;
+  --min-height-lg: 200px;
   
   /* =================================================================
      VARIABLES ADICIONALES PARA COMPATIBILIDAD
