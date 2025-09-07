@@ -78,7 +78,7 @@
 
 .top-nav-btn {
   background: var(--card-bg);
-  border: var(--border-width-md) solid var(--primary-color);
+  border: var(--border-width-md) solid white;
   color: var(--text-color);
   font-size: var(--font-size-lg);
   width: var(--height-sm) !important;
