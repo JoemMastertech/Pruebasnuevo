@@ -2,14 +2,10 @@
    MASTER TECHNOLOGY BAR - MODULAR STYLESHEET
    ===================================================================== */
 
-/* === IMPORTS - MOBILE FIRST ARCHITECTURE === */
-@import '_variables-unified.css';              /* Variables mobile-first unificadas */
-@import 'components/base-components.css';       /* Componentes base mobile-first */
-@import 'components/card-components.css';       /* Componentes de tarjetas mobile-first */
-@import 'components/navigation-components.css'; /* Componentes de navegación mobile-first */
-@import 'views/grid-view.css';                 /* Vista grid mobile-first */
-@import 'views/table-view.css';                /* Vista tabla mobile-first */
-@import '_bem-architecture.css';               /* Arquitectura BEM específica */
+/* === IMPORTS === */
+@import '_variables-unified.css';  /* Variables responsivas unificadas */
+@import '_bem-base.css';           /* Base BEM y tokens de componentes */
+@import '_bem-architecture.css';   /* Arquitectura BEM específica */
 
 /* DUPLICADO ELIMINADO: Variables ya definidas en _variables-unified.css */
 
