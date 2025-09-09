@@ -1,0 +1,416 @@
+/* =================================================================
+   CONTROLADOR CENTRALIZADO DE MODOS DE VISTA
+   Sistema unificado para gestión de vistas tabla/grid
+   Permite cambio dinámico y control granular de cada modo
+   ================================================================= */
+
+/* =================================================================
+   VARIABLES GLOBALES DEL CONTROLADOR
+   ================================================================= */
+:root {
+  /* Estado actual del modo de vista */
+  --current-view-mode: 'grid'; /* 'grid' | 'table' */
+  
+  /* Control de visibilidad de modos */
+  --grid-display: block;
+  --table-display: none;
+  
+  /* =================================================================
+     CONFIGURACIÓN MODO GRID
+     ================================================================= */
+  
+  /* Layout Grid - usando variables centralizadas */
+  --grid-container-display: grid;
+  --grid-template-columns: var(--grid-template-columns);
+  --grid-gap: var(--grid-gap);
+  --grid-padding: var(--grid-padding);
+  --grid-align-items: stretch;
+  --grid-justify-content: center;
+  
+  /* Items Grid */
+  --grid-item-display: flex;
+  --grid-item-flex-direction: column;
+  --grid-item-min-height: var(--card-min-height);
+  --grid-item-aspect-ratio: var(--card-aspect-ratio);
+  --grid-item-padding: var(--card-padding);
+  --grid-item-border: var(--card-border);
+  --grid-item-border-radius: var(--card-radius);
+  --grid-item-background: var(--card-bg-current);
+  
+  /* Contenido Grid */
+  --grid-content-layout: column;
+  --grid-image-size: 100%;
+  --grid-image-aspect-ratio: 4/3;
+  --grid-title-font-size: var(--font-size-md);
+  --grid-title-font-weight: var(--font-weight-semibold);
+  --grid-description-font-size: var(--font-size-sm);
+  --grid-price-font-size: var(--font-size-lg);
+  --grid-price-color: var(--price-color);
+  
+  /* =================================================================
+     CONFIGURACIÓN MODO TABLA
+     ================================================================= */
+  
+  /* Layout Tabla */
+  --table-container-display: block;
+  --table-display: table;
+  --table-width: var(--table-width);
+  --table-max-width: var(--table-max-width);
+  --table-border-collapse: collapse;
+  --table-margin: var(--table-margin);
+  --table-background: var(--table-bg);
+  --table-border: var(--table-border);
+  
+  /* Filas y Celdas Tabla */
+  --table-row-display: table-row;
+  --table-cell-display: table-cell;
+  --table-cell-padding: var(--table-cell-padding);
+  --table-cell-border: 1px solid var(--border-light-alpha);
+  --table-cell-vertical-align: middle;
+  --table-cell-text-align: left;
+  
+  /* Header Tabla */
+  --table-header-background: rgba(0, 247, 255, 0.1);
+  --table-header-font-weight: var(--font-weight-semibold);
+  --table-header-font-size: var(--font-size-sm);
+  --table-header-text-transform: uppercase;
+  --table-header-letter-spacing: 0.5px;
+  
+  /* Contenido Tabla */
+  --table-image-size: var(--thumb-size);
+  --table-image-border-radius: var(--thumb-radius);
+  --table-title-font-size: var(--font-size-base);
+  --table-title-font-weight: var(--font-weight-medium);
+  --table-description-font-size: var(--font-size-xs);
+  --table-price-font-size: var(--font-size-md);
+  --table-price-font-weight: var(--font-weight-semibold);
+  
+  /* =================================================================
+     TRANSICIONES Y ANIMACIONES
+     ================================================================= */
+  --view-transition-duration: 0.3s;
+  --view-transition-timing: ease-in-out;
+  --view-fade-duration: 0.2s;
+  
+  /* =================================================================
+     RESPONSIVE - MOBILE FIRST
+     ================================================================= */
+  
+  /* Variables específicas del controlador - las de grid están centralizadas */
+  
+  /* Tabla mobile: scroll horizontal */
+  --table-mobile-overflow: auto;
+  --table-mobile-white-space: nowrap;
+  --table-mobile-min-width: 600px;
+}
+
+/* =================================================================
+   BREAKPOINTS RESPONSIVE
+   ================================================================= */
+
+/* Tablet: 768px+ */
+@media (min-width: 768px) {
+  :root {
+    /* Grid variables ahora centralizadas */
+    
+    /* Tabla más espaciosa */
+    --table-cell-padding-tablet: 10px 15px;
+    --table-mobile-min-width: auto;
+  }
+}
+
+/* Desktop: 1024px+ */
+@media (min-width: 1024px) {
+  :root {
+    /* Grid variables ahora centralizadas */
+    
+    /* Tabla desktop completa */
+    --table-cell-padding-desktop: 12px 18px;
+    --table-width-desktop: 90%;
+  }
+}
+
+/* Large Desktop: 1200px+ */
+@media (min-width: 1200px) {
+  :root {
+    /* Grid variables ahora centralizadas */
+    
+    /* Tabla amplia */
+    --table-width-large: 85%;
+    --table-max-width-large: 1400px;
+  }
+}
+
+/* =================================================================
+   CLASES UTILITARIAS PARA CONTROL DE MODOS
+   ================================================================= */
+
+/* Contenedor principal que responde al modo actual */
+.view-container {
+  transition: all var(--view-transition-duration) var(--view-transition-timing);
+}
+
+/* =====================================================================
+   UTILIDADES DE CONTROL
+   ===================================================================== */
+
+/* Clases para aplicar modos específicos */
+.view-mode-grid {
+  --view-mode-current: 'grid';
+  --view-mode-grid-active: 1;
+  --view-mode-table-active: 0;
+}
+
+.view-mode-table {
+  --view-mode-current: 'table';
+  --view-mode-grid-active: 0;
+  --view-mode-table-active: 1;
+}
+
+/* Clases de transición para animaciones */
+.view-transitioning {
+  transition: all var(--view-transition-duration, 300ms) ease-in-out;
+}
+
+/* Clases específicas por categoría - usando variables centralizadas */
+.category-liquor-large {
+  --grid-template-columns: var(--grid-template-columns-liquor);
+}
+
+.category-liquor {
+  --grid-template-columns: var(--grid-template-columns-liquor);
+}
+
+.category-default {
+  --grid-template-columns: var(--grid-template-columns);
+}
+
+/* Modo Grid Activo */
+.view-container[data-view="grid"] {
+  --current-view-mode: 'grid';
+  --grid-display: block;
+  --table-display: none;
+}
+
+.view-container[data-view="grid"] .grid-view {
+  display: var(--grid-container-display);
+  grid-template-columns: var(--grid-template-columns);
+  gap: var(--grid-gap);
+  padding: var(--grid-padding);
+  align-items: var(--grid-align-items);
+  justify-content: var(--grid-justify-content);
+}
+
+.view-container[data-view="grid"] .table-view {
+  display: none;
+}
+
+/* Modo Tabla Activo */
+.view-container[data-view="table"] {
+  --current-view-mode: 'table';
+  --grid-display: none;
+  --table-display: block;
+}
+
+.view-container[data-view="table"] .grid-view {
+  display: none;
+}
+
+.view-container[data-view="table"] .table-view {
+  display: var(--table-container-display);
+}
+
+.view-container[data-view="table"] .table-view table {
+  display: var(--table-display);
+  width: var(--table-width);
+  max-width: var(--table-max-width);
+  border-collapse: var(--table-border-collapse);
+  margin: var(--table-margin);
+  background: var(--table-background);
+  border: var(--table-border);
+}
+
+/* =================================================================
+   ESTILOS ESPECÍFICOS POR MODO
+   ================================================================= */
+
+/* Items Grid */
+.grid-item {
+  display: var(--grid-item-display);
+  flex-direction: var(--grid-item-flex-direction);
+  min-height: var(--grid-item-min-height);
+  aspect-ratio: var(--grid-item-aspect-ratio);
+  padding: var(--grid-item-padding);
+  border: var(--grid-item-border);
+  border-radius: var(--grid-item-border-radius);
+  background: var(--grid-item-background);
+  transition: all var(--transition);
+}
+
+.grid-item:hover {
+  transform: scale(var(--scale-hover));
+  box-shadow: var(--glow-shadow-hover);
+}
+
+/* Contenido Grid */
+.grid-item .item-image {
+  width: var(--grid-image-size);
+  aspect-ratio: var(--grid-image-aspect-ratio);
+  object-fit: var(--image-fit);
+  border-radius: var(--image-radius);
+}
+
+.grid-item .item-title {
+  font-size: var(--grid-title-font-size);
+  font-weight: var(--grid-title-font-weight);
+  color: var(--text);
+}
+
+.grid-item .item-description {
+  font-size: var(--grid-description-font-size);
+  color: var(--text-muted);
+}
+
+.grid-item .item-price {
+  font-size: var(--grid-price-font-size);
+  font-weight: var(--font-weight-bold);
+  color: var(--grid-price-color);
+}
+
+/* Celdas Tabla */
+.table-view th,
+.table-view td {
+  display: var(--table-cell-display);
+  padding: var(--table-cell-padding);
+  border: var(--table-cell-border);
+  vertical-align: var(--table-cell-vertical-align);
+  text-align: var(--table-cell-text-align);
+}
+
+.table-view th {
+  background: var(--table-header-background);
+  font-weight: var(--table-header-font-weight);
+  font-size: var(--table-header-font-size);
+  text-transform: var(--table-header-text-transform);
+  letter-spacing: var(--table-header-letter-spacing);
+}
+
+/* Contenido Tabla */
+.table-view .item-image {
+  width: var(--table-image-size);
+  height: var(--table-image-size);
+  border-radius: var(--table-image-border-radius);
+  object-fit: var(--image-fit);
+}
+
+.table-view .item-title {
+  font-size: var(--table-title-font-size);
+  font-weight: var(--table-title-font-weight);
+  color: var(--text);
+}
+
+.table-view .item-description {
+  font-size: var(--table-description-font-size);
+  color: var(--text-muted);
+}
+
+.table-view .item-price {
+  font-size: var(--table-price-font-size);
+  font-weight: var(--table-price-font-weight);
+  color: var(--price-color);
+}
+
+/* =================================================================
+   RESPONSIVE ADAPTATIONS
+   ================================================================= */
+
+/* Mobile */
+@media (max-width: 767px) {
+  .view-container[data-view="grid"] .grid-view {
+    grid-template-columns: var(--grid-template-columns);
+    gap: var(--grid-gap);
+    padding: var(--grid-padding);
+  }
+  
+  .view-container[data-view="table"] .table-view {
+    overflow-x: var(--table-mobile-overflow);
+  }
+  
+  .view-container[data-view="table"] table {
+    min-width: var(--table-mobile-min-width);
+    white-space: var(--table-mobile-white-space);
+  }
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .view-container[data-view="grid"] .grid-view {
+    grid-template-columns: var(--grid-template-columns);
+    gap: var(--grid-gap);
+    padding: var(--grid-padding);
+  }
+  
+  .table-view th,
+  .table-view td {
+    padding: var(--table-cell-padding-tablet);
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .view-container[data-view="grid"] .grid-view {
+    gap: var(--grid-gap);
+    padding: var(--grid-padding);
+  }
+  
+  .view-container[data-view="table"] table {
+    width: var(--table-width-desktop);
+  }
+  
+  .table-view th,
+  .table-view td {
+    padding: var(--table-cell-padding-desktop);
+  }
+}
+
+/* Large Desktop */
+@media (min-width: 1200px) {
+  .view-container[data-view="grid"] .grid-view {
+    grid-template-columns: var(--grid-template-columns);
+    gap: var(--grid-gap);
+  }
+  
+  /* Configuración especial para licores */
+  .view-container[data-view="grid"][data-category="liquor"] .grid-view {
+    grid-template-columns: var(--grid-template-columns-liquor);
+  }
+  
+  .view-container[data-view="table"] table {
+    width: var(--table-width-large);
+    max-width: var(--table-max-width-large);
+  }
+}
+
+/* =================================================================
+   DOCUMENTACIÓN DE USO
+   
+   IMPLEMENTACIÓN:
+   1. Agregar data-view="grid" o data-view="table" al contenedor
+   2. Usar clases .grid-view y .table-view para los contenidos
+   3. Aplicar .grid-item a elementos del grid
+   4. El sistema cambia automáticamente entre modos
+   
+   EJEMPLO HTML:
+   <div class="view-container" data-view="grid">
+     <div class="grid-view">
+       <div class="grid-item">...</div>
+     </div>
+     <div class="table-view">
+       <table>...</table>
+     </div>
+   </div>
+   
+   CAMBIO DINÁMICO:
+   container.setAttribute('data-view', 'table'); // Cambia a tabla
+   container.setAttribute('data-view', 'grid');  // Cambia a grid
+   ================================================================= */

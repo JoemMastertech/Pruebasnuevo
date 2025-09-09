@@ -3,9 +3,10 @@
    ===================================================================== */
 
 /* === IMPORTS === */
-@import '_variables-unified.css';  /* Variables responsivas unificadas */
-@import '_bem-base.css';           /* Base BEM y tokens de componentes */
-@import '_bem-architecture.css';   /* Arquitectura BEM específica */
+@import '_variables-unified.css';     /* Variables responsivas unificadas */
+@import '_view-modes-controller.css'; /* Controlador centralizado de modos de vista */
+@import '_bem-base.css';              /* Base BEM y tokens de componentes */
+@import '_bem-architecture.css';      /* Arquitectura BEM específica */
 
 /* DUPLICADO ELIMINADO: Variables ya definidas en _variables-unified.css */
 
@@ -360,7 +361,7 @@
 /* === GRID LAYOUTS - RESPONSIVE SYSTEM === */
 .category-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: var(--grid-template-columns-liquor);
   grid-template-rows: auto auto auto;
   gap: var(--gap-lg);
   row-gap: var(--gap-sm);
@@ -370,7 +371,7 @@
 .product-grid {
   display: grid;
   /* Nivel 1: Espacio fijo asignado - Grid base de 3 columnas para desktop */
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: var(--grid-template-columns);
   gap: clamp(15px, 2.5vw, 25px);
   padding: clamp(15px, 2.5vw, 25px);
   /* Contenedor con ancho máximo para mantener proporciones */
@@ -1540,8 +1541,8 @@ textarea:focus {
     width: 100%;
   }
   /* Grid layouts consolidados para tablet */
-  .product-grid { grid-template-columns: repeat(2, 1fr); gap: var(--gap-tablet); padding: var(--padding-tablet); }
-  .category-grid { grid-template-columns: repeat(3, 1fr); gap: var(--gap-tablet); padding: var(--padding-tablet); }
+  .product-grid { grid-template-columns: var(--grid-template-columns); gap: var(--grid-gap); padding: var(--grid-padding); }
+  .category-grid { grid-template-columns: var(--grid-template-columns-category); gap: var(--grid-gap); padding: var(--grid-padding); }
   .category-image { width: clamp(70px, 10vw, 110px); height: clamp(70px, 10vw, 110px); }
   .view-toggle-container { padding: 0 15px; }
   .product-card { min-height: 280px; height: auto; }
@@ -1661,8 +1662,8 @@ textarea:focus {
   }
   .category-image { width: clamp(60px, 8vw, 90px); height: clamp(60px, 8vw, 90px); }
   /* Grid por defecto para móviles (se sobrescribe con orientation) */
-  .product-grid { grid-template-columns: 1fr; gap: var(--gap-mobile); padding: var(--padding-mobile); }
-  .category-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto auto auto repeat(5, auto); gap: var(--gap-mobile); padding: var(--padding-mobile); }
+  .product-grid { grid-template-columns: var(--grid-template-columns); gap: var(--grid-gap); padding: var(--grid-padding); }
+  .category-grid { grid-template-columns: var(--grid-template-columns-category); grid-template-rows: auto auto auto repeat(5, auto); gap: var(--grid-gap); padding: var(--grid-padding); }
   .product-card { min-height: 260px; height: auto; /* max-height removido */ }
   .product-card .product-name { font-size: 0.775rem; height: clamp(1.386rem, 2.07vw + 0.576rem, 1.845rem); -webkit-line-clamp: unset; line-clamp: unset; overflow: visible; text-overflow: unset; display: block; }
   .product-card .product-ingredients { font-size: 0.7rem; }
@@ -2013,8 +2014,8 @@ textarea:focus {
     font-size: 1.15rem;
   }
   
-  .product-grid { grid-template-columns: repeat(3, 1fr); gap: var(--gap-tablet); padding: var(--padding-tablet); }
-  .category-grid { grid-template-columns: repeat(4, 1fr); gap: var(--gap-tablet); padding: var(--padding-tablet); }
+  .product-grid { grid-template-columns: var(--grid-template-columns); gap: var(--grid-gap); padding: var(--grid-padding); }
+  .category-grid { grid-template-columns: var(--grid-template-columns-category); gap: var(--grid-gap); padding: var(--grid-padding); }
   .category-image { width: clamp(90px, 11vw, 120px); height: clamp(90px, 11vw, 120px); }
   .product-card { min-height: 280px; height: auto; /* max-height removido */ }
   .product-card .product-name { font-size: 0.81rem; height: clamp(1.386rem, 2.07vw + 0.576rem, 1.845rem); -webkit-line-clamp: unset; line-clamp: unset; overflow: visible; text-overflow: unset; display: block; }
@@ -2105,14 +2106,14 @@ textarea:focus {
   }
   
   .product-grid {
-    grid-template-columns: repeat(var(--grid-columns), 1fr);
+    grid-template-columns: var(--grid-template-columns); /* Usar variables centralizadas */
     max-width: var(--container-max);
     gap: var(--gap);
     padding: var(--padding);
   }
   
   .category-grid {
-    grid-template-columns: repeat(var(--grid-columns-liquor), 1fr);
+    grid-template-columns: var(--grid-template-columns-liquor);
     max-width: var(--container-max);
     gap: var(--gap);
     padding: var(--padding);

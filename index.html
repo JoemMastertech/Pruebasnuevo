@@ -194,6 +194,8 @@
   <script type="module" src="./Interfaces/web/ui-adapters/components/order-system.js"></script>
   <!-- Load CSS Class Manager first -->
   <script type="module" src="./Shared/js/CSSClassManager.js"></script>
+  <!-- Load view modes controller -->
+  <script type="module" src="./Shared/js/view-modes-controller.js"></script>
   <!-- Load independent top navigation system -->
   <script src="./Shared/js/top-nav-independent.js"></script>
   <!-- Load hexagonal architecture bootstrap -->
@@ -206,9 +208,14 @@
   <!-- Initialize app -->
   <script type="module">
     import AppInit from './Shared/config/app-init.js';
+    import { ViewModesController } from './Shared/js/view-modes-controller.js';
     
     document.addEventListener('DOMContentLoaded', function() {
       AppInit.initialize();
+      
+      // Inicializar controlador de modos de vista
+      window.viewModesController = new ViewModesController();
+      console.log('Controlador de modos de vista inicializado');
       
       // Inicializar sistema de navegación independiente
       if (window.IndependentTopNavManager) {

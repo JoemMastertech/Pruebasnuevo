@@ -2,7 +2,14 @@
    VARIABLES UNIFICADAS - ARQUITECTURA MOBILE-FIRST
    Sistema de variables CSS completamente reorganizado
    Mobile como base + breakpoints ascendentes únicamente
+   Incluye controlador centralizado de modos de vista
    ================================================================= */
+
+/* Importar controlador de modos de vista */
+@import '_view-modes-controller.css';
+
+/* Importar configuración centralizada de grid */
+@import '_grid-centralized.css';
 
 :root {
   /* =================================================================
@@ -108,12 +115,9 @@
   --nav-gap: var(--gap-sm);
   
   /* =================================================================
-     GRID SYSTEM - MOBILE BASE (2 COLUMNAS)
+     GRID SYSTEM - AHORA CENTRALIZADO EN _grid-centralized.css
      ================================================================= */
-  --grid-columns: 2;
-  --grid-gap: var(--gap-md);
-  --grid-padding: var(--padding-md);
-  --grid-max-width: 100%;
+  /* Variables de grid movidas a _grid-centralized.css para evitar duplicaciones */
   
   /* =================================================================
      CARDS - MOBILE BASE
@@ -251,6 +255,37 @@
   --table-cols-3-width: 33.333%;
   --table-cols-4-width: 25%;
   --table-cols-5-width: 20%;
+  
+  /* =================================================================
+     VARIABLES DE CONTROL DE MODOS DE VISTA
+     Integración con el controlador centralizado
+     ================================================================= */
+  
+  /* Estados de vista por defecto */
+  --default-view-mode: 'grid';
+  --view-toggle-enabled: true;
+  
+  /* Variables de configuración para modos de vista */
+  --view-grid-columns: 3;
+  --view-grid-gap: var(--spacing-md);
+  --view-table-border: 1px solid var(--border);
+  --view-transition: var(--transition);
+  --view-transition-duration: 300ms;
+  
+  /* Variables de estado (controladas dinámicamente) */
+  --view-mode-current: 'grid';
+  --view-mode-grid-active: 1;
+  --view-mode-table-active: 0;
+
+  /* Configuración de tabla estándar */
+  --table-width-standard: var(--table-width);
+  --table-padding-standard: var(--table-padding);
+  --table-cell-padding-standard: var(--table-cell-padding);
+
+  /* Aliases para compatibilidad con código existente */
+  --current-view-mode: var(--view-mode-current);
+  --grid-active: var(--view-mode-grid-active);
+  --table-active: var(--view-mode-table-active);
 }
 
 /* =================================================================
@@ -265,10 +300,7 @@
     --nav-padding: var(--padding-md);
     --nav-gap: var(--gap-md);
     
-    /* Grid system - 3 columnas en tablet */
-    --grid-columns: 3;
-    --grid-gap: var(--gap-lg);
-    --grid-padding: var(--padding-lg);
+    /* Grid system - ahora centralizado en _grid-centralized.css */
     
     /* Espaciado aumentado */
     --spacing-md: 20px;
@@ -343,10 +375,7 @@
     --nav-padding: var(--padding-lg);
     --nav-gap: var(--gap-lg);
     
-    /* Grid system - mantiene 3 columnas pero con más espacio */
-    --grid-gap: var(--gap-xl);
-    --grid-padding: var(--padding-xl);
-    --grid-max-width: 1200px;
+    /* Grid system - ahora centralizado en _grid-centralized.css */
     
     /* Espaciado desktop */
     --spacing-lg: 28px;
@@ -414,11 +443,9 @@
    ================================================================= */
 @media (min-width: 1200px) {
   :root {
-    /* Grid system - 5 columnas para licores en pantallas grandes */
-    --grid-columns-liquor: 5;
+    /* Grid system - ahora centralizado en _grid-centralized.css */
     
     /* Espaciado máximo */
-    --grid-max-width: 1400px;
     --spacing-xxl: 48px;
     --padding-xl: 40px;
     --gap-xl: 40px;

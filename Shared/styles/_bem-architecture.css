@@ -236,7 +236,7 @@
 
 .category-card--liquor {
   /* Modificador específico para categorías de licores */
-  border: 2px solid var(--accent-gold, var(--accent));
+  border: 2px solid var(--accent-gold);
 }
 
 .category-card--enhanced {
@@ -657,7 +657,7 @@
 /* === MOBILE BREAKPOINT === */
 @media (max-width: 480px) {
   .product-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--gap-xs, 12px);
     padding: var(--padding-xs, 12px);
   }

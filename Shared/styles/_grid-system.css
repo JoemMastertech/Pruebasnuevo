@@ -38,8 +38,8 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(var(--grid-columns), 1fr);
-  gap: var(--gap, var(--grid-gap-standard));
-  padding: var(--padding, var(--grid-padding-standard));
+  gap: var(--grid-gap-standard);
+    padding: var(--grid-padding-standard);
   width: 100%;
   max-width: var(--container-max-width, 1200px);
   margin: 0 auto;

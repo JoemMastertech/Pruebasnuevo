@@ -1,0 +1,203 @@
+/* =================================================================
+   CONFIGURACIÓN CENTRALIZADA DE GRID
+   Sistema unificado para eliminar duplicaciones y hardcoding
+   Mobile-first con variables semánticamente organizadas
+   ================================================================= */
+
+:root {
+  /* =================================================================
+     VARIABLES BASE DE GRID - MOBILE FIRST
+     ================================================================= */
+  
+  /* Columnas base por dispositivo */
+  --grid-columns-mobile: 2;
+  --grid-columns-tablet: 3;
+  --grid-columns-desktop: 3;
+  --grid-columns-large: 4;
+  
+  /* Columnas específicas por categoría */
+  --grid-columns-liquor-mobile: 2;
+  --grid-columns-liquor-tablet: 3;
+  --grid-columns-liquor-desktop: 3;
+  --grid-columns-liquor-large: 5;
+  
+  --grid-columns-category-mobile: 2;
+  --grid-columns-category-tablet: 3;
+  --grid-columns-category-desktop: 4;
+  --grid-columns-category-large: 5;
+  
+  /* Gap base por dispositivo */
+  --grid-gap-mobile: var(--gap-sm, 12px);
+  --grid-gap-tablet: var(--gap-md, 16px);
+  --grid-gap-desktop: var(--gap-lg, 20px);
+  --grid-gap-large: var(--gap-xl, 24px);
+  
+  /* Padding base por dispositivo */
+  --grid-padding-mobile: var(--padding-sm, 12px);
+  --grid-padding-tablet: var(--padding-md, 16px);
+  --grid-padding-desktop: var(--padding-lg, 20px);
+  --grid-padding-large: var(--padding-xl, 24px);
+  
+  /* =================================================================
+     VARIABLES ACTIVAS (MOBILE BASE)
+     ================================================================= */
+  
+  /* Variables que se usan en el CSS - Mobile como base */
+  --grid-columns: var(--grid-columns-mobile);
+  --grid-gap: var(--grid-gap-mobile);
+  --grid-padding: var(--grid-padding-mobile);
+  
+  /* Variables específicas activas */
+  --grid-columns-liquor: var(--grid-columns-liquor-mobile);
+  --grid-columns-category: var(--grid-columns-category-mobile);
+  
+  /* =================================================================
+     CONFIGURACIÓN DE LAYOUT
+     ================================================================= */
+  
+  /* Template columns dinámico */
+  --grid-template-columns: repeat(var(--grid-columns), 1fr);
+  --grid-template-columns-liquor: repeat(var(--grid-columns-liquor), 1fr);
+  --grid-template-columns-category: repeat(var(--grid-columns-category), 1fr);
+  
+  /* Auto-fit para casos especiales */
+  --grid-template-auto-fit: repeat(auto-fit, minmax(var(--grid-min-width, 200px), 1fr));
+  --grid-template-auto-fill: repeat(auto-fill, minmax(var(--grid-min-width, 200px), 1fr));
+  
+  /* Anchos mínimos por tipo */
+  --grid-min-width-product: 200px;
+  --grid-min-width-category: 140px;
+  --grid-min-width-option: 100px;
+  
+  /* =================================================================
+     CONFIGURACIÓN DE CONTENEDORES
+     ================================================================= */
+  
+  /* Máximos anchos */
+  --grid-max-width-mobile: 100%;
+  --grid-max-width-tablet: 100%;
+  --grid-max-width-desktop: 1200px;
+  --grid-max-width-large: 1400px;
+  
+  --grid-max-width: var(--grid-max-width-mobile);
+  
+  /* Alineación */
+  --grid-align-items: stretch;
+  --grid-justify-content: center;
+  --grid-justify-items: stretch;
+}
+
+/* =================================================================
+   BREAKPOINTS RESPONSIVE
+   ================================================================= */
+
+/* Tablet: 768px+ */
+@media (min-width: 768px) {
+  :root {
+    --grid-columns: var(--grid-columns-tablet);
+    --grid-gap: var(--grid-gap-tablet);
+    --grid-padding: var(--grid-padding-tablet);
+    --grid-max-width: var(--grid-max-width-tablet);
+    
+    --grid-columns-liquor: var(--grid-columns-liquor-tablet);
+    --grid-columns-category: var(--grid-columns-category-tablet);
+  }
+}
+
+/* Desktop: 1024px+ */
+@media (min-width: 1024px) {
+  :root {
+    --grid-columns: var(--grid-columns-desktop);
+    --grid-gap: var(--grid-gap-desktop);
+    --grid-padding: var(--grid-padding-desktop);
+    --grid-max-width: var(--grid-max-width-desktop);
+    
+    --grid-columns-liquor: var(--grid-columns-liquor-desktop);
+    --grid-columns-category: var(--grid-columns-category-desktop);
+  }
+}
+
+/* Large Desktop: 1200px+ */
+@media (min-width: 1200px) {
+  :root {
+    --grid-columns: var(--grid-columns-large);
+    --grid-gap: var(--grid-gap-large);
+    --grid-padding: var(--grid-padding-large);
+    --grid-max-width: var(--grid-max-width-large);
+    
+    --grid-columns-liquor: var(--grid-columns-liquor-large);
+    --grid-columns-category: var(--grid-columns-category-large);
+  }
+}
+
+/* =================================================================
+   CLASES UTILITARIAS PARA APLICAR CONFIGURACIONES
+   ================================================================= */
+
+/* Clase base para todos los grids */
+.grid-base {
+  display: grid;
+  grid-template-columns: var(--grid-template-columns);
+  gap: var(--grid-gap);
+  padding: var(--grid-padding);
+  max-width: var(--grid-max-width);
+  margin: 0 auto;
+  align-items: var(--grid-align-items);
+  justify-content: var(--grid-justify-content);
+}
+
+/* Grids específicos por tipo */
+.grid-products {
+  grid-template-columns: var(--grid-template-columns);
+}
+
+.grid-liquor {
+  grid-template-columns: var(--grid-template-columns-liquor);
+}
+
+.grid-categories {
+  grid-template-columns: var(--grid-template-columns-category);
+}
+
+/* Auto-fit grids */
+.grid-auto-fit {
+  grid-template-columns: var(--grid-template-auto-fit);
+}
+
+.grid-auto-fill {
+  grid-template-columns: var(--grid-template-auto-fill);
+}
+
+/* Grids con anchos mínimos específicos */
+.grid-products.grid-auto-fit {
+  --grid-min-width: var(--grid-min-width-product);
+}
+
+.grid-categories.grid-auto-fit {
+  --grid-min-width: var(--grid-min-width-category);
+}
+
+.grid-options.grid-auto-fit {
+  --grid-min-width: var(--grid-min-width-option);
+}
+
+/* =================================================================
+   DOCUMENTACIÓN DE USO
+   
+   REEMPLAZAR EN CÓDIGO EXISTENTE:
+   
+   ANTES:
+   grid-template-columns: repeat(3, 1fr);
+   grid-template-columns: repeat(var(--grid-columns), 1fr);
+   
+   DESPUÉS:
+   grid-template-columns: var(--grid-template-columns);
+   
+   PARA CATEGORÍAS ESPECÍFICAS:
+   .liquor-grid { grid-template-columns: var(--grid-template-columns-liquor); }
+   .category-grid { grid-template-columns: var(--grid-template-columns-category); }
+   
+   PARA AUTO-FIT:
+   .auto-grid { grid-template-columns: var(--grid-template-auto-fit); }
+   
+   ================================================================= */

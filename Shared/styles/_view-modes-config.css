@@ -1,0 +1,254 @@
+/* =====================================================================
+   MÓDULO CENTRALIZADO DE CONFIGURACIÓN - MODOS DE VISTA
+   Unifica la gestión de modos tabla y grid con variables globales
+   ===================================================================== */
+
+:root {
+  /* =====================================================================
+     CONFIGURACIÓN DEL CONTENEDOR PADRE
+     ===================================================================== */
+  
+  /* Dimensiones base del contenedor */
+  --container-width: 100%;
+  --container-max-width: 1200px;
+  --container-min-width: 320px;
+  
+  /* Espaciado del contenedor padre */
+  --container-padding: clamp(10px, 2vw, 20px);
+  --container-margin: 0 auto;
+  
+  /* =====================================================================
+     CONFIGURACIÓN ESPECÍFICA - MODO GRID
+     ===================================================================== */
+  
+  /* Grid Layout */
+  --grid-columns: repeat(auto-fit, minmax(280px, 1fr));
+  --grid-gap: var(--container-gap);
+  --grid-item-min-width: 280px;
+  --grid-item-max-width: 350px;
+  
+  /* Grid Header */
+  --grid-header-height: 60px;
+  
+  /* Grid Cards */
+  --grid-card-border-radius: var(--border-radius-md);
+  
+  /* =====================================================================
+     CONFIGURACIÓN ESPECÍFICA - MODO TABLA
+     ===================================================================== */
+  
+  /* Table Layout */
+  --table-width: clamp(320px, 95vw, 1200px);
+  --table-max-width: 1200px;
+  
+  /* Table Header */
+  --table-header-height: 50px;
+  --table-header-padding: var(--spacing-sm) var(--spacing-md);
+  --table-header-background: var(--color-surface-variant);
+  --table-header-border: 1px solid var(--color-outline);
+  
+  /* Table Rows */
+  --table-row-padding: var(--spacing-sm) var(--spacing-md);
+  --table-row-border: 1px solid var(--color-outline-variant);
+  --table-row-hover-background: var(--color-surface-variant);
+  
+  /* =====================================================================
+     TIPOGRAFÍA UNIFICADA
+     ===================================================================== */
+  
+  /* Títulos y encabezados */
+  --title-font-size: var(--font-size-lg);
+  --title-font-weight: var(--font-weight-bold);
+  
+  /* Subtítulos */
+  --subtitle-font-size: var(--font-size-md);
+  --subtitle-font-weight: var(--font-weight-medium);
+  
+  /* Texto de contenido */
+  --content-font-size: var(--font-size-body);
+  --content-font-weight: var(--font-weight-normal);
+  
+  /* Texto de precios */
+  --price-font-size: var(--font-size-lg);
+  --price-font-weight: var(--font-weight-bold);
+  --price-color: var(--color-primary);
+  
+  /* =====================================================================
+     COLORES Y ESTILOS UNIFICADOS
+     ===================================================================== */
+  
+  /* Backgrounds */
+  --view-background: var(--color-surface);
+  
+  /* Borders */
+  --view-border-color: var(--color-outline-variant);
+  --view-border-width: 1px;
+  --view-border-style: solid;
+  --view-border: var(--view-border-width) var(--view-border-style) var(--view-border-color);
+  
+  /* Shadows */
+  --view-shadow-light: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --view-shadow-medium: 0 4px 8px rgba(0, 0, 0, 0.15);
+  --hover-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  
+  /* =====================================================================
+     IMÁGENES Y THUMBNAILS
+     ===================================================================== */
+  
+  /* Tamaños de imagen base */
+  --image-size-xs: 32px;
+  --image-size-sm: 64px;
+  --image-size-md: 120px;
+  --image-size-lg: 200px;
+  --image-size-xl: 300px;
+  
+  /* Imágenes en grid */
+  --grid-image-size: var(--image-size-md);
+  --grid-image-border-radius: var(--border-radius-sm);
+  
+  /* Imágenes en tabla */
+  --table-image-size: var(--image-size-sm);
+  --table-image-border-radius: var(--border-radius-xs);
+  
+  /* Thumbnails de video */
+  --video-thumb-width: 240px;
+  --video-thumb-height: 135px;
+  --video-thumb-border-radius: var(--border-radius-sm);
+  
+  /* =====================================================================
+     BOTONES Y CONTROLES
+     ===================================================================== */
+  
+  /* Botones base */
+  --button-height: 44px;
+  --button-padding: var(--spacing-sm) var(--spacing-md);
+  --button-font-size: var(--font-size-body);
+  --button-font-weight: var(--font-weight-medium);
+  --button-border-radius: var(--border-radius-md);
+  
+  /* Botones de precio */
+  --price-button-background: var(--color-primary);
+  --price-button-color: var(--color-on-primary);
+  --price-button-hover-background: var(--color-primary-variant);
+  
+  /* Botones de acción */
+  --action-button-size: 40px;
+  --action-button-border-radius: 50%;
+  --action-button-background: var(--color-surface-variant);
+  
+  /* =====================================================================
+     TRANSICIONES Y ANIMACIONES
+     ===================================================================== */
+  
+  /* Transiciones base */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  
+  /* Transiciones específicas */
+  --hover-transition: all var(--transition-normal);
+  --focus-transition: all var(--transition-fast);
+  
+  /* Efectos hover */
+  --hover-scale: 1.02;
+  --hover-lift: translateY(-2px);
+  --hover-opacity: 0.8;
+  
+  /* =====================================================================
+     RESPONSIVE BREAKPOINTS Y ADAPTACIONES
+     ===================================================================== */
+  
+  /* Mobile adaptations */
+  --mobile-container-padding: var(--spacing-sm);
+  --mobile-grid-columns: 1fr;
+  --mobile-grid-gap: var(--spacing-md);
+  
+  /* Tablet adaptations */
+  --tablet-container-padding: var(--spacing-md);
+  --tablet-grid-columns: repeat(auto-fit, minmax(250px, 1fr));
+  --tablet-grid-gap: var(--spacing-lg);
+}
+
+/* =====================================================================
+   CLASES UTILITARIAS PARA MODOS DE VISTA
+   ===================================================================== */
+
+/* Contenedor principal unificado */
+.view-container {
+  width: var(--container-width);
+  max-width: var(--container-max-width);
+  min-width: var(--container-min-width);
+  margin: var(--container-margin);
+  padding: var(--container-padding);
+  background: var(--view-background);
+}
+
+/* Modo Grid */
+.view-container--grid {
+  display: grid;
+  grid-template-columns: var(--grid-columns);
+  gap: var(--grid-gap);
+}
+
+.view-container--grid .view-item {
+  padding: var(--grid-card-padding);
+  border-radius: var(--grid-card-border-radius);
+  box-shadow: var(--grid-card-shadow);
+  transition: var(--hover-transition);
+}
+
+.view-container--grid .view-item:hover {
+  transform: var(--grid-card-hover-transform);
+  box-shadow: var(--hover-shadow);
+}
+
+/* Modo Tabla */
+.view-container--table {
+  display: block;
+  width: var(--table-width);
+  max-width: var(--table-max-width);
+}
+
+.view-container--table .view-header {
+  height: var(--table-header-height);
+  padding: var(--table-header-padding);
+  background: var(--table-header-background);
+  border: var(--table-header-border);
+}
+
+.view-container--table .view-item {
+  padding: var(--table-row-padding);
+  border: var(--table-row-border);
+  transition: var(--hover-transition);
+}
+
+.view-container--table .view-item:hover {
+  background: var(--table-row-hover-background);
+}
+
+/* =====================================================================
+   RESPONSIVE MEDIA QUERIES
+   ===================================================================== */
+
+/* Mobile First - hasta 480px */
+@media (max-width: 480px) {
+  :root {
+    --container-padding: var(--mobile-container-padding);--table-width: var(--mobile-table-width);}
+}
+
+/* Tablet - 481px a 768px */
+@media (min-width: 481px) and (max-width: 768px) {
+  :root {
+    --container-padding: var(--tablet-container-padding);--table-width: var(--tablet-table-width);}
+}
+
+/* Desktop - más de 768px */
+@media (min-width: 769px) {
+  :root {
+    --grid-columns: repeat(auto-fit, minmax(320px, 1fr));
+    --table-width: var(--table-max-width);
+    --gap-tablet: 1rem;
+    --padding-tablet: 1rem;
+    --table-col2-width: 100%;
+  }
+}
