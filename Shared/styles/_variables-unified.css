@@ -6,10 +6,10 @@
    ================================================================= */
 
 /* Importar controlador de modos de vista */
-@import '_view-modes-controller.css';
+/* MIGRATED: Controller now in _view-modes-master-controller.css */
 
 /* Importar configuración centralizada de grid */
-@import '_grid-centralized.css';
+/* MIGRATED: Grid centralized now in _view-modes-master-controller.css */
 
 :root {
   /* =================================================================

@@ -9,7 +9,7 @@
 
 :root {
   /* Grid Columns por Breakpoint - Valores naturales y coherentes */
-  --grid-columns-mobile: 2;
+  /* MIGRATED: Use --grid-columns-mobile from master controller */
   --grid-columns-mobile-large: 2;
   --grid-columns-tablet: 3;
   --grid-columns-tablet-large: 3;

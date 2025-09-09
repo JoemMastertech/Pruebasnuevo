@@ -395,18 +395,18 @@ if (typeof module !== 'undefined' && module.exports) {
  *    El controlador se inicializa automáticamente al cargar la página
  * 
  * 2. USO BÁSICO:
- *    window.viewModesController.setMode('table');
- *    window.viewModesController.toggleMode();
+ *    window.window.viewModesController.setMode('table');
+ *    window.window.viewModesController.toggleMode();
  * 
  * 3. REGISTRO MANUAL DE CONTENEDORES:
  *    const container = document.getElementById('products');
- *    window.viewModesController.registerContainer(container, {
+ *    window.window.viewModesController.registerContainer(container, {
  *        category: 'liquor',
  *        allowedModes: ['grid', 'table']
  *    });
  * 
  * 4. OBSERVADORES:
- *    window.viewModesController.addObserver((event) => {
+ *    window.window.viewModesController.addObserver((event) => {
  *        console.log('Mode changed:', event);
  *    });
  * 

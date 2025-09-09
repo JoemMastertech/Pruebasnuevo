@@ -99,7 +99,7 @@
       </div>
       <div class="content-wrapper">
         <div class="content-container-flex">
-          <div id="content-container"></div>
+          <div id="content-container" class="view-container"></div>
           <div id="order-sidebar" class="sidebar-hidden">
             <h3>Tu Orden</h3>
             <div id="order-items"></div>
@@ -194,12 +194,14 @@
   <script type="module" src="./Interfaces/web/ui-adapters/components/order-system.js"></script>
   <!-- Load CSS Class Manager first -->
   <script type="module" src="./Shared/js/CSSClassManager.js"></script>
-  <!-- Load view modes controller -->
-  <script type="module" src="./Shared/js/view-modes-controller.js"></script>
+  <!-- Load MASTER view modes controller - Sistema unificado -->
+  <script type="module" src="./Shared/js/ViewModesController.js"></script>
+  <!-- DEPRECATED: Reemplazado por ViewModesController.js -->
+  <!-- <script type="module" src="./Shared/js/ViewModesController.js"></script> -->
   <!-- Load independent top navigation system -->
   <script src="./Shared/js/top-nav-independent.js"></script>
   <!-- Load hexagonal architecture bootstrap -->
-  <script type="module" src="./hexagonal-bootstrap.js"></script>
+  <!-- <script type="module" src="./hexagonal-bootstrap.js"></script> <!-- Archivo no encontrado - comentado temporalmente -->
   <!-- Load compiled HexagonalContainer with all adapters -->
   <!-- <script type="module" src="./dist/Infraestructura/DI/HexagonalContainer.js"></script> -->
   <!-- Comentado temporalmente: archivo no existe en dist/ -->
@@ -208,7 +210,7 @@
   <!-- Initialize app -->
   <script type="module">
     import AppInit from './Shared/config/app-init.js';
-    import { ViewModesController } from './Shared/js/view-modes-controller.js';
+    import ViewModesController from "./Shared/js/ViewModesController.js";
     
     document.addEventListener('DOMContentLoaded', function() {
       AppInit.initialize();

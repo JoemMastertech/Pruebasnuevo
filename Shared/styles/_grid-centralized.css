@@ -10,7 +10,7 @@
      ================================================================= */
   
   /* Columnas base por dispositivo */
-  --grid-columns-mobile: 2;
+  /* MIGRATED: Use --grid-columns-mobile from master controller */
   --grid-columns-tablet: 3;
   --grid-columns-desktop: 3;
   --grid-columns-large: 4;

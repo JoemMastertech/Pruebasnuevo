@@ -3,10 +3,16 @@
    ===================================================================== */
 
 /* === IMPORTS === */
-@import '_variables-unified.css';     /* Variables responsivas unificadas */
-@import '_view-modes-controller.css'; /* Controlador centralizado de modos de vista */
-@import '_bem-base.css';              /* Base BEM y tokens de componentes */
-@import '_bem-architecture.css';      /* Arquitectura BEM específica */
+@import '_view-modes-master-controller.css'; /* CONTROLADOR MAESTRO - Sistema unificado */
+@import '_bem-base.css';                     /* Base BEM y tokens de componentes */
+@import '_bem-architecture.css';             /* Arquitectura BEM específica */
+
+/* DEPRECATED IMPORTS - Reemplazados por el controlador maestro */
+/* MIGRATED: Variables now in _view-modes-master-controller.css - CONSOLIDADO */
+/* MIGRATED: Controller now in _view-modes-master-controller.css - CONSOLIDADO */
+/* MIGRATED: Config now in _view-modes-master-controller.css - CONSOLIDADO */
+/* MIGRATED: Grid system now in _view-modes-master-controller.css - CONSOLIDADO */
+/* MIGRATED: Grid centralized now in _view-modes-master-controller.css - CONSOLIDADO */
 
 /* DUPLICADO ELIMINADO: Variables ya definidas en _variables-unified.css */
 
@@ -15,11 +21,14 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   object-fit: cover;
-  z-index: -1;
+  z-index: -10;
   opacity: var(--bg-video-opacity, 0.4);
+  /* Asegurar que cubra toda la ventana del navegador */
+  min-width: 100%;
+  min-height: 100%;
 }
 
 /* GLOBAL STYLES MOVED: Reset, body, #app, and .screen styles moved to _bem-base.css */
@@ -2480,3 +2489,5 @@ body.order-mode-active #app {
 /* ========================================
    SISTEMA UNIFICADO - FASE 5 IMPLEMENTACIÓN
    ======================================== */
+
+/* Fin del archivo main.css */

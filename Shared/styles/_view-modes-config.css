@@ -9,7 +9,7 @@
      ===================================================================== */
   
   /* Dimensiones base del contenedor */
-  --container-width: 100%;
+  /* MIGRATED: Use --container-width-* from master controller */
   --container-max-width: 1200px;
   --container-min-width: 320px;
   
