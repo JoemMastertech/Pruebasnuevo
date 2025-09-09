@@ -1,0 +1,52 @@
+/* === MIXINS DE BREAKPOINTS === */
+/* Uso: @media (min-width: var(--bp-tablet)) { ... } */
+
+/* Mobile First Approach */
+.mobile-up {
+  @media (min-width: var(--bp-mobile)) {
+    @content;
+  }
+}
+
+.tablet-up {
+  @media (min-width: var(--bp-tablet)) {
+    @content;
+  }
+}
+
+.desktop-up {
+  @media (min-width: var(--bp-desktop)) {
+    @content;
+  }
+}
+
+.large-up {
+  @media (min-width: var(--bp-large)) {
+    @content;
+  }
+}
+
+.xl-up {
+  @media (min-width: var(--bp-xl)) {
+    @content;
+  }
+}
+
+/* Mobile Only */
+.mobile-only {
+  @media (max-width: var(--bp-mobile-max)) {
+    @content;
+  }
+}
+
+.tablet-only {
+  @media (min-width: var(--bp-tablet)) and (max-width: var(--bp-tablet-max)) {
+    @content;
+  }
+}
+
+.desktop-only {
+  @media (min-width: var(--bp-desktop)) and (max-width: var(--bp-desktop-max)) {
+    @content;
+  }
+}

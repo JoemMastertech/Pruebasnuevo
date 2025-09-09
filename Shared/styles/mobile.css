@@ -19,8 +19,8 @@
   grid-template-columns: repeat(var(--grid-columns), 1fr);
   gap: var(--gap);
   padding: var(--padding);
-  width: 100%;
-  max-width: 100vw;
+  width: var(--size-full);
+  max-width: var(--viewport-width);
   margin: 0 auto;
   box-sizing: border-box;
 }
@@ -43,8 +43,8 @@
   grid-template-columns: repeat(var(--grid-columns), 1fr);
   gap: var(--gap);
   padding: var(--padding);
-  width: 100%;
-  max-width: 100vw;
+  width: var(--size-full);
+  max-width: var(--viewport-width);
   margin: 0 auto;
   box-sizing: border-box;
 }
@@ -67,7 +67,7 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: var(--size-full);
   min-height: var(--card-min-height-sm);
 }
 
@@ -84,7 +84,7 @@
 
 /* === ELEMENTOS DE CARD === */
 .card__image {
-  width: 100%;
+  width: var(--size-full);
   height: clamp(80px, 12vw, 120px);
   object-fit: cover;
   border-radius: var(--border-radius-xs) var(--border-radius-xs) 0 0;
@@ -102,14 +102,14 @@
   font-size: var(--mobile-font-title);
   font-weight: 600;
   margin-bottom: var(--spacing-xs);
-  line-height: 1.2;
+  line-height: var(--line-height-tight);
   color: var(--text);
 }
 
 .card__description {
   font-size: var(--mobile-font-description);
-  opacity: 0.8;
-  line-height: 1.3;
+  opacity: var(--opacity-90);
+  line-height: var(--line-height-snug);
   margin-bottom: var(--spacing-xs);
   color: var(--text);
   flex-grow: 1;
@@ -129,7 +129,7 @@
   border-radius: var(--border-radius-xs);
   cursor: pointer;
   transition: var(--mobile-transition);
-  width: 100%;
+  width: var(--size-full);
   font-weight: 600;
   box-shadow: 0 0 15px var(--price-color);
 }
@@ -156,7 +156,7 @@
 }
 
 .u-mobile-full-width {
-  width: 100%;
+  width: var(--size-full);
 }
 
 /* === ESTADOS MÓVILES === */
@@ -184,7 +184,7 @@
 /* === RESPONSIVE MÓVIL INTERNO === */
 
 /* Mobile Base (320px - 479px) */
-@media (max-width: 479px) {
+@media (max-width: 480px) {
   .grid {
     padding: clamp(8px, 2vw, 10px);
     gap: clamp(6px, 1.5vw, 8px);
@@ -243,8 +243,8 @@
   .main-content {
     padding: 0;
     margin: 0;
-    width: 100%;
-    max-width: 100vw;
+    width: var(--size-full);
+    max-width: var(--viewport-width);
   }
   
   /* Licores grid responsive para móvil */
@@ -261,12 +261,12 @@
   /* Usar componente BEM base */
   background: var(--mobile-card-bg);
   border-radius: var(--border-radius-sm);
-  border: 1px solid var(--mobile-border-color);
+  border: var(--border-width-thin) solid var(--mobile-border-color);
   transition: var(--mobile-transition);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: var(--size-full);
   padding: clamp(6px, 2vw, 12px);
   min-height: clamp(120px, 16vw, 180px);
 }
@@ -311,7 +311,7 @@
   font-size: clamp(10px, 2.5vw, 14px);
   min-height: clamp(1.5rem, 3vw, 2.2rem);
   font-weight: 600;
-  line-height: 1.2;
+  line-height: var(--line-height-tight);
   color: var(--text);
 }
 
@@ -352,9 +352,9 @@
 }
 
 .category-grid--liquors .category-name {
-  font-size: 0.8rem;
+  font-size: var(--font-size-xs);
   height: var(--nav-height-mobile-fixed);
-  line-height: 1.1;
+  line-height: var(--line-height-tight);
 }
   
   .card--category {
@@ -413,19 +413,16 @@
 }
 
 /* === SIDEBAR MÓVIL VERTICAL === */
-@media (orientation: portrait) and (max-width: 480px) {
-  #order-sidebar {
-    flex: 0 0 var(--mobile-sidebar-width);
+@media (orientation: portrait) and (max-width: 480px) {.order-sidebar {
+  flex: 0 0 var(--mobile-sidebar-width);
     min-width: var(--mobile-sidebar-width);
     max-width: var(--mobile-sidebar-width);
     padding: var(--spacing-xs);
     font-size: 0.75rem;
-  }
-  
-  #order-sidebar h3 {
-    font-size: 1rem;
+}.order-sidebar h3 {
+  font-size: var(--font-size-base);
     margin-bottom: var(--spacing-xs);
-  }
+}
   
   .order-item {
     padding: var(--spacing-xxxs) 0;
@@ -449,8 +446,8 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    width: 100%;
-    max-width: 100vw;
+    width: var(--size-full);
+    max-width: var(--viewport-width);
     overflow-x: auto;
     padding: 0 var(--spacing-xs);
     box-sizing: border-box;
@@ -493,15 +490,14 @@
 }
 
 /* === NAVEGACIÓN SUPERIOR MÓVIL === */
-@media (max-width: 480px) {
-  #top-nav {
-    height: var(--top-nav-height-mobile);
+@media (max-width: 480px) {.top-nav {
+  height: var(--top-nav-height-mobile);
     min-height: var(--top-nav-height-mobile);
     max-height: var(--top-nav-height-mobile);
     padding: 0 var(--spacing-md);
     background: var(--top-nav-bg);
-    border-bottom: 1px solid var(--top-nav-border);
-  }
+    border-bottom: var(--border-width-thin) solid var(--top-nav-border);
+}
   
   body.top-nav-visible {
     padding-top: var(--top-nav-height-mobile);

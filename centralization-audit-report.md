@@ -4,52 +4,50 @@
 
 ## 📊 RESUMEN EJECUTIVO
 
-- **Archivos analizados:** 16
-- **Variables CSS encontradas:** 576
-- **Valores hardcodeados:** 1045
+- **Archivos analizados:** 18
+- **Variables CSS encontradas:** 612
+- **Valores hardcodeados:** 674
 - **Media queries únicos:** 20
-- **Conflictos de breakpoints:** 23
+- **Conflictos de breakpoints:** 17
 - **Selectores alta especificidad:** 23
 
 ## 🎯 ESTADO DE CENTRALIZACIÓN
 
-**Puntuación:** 0/100
+**Puntuación:** 5/100
 **Estado:** 🔴 NECESITA MEJORAS
 
-## 🚨 VALORES HARDCODEADOS (1045)
+## 🚨 VALORES HARDCODEADOS (674)
 
-- **main.css:24** - `100vw`
-- **main.css:25** - `100vh`
-- **main.css:30** - `100%`
-- **main.css:31** - `100%`
-- **main.css:82** - `100%`
-- **main.css:98** - `2px`
-- **main.css:157** - `100%`
-- **main.css:161** - `2px`
-- **main.css:176** - `100%`
-- **main.css:187** - `100%`
-- **main.css:194** - `2rem`
-- **main.css:197** - `50%`
-- **main.css:215** - `100%`
-- **main.css:232** - `100%`
-- **main.css:309** - `1px`
-- **main.css:310** - `15px`
-- **main.css:326** - `40px`
-- **main.css:327** - `40px`
-- **main.css:332** - `10px`
-- **main.css:395** - `2px`
+- **main.css:473** - `1.3rem`
+- **main.css:505** - `30%`
+- **main.css:506** - `400px`
+- **main.css:507** - `78.2vh`
+- **main.css:522** - `60%`
+- **main.css:523** - `700px`
+- **main.css:524** - `92vh`
+- **main.css:526** - `450px`
+- **main.css:533** - `42%`
+- **main.css:534** - `535px`
+- **main.css:535** - `43.7vh`
+- **main.css:541** - `768px`
+- **main.css:543** - `95%`
+- **main.css:550** - `400px`
+- **main.css:553** - `300px`
+- **main.css:558** - `72%`
+- **main.css:560** - `54.05vh`
+- **main.css:566** - `480px`
+- **main.css:574** - `98%`
+- **main.css:580** - `1.1rem`
 
-... y 1025 más
+... y 654 más
 
 ## ⚠️ CONFLICTOS DE BREAKPOINTS
 
 - **main.css** - `480px` (no estándar)
-- **main.css** - `481px` (no estándar)
-- **main.css** - `480px` (no estándar)
-- **main.css** - `481px` (no estándar)
 - **main.css** - `480px` (no estándar)
 - **main.css** - `480px` (no estándar)
-- **mobile.css** - `479px` (no estándar)
+- **main.css** - `480px` (no estándar)
+- **mobile.css** - `480px` (no estándar)
 - **mobile.css** - `480px` (no estándar)
 - **mobile.css** - `480px` (no estándar)
 - **mobile.css** - `480px` (no estándar)
@@ -57,37 +55,33 @@
 - **order-system.css** - `480px` (no estándar)
 - **product-grid.css** - `480px` (no estándar)
 - **product-table.css** - `480px` (no estándar)
-- **tablet.css** - `481px` (no estándar)
-- **top-navigation.css** - `1025px` (no estándar)
-- **top-navigation.css** - `769px` (no estándar)
 - **_bem-architecture.css** - `480px` (no estándar)
 - **_grid-system.css** - `480px` (no estándar)
+- **_media-queries-consolidated.css** - `480px` (no estándar)
+- **_media-queries-consolidated.css** - `480px` (no estándar)
 - **_view-modes-config.css** - `480px` (no estándar)
-- **_view-modes-config.css** - `481px` (no estándar)
-- **_view-modes-config.css** - `769px` (no estándar)
-- **_view-modes-controller.css** - `767px` (no estándar)
 
 ## 📈 VARIABLES CSS DETECTADAS
 
-Total de variables únicas: 576
+Total de variables únicas: 612
 
 ## 📱 MEDIA QUERIES ENCONTRADOS
 
 - `@media (hover: none)`
 - `@media (max-width: 1024px)`
-- `@media (max-width: 479px)`
 - `@media (max-width: 480px)`
-- `@media (max-width: 767px)`
 - `@media (max-width: 768px)`
+- `@media (max-width: var(--bp-mobile-max)`
 - `@media (min-width: 1024px)`
-- `@media (min-width: 1025px)`
 - `@media (min-width: 1200px)`
 - `@media (min-width: 1400px)`
 - `@media (min-width: 480px)`
-- `@media (min-width: 481px)`
 - `@media (min-width: 768px)`
-- `@media (min-width: 769px)`
+- `@media (min-width: var(--bp-desktop)`
+- `@media (min-width: var(--bp-large)`
+- `@media (min-width: var(--bp-mobile)`
 - `@media (min-width: var(--bp-tablet)`
+- `@media (min-width: var(--bp-xl)`
 - `@media (orientation: landscape)`
 - `@media (orientation: portrait)`
 - `@media (prefers-color-scheme: dark)`
@@ -97,6 +91,6 @@ Total de variables únicas: 576
 ## 🎯 RECOMENDACIONES
 
 ### 🔴 Prioridad Alta
-- Reemplazar 1045 valores hardcodeados con variables
+- Reemplazar 674 valores hardcodeados con variables
 - Consolidar breakpoints no estándar
 

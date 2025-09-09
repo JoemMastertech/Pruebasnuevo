@@ -45,11 +45,11 @@
   --table-header-height: 50px;
   --table-header-padding: var(--spacing-sm) var(--spacing-md);
   --table-header-background: var(--color-surface-variant);
-  --table-header-border: 1px solid var(--color-outline);
+  --table-header-border: var(--border-width-thin) solid var(--color-outline);
   
   /* Table Rows */
   --table-row-padding: var(--spacing-sm) var(--spacing-md);
-  --table-row-border: 1px solid var(--color-outline-variant);
+  --table-row-border: var(--border-width-thin) solid var(--color-outline-variant);
   --table-row-hover-background: var(--color-surface-variant);
   
   /* =====================================================================
@@ -82,7 +82,7 @@
   
   /* Borders */
   --view-border-color: var(--color-outline-variant);
-  --view-border-width: 1px;
+  --view-border-width: var(--border-width-thin);
   --view-border-style: solid;
   --view-border: var(--view-border-width) var(--view-border-style) var(--view-border-color);
   
@@ -96,7 +96,7 @@
      ===================================================================== */
   
   /* Tamaños de imagen base */
-  --image-size-xs: 32px;
+  --image-size-xs: var(--spacing-4xl);
   --image-size-sm: 64px;
   --image-size-md: 120px;
   --image-size-lg: 200px;
@@ -120,7 +120,7 @@
      ===================================================================== */
   
   /* Botones base */
-  --button-height: 44px;
+  --button-height: var(--spacing-3xl);
   --button-padding: var(--spacing-sm) var(--spacing-md);
   --button-font-size: var(--font-size-body);
   --button-font-weight: var(--font-weight-medium);
@@ -132,8 +132,8 @@
   --price-button-hover-background: var(--color-primary-variant);
   
   /* Botones de acción */
-  --action-button-size: 40px;
-  --action-button-border-radius: 50%;
+  --action-button-size: var(--spacing-5xl);
+  --action-button-border-radius: var(--size-half);
   --action-button-background: var(--color-surface-variant);
   
   /* =====================================================================
@@ -152,7 +152,7 @@
   /* Efectos hover */
   --hover-scale: 1.02;
   --hover-lift: translateY(-2px);
-  --hover-opacity: 0.8;
+  --hover-opacity: var(--opacity-90);
   
   /* =====================================================================
      RESPONSIVE BREAKPOINTS Y ADAPTACIONES
@@ -237,18 +237,18 @@
 }
 
 /* Tablet - 481px a 768px */
-@media (min-width: 481px) and (max-width: 768px) {
+@media (min-width: 768px) and (max-width: 768px) {
   :root {
     --container-padding: var(--tablet-container-padding);--table-width: var(--tablet-table-width);}
 }
 
 /* Desktop - más de 768px */
-@media (min-width: 769px) {
+@media (min-width: 768px) {
   :root {
     --grid-columns: repeat(auto-fit, minmax(320px, 1fr));
     --table-width: var(--table-max-width);
-    --gap-tablet: 1rem;
-    --padding-tablet: 1rem;
-    --table-col2-width: 100%;
+    --gap-tablet: var(--font-size-base);
+    --padding-tablet: var(--font-size-base);
+    --table-col2-width: var(--size-full);
   }
 }

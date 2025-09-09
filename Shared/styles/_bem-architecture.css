@@ -43,7 +43,7 @@
   font-weight: 600;
   color: var(--text-dark, #333);
   margin-bottom: var(--spacing-xs, 8px);
-  line-height: 1.2;
+  line-height: var(--line-height-tight);
 }
 
 .product-card__description {
@@ -51,13 +51,13 @@
   font-size: clamp(0.8rem, 1.8vw, 0.95rem);
   color: var(--text-muted, #666);
   margin-bottom: var(--spacing-xs, 8px);
-  line-height: 1.3;
+  line-height: var(--line-height-snug);
   font-style: italic;
 }
 
 .product-card__image {
   /* Reemplaza: .product-card.liquor-card .product-image */
-  width: 100%;
+  width: var(--size-full);
   height: var(--image-height-current);
   object-fit: cover;
   border-radius: var(--border-radius-sm, 8px);
@@ -66,7 +66,7 @@
 
 .product-card__media {
   /* Reemplaza: .product-card.liquor-card .product-media */
-  width: 100%;
+  width: var(--size-full);
   min-height: var(--media-height-current);
   position: relative;
   overflow: hidden;
@@ -100,12 +100,12 @@
 .product-card__image--video::after {
   content: '▶';
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: var(--size-half);
+  left: var(--size-half);
   transform: translate(-50%, -50%);
   background: var(--overlay-bg, rgba(0, 0, 0, 0.7));
   color: var(--text-light, white);
-  border-radius: 50%;
+  border-radius: var(--size-half);
   width: var(--icon-size-md, 40px);
   height: var(--icon-size-md, 40px);
   display: flex;
@@ -135,7 +135,7 @@
 /* BLOQUE BASE */
 .price-button {
   /* Estilos base para todos los price buttons */
-  border: 1px solid var(--border-accent, rgba(0, 247, 255, 0.3));
+  border: var(--border-width-thin) solid var(--border-accent, rgba(0, 247, 255, 0.3));
   border-radius: var(--border-radius-sm, 6px);
   padding: var(--spacing-xs, 4px) var(--spacing-xs, 8px);
   font-size: clamp(0.7rem, 1.5vw, 0.9rem);
@@ -174,7 +174,7 @@
 
 .price-button--disabled {
   /* Reemplaza: .price-button:disabled */
-  opacity: 0.5;
+  opacity: var(--opacity-50);
   cursor: not-allowed;
   animation: none;
   background: transparent;
@@ -183,7 +183,7 @@
 
 .price-button--non-selectable {
   /* Reemplaza: .price-button.non-selectable */
-  opacity: 0.6;
+  opacity: var(--opacity-75);
   cursor: default;
   animation: none;
   background: transparent;
@@ -236,7 +236,7 @@
 
 .category-card--liquor {
   /* Modificador específico para categorías de licores */
-  border: 2px solid var(--accent-gold);
+  border: var(--border-width-base) solid var(--accent-gold);
 }
 
 .category-card--enhanced {
@@ -247,7 +247,7 @@
 
 .category-card__image {
   /* Reemplaza: .category-card .category-image */
-  width: 100%;
+  width: var(--size-full);
   height: auto;
   max-height: var(--width-element-lg);
   object-fit: contain;
@@ -262,7 +262,7 @@
   color: var(--text-dark, #333);
   margin: 0;
   margin-bottom: var(--spacing-sm, 15px);
-  line-height: 1.2;
+  line-height: var(--line-height-tight);
   text-align: center;
 }
 
@@ -296,7 +296,7 @@
   /* Reemplaza: .category-grid[data-category="licores"] .category-card */
   min-height: var(--category-height-current);
   background: var(--bg-light, #f8f9fa);
-  border: 2px solid var(--border-light, #e9ecef);
+  border: var(--border-width-base) solid var(--border-light, #e9ecef);
   border-radius: var(--border-radius-md, 12px);
   padding: var(--spacing-md, 20px);
   margin-bottom: var(--spacing-md, 20px);
@@ -313,7 +313,7 @@
   width: var(--category-image-current);
   height: var(--category-image-current);
   object-fit: cover;
-  border-radius: 50%;
+  border-radius: var(--size-half);
   margin-bottom: var(--spacing-sm);
   transition: var(--transition);
 }
@@ -355,13 +355,13 @@
 /* MODIFICADORES DE BLOQUE */
 .product-table--beverages {
   /* Reemplaza: .product-table[data-category="refrescos"], .product-table[data-category="cervezas"] */
-  width: 100%;
+  width: var(--size-full);
   border-collapse: collapse;
 }
 
 .product-table--food {
   /* Para productos de comida */
-  width: 100%;
+  width: var(--size-full);
   border-collapse: collapse;
 }
 
@@ -371,7 +371,7 @@
   /* Reemplaza: .product-table[data-category="refrescos"] th, .product-table[data-category="cervezas"] th */
   padding: var(--spacing-xs, 8px) var(--spacing-sm, 12px);
   text-align: left;
-  border-bottom: 1px solid var(--border-light-alpha, rgba(255, 255, 255, 0.1));
+  border-bottom: var(--border-width-thin) solid var(--border-light-alpha, rgba(255, 255, 255, 0.1));
 }
 
 .product-table--beverages th:first-child,
@@ -384,7 +384,7 @@
 .product-table--beverages th:nth-child(2),
 .product-table--beverages td:nth-child(2) {
   /* Reemplaza: .product-table[data-category="refrescos"] th:nth-child(2) */
-  width: 25%;
+  width: var(--size-quarter);
   text-align: center;
 }
 
@@ -446,21 +446,21 @@
 
 /* ESTADO DE CARGA */
 .is-loading {
-  opacity: 0.7;
+  opacity: var(--opacity-75);
   pointer-events: none;
 }
 
 .is-loading::after {
   content: '';
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: var(--size-half);
+  left: var(--size-half);
   transform: translate(-50%, -50%);
   width: var(--icon-size-sm);
   height: var(--icon-size-sm);
   border: var(--border-width-medium) solid var(--border-accent);
   border-top: var(--border-width-medium) solid var(--accent);
-  border-radius: 50%;
+  border-radius: var(--size-half);
   animation: spin 1s linear infinite;
 }
 
@@ -478,7 +478,7 @@
 
 @keyframes pulse {
   0%, 100% {
-    opacity: 1;
+    opacity: var(--opacity-100);
     transform: scale(1.02);
   }
   50% {

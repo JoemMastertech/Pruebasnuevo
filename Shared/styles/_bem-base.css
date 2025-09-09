@@ -19,15 +19,15 @@ body {
   font-family: 'Montserrat', sans-serif;
   color: var(--text);
   background: var(--bg);
-  min-height: 100vh;
+  min-height: var(--viewport-height);
   overflow-y: auto;
-  line-height: 1.6;
+  line-height: var(--line-height-normal);
 }
 
 /* Base app container */
 #app {
   width: var(--app-width, 70%);
-  min-height: 100vh;
+  min-height: var(--viewport-height);
   position: relative;
   margin: 0 auto;
   transition: margin-left var(--transition) ease-in-out;
@@ -38,39 +38,14 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100vh;
+  width: var(--size-full);
+  height: var(--viewport-height);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  z-index: 1;
-}
-
-/* =====================================================================
-   SECTION 1: BEM NAMING CONVENTIONS
-   ===================================================================== */
-
-/*
-  CONVENCIONES BEM UTILIZADAS:
-  
-  BLOQUE: .block
-  ELEMENTO: .block__element
-  MODIFICADOR: .block--modifier, .block__element--modifier
-  
-  EJEMPLOS:
-  .product-card                    // Bloque
-  .product-card__name             // Elemento
-  .product-card--liquor           // Modificador de bloque
-  .product-card__name--highlighted // Modificador de elemento
-*/
-
-/* =====================================================================
-   SECTION 2: COMPONENT TOKENS
-   Variables específicas para componentes BEM
-   ===================================================================== */
-
-:root {
+  z-index: var(--opacity-100);
+}*/ :root {
   /* === PRODUCT CARD TOKENS === */
   --product-card-bg: var(--card-bg-current);
   --product-card-radius: var(--card-radius);
@@ -164,7 +139,7 @@ body {
 /* === TYPOGRAPHY COMPONENTS === */
 .text {
   color: var(--text);
-  line-height: 1.5;
+  line-height: var(--line-height-normal);
 }
 
 .text--primary {
@@ -190,7 +165,7 @@ body {
 .title {
   font-family: 'Playfair Display', serif;
   font-weight: 600;
-  line-height: 1.2;
+  line-height: var(--line-height-tight);
 }
 
 /* Global typography classes */
@@ -229,7 +204,7 @@ body {
   text-decoration: none;
   font-family: inherit;
   font-size: var(--font-size-base);
-  line-height: 1;
+  line-height: var(--opacity-100);
 }
 
 .btn--primary {
@@ -245,7 +220,7 @@ body {
 .btn--secondary {
   background: var(--btn-secondary-bg);
   color: var(--btn-secondary-color);
-  border: 1px solid var(--btn-secondary-border);
+  border: var(--border-width-thin) solid var(--btn-secondary-border);
 }
 
 .btn--secondary:hover {
@@ -298,7 +273,7 @@ body {
 .card__footer {
   margin-top: var(--spacing-md);
   padding-top: var(--spacing-sm);
-  border-top: 1px solid var(--border);
+  border-top: var(--border-width-thin) solid var(--border);
 }
 
 /* === FORM COMPONENTS === */
@@ -315,10 +290,10 @@ body {
 }
 
 .form-input {
-  width: 100%;
+  width: var(--size-full);
   padding: var(--form-input-padding);
   background: var(--form-input-bg);
-  border: 1px solid var(--form-input-border);
+  border: var(--border-width-thin) solid var(--form-input-border);
   border-radius: var(--form-input-radius);
   color: var(--form-input-color);
   font-family: inherit;
@@ -448,28 +423,28 @@ body {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from { opacity: var(--opacity-0); }
+  to { opacity: var(--opacity-100); }
 }
 
 @keyframes slideUp {
   from {
-    opacity: 0;
+    opacity: var(--opacity-0);
     transform: translateY(20px);
   }
   to {
-    opacity: 1;
+    opacity: var(--opacity-100);
     transform: translateY(0);
   }
 }
 
 @keyframes scaleIn {
   from {
-    opacity: 0;
+    opacity: var(--opacity-0);
     transform: scale(0.9);
   }
   to {
-    opacity: 1;
+    opacity: var(--opacity-100);
     transform: scale(1);
   }
 }
@@ -479,14 +454,14 @@ body {
    ===================================================================== */
 
 .focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
+  outline: var(--border-width-base) solid var(--accent);
+  outline-offset: var(--border-width-base);
 }
 
 .sr-only {
   position: absolute;
-  width: 1px;
-  height: 1px;
+  width: var(--border-width-thin);
+  height: var(--border-width-thin);
   padding: 0;
   margin: -1px;
   overflow: hidden;

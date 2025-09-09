@@ -40,7 +40,7 @@
   grid-template-columns: repeat(var(--grid-columns), 1fr);
   gap: var(--grid-gap-standard);
     padding: var(--grid-padding-standard);
-  width: 100%;
+  width: var(--size-full);
   max-width: var(--container-max-width, 1200px);
   margin: 0 auto;
   box-sizing: border-box;
@@ -60,9 +60,9 @@
 
 /* CONFIGURACIÓN PREFERIDA - Grid con efecto cyan sutil por defecto */
 .product-grid--preferred {
-  border: 1px solid var(--border-accent);
+  border: var(--border-width-thin) solid var(--border-accent);
   box-shadow: 0 0 5px rgba(0, 247, 255, 0.2);
-  border-radius: 3px;
+  border-radius: var(--border-width-thick);
   transition: all var(--transition-fast);
 }
 
@@ -75,9 +75,9 @@
 .product-grid--with-cyan {
   margin: var(--spacing-md, 16px);
   padding: var(--spacing-lg, 20px);
-  border: 2px solid var(--border-accent);
+  border: var(--border-width-base) solid var(--border-accent);
   box-shadow: 0 0 8px rgba(0, 247, 255, 0.4);
-  border-radius: 6px;
+  border-radius: var(--border-radius-md);
   background: rgba(0, 0, 0, 0.3); /* Fondo negro transparente */
   transition: all var(--transition-fast);
 }
@@ -233,8 +233,8 @@
 
 /* Clases de utilidad para casos especiales */
 .grid--full-width {
-  max-width: 100%;
-  width: 100vw;
+  max-width: var(--size-full);
+  width: var(--viewport-width);
   margin-left: calc(-50vw + 50%);
 }
 
@@ -254,8 +254,8 @@
 
 /* Clases para elementos de grid */
 .grid__item {
-  width: 100%;
-  height: 100%;
+  width: var(--size-full);
+  height: var(--size-full);
 }
 
 .grid__item--span-2 {
@@ -302,14 +302,14 @@ body.order-mode-active .product-grid .product-card:hover {
 .grid--loading::after {
   content: '';
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: var(--size-half);
+  left: var(--size-half);
   transform: translate(-50%, -50%);
   width: var(--icon-size-md, 40px);
   height: var(--icon-size-md, 40px);
-  border: 3px solid var(--border-accent, rgba(0, 247, 255, 0.3));
-  border-top: 3px solid var(--accent, #00f7ff);
-  border-radius: 50%;
+  border: var(--border-width-thick) solid var(--border-accent, rgba(0, 247, 255, 0.3));
+  border-top: var(--border-width-thick) solid var(--accent, #00f7ff);
+  border-radius: var(--size-half);
   animation: spin 1s linear infinite;
 }
 

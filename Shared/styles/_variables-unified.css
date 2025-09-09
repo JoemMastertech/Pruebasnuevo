@@ -496,3 +496,68 @@
    - Variables semánticamente agrupadas
    - Sin valores hardcodeados en otros archivos
    ================================================================= */
+/* === VARIABLES ADICIONALES PARA ELIMINACIÓN DE HARDCODED === */
+:root {
+  /* Tamaños */
+  --size-full: 100%;
+  --size-half: 50%;
+  --size-quarter: 25%;
+  --size-three-quarters: 75%;
+  --viewport-width: 100vw;
+  --viewport-height: 100vh;
+  
+  /* Espaciado extendido */
+  --spacing-xs: 2px;
+  --spacing-sm: 4px;
+  --spacing-md: 8px;
+  --spacing-md-plus: 10px;
+  --spacing-lg: 12px;
+  --spacing-lg-plus: 15px;
+  --spacing-xl: 16px;
+  --spacing-2xl: 20px;
+  --spacing-3xl: 24px;
+  --spacing-4xl: 32px;
+  --spacing-5xl: 40px;
+  --spacing-6xl: 48px;
+  
+  /* Z-index */
+  --z-behind: -1;
+  --z-background: -10;
+  --z-base: 1;
+  --z-dropdown: 10;
+  --z-modal: 50;
+  --z-tooltip: 100;
+  --z-maximum: 999;
+  
+  /* Opacidad */
+  --opacity-0: 0;
+  --opacity-10: 0.1;
+  --opacity-25: 0.25;
+  --opacity-50: 0.5;
+  --opacity-75: 0.75;
+  --opacity-90: 0.9;
+  --opacity-100: 1;
+  
+  /* Line Height */
+  --line-height-tight: 1.2;
+  --line-height-snug: 1.4;
+  --line-height-normal: 1.6;
+  --line-height-relaxed: 1.8;
+  --line-height-loose: 2.0;
+}
+
+/* === BREAKPOINTS ESTANDARIZADOS === */
+:root {
+  /* Breakpoints del sistema */
+  --bp-mobile: 480px;
+  --bp-tablet: 768px;
+  --bp-desktop: 1024px;
+  --bp-large: 1200px;
+  --bp-xl: 1400px;
+  
+  /* Breakpoints para max-width (mobile-first) */
+  --bp-mobile-max: calc(768px - 1px);
+  --bp-tablet-max: calc(1024px - 1px);
+  --bp-desktop-max: calc(1200px - 1px);
+  --bp-large-max: calc(1400px - 1px);
+}

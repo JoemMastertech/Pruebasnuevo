@@ -8,7 +8,7 @@
    ===================================================================== */
 
 .order-system {
-  width: 100%;
+  width: var(--size-full);
   max-width: var(--container-max-width);
   margin: 0 auto;
   padding: var(--spacing-lg);
@@ -19,7 +19,7 @@
 }
 
 .order-system--loading {
-  opacity: 0.7;
+  opacity: var(--opacity-75);
   pointer-events: none;
 }
 
@@ -139,7 +139,7 @@
   gap: var(--spacing-md);
   padding: var(--spacing-md);
   background: var(--overlay-light);
-  border: 1px solid var(--border);
+  border: var(--border-width-thin) solid var(--border);
   border-radius: var(--card-radius);
   transition: var(--transition);
 }
@@ -166,7 +166,7 @@
   height: var(--image-size-md);
   border-radius: var(--card-radius);
   object-fit: cover;
-  border: 1px solid var(--border);
+  border: var(--border-width-thin) solid var(--border);
 }
 
 .order-item__content {
@@ -201,7 +201,7 @@
   padding: var(--spacing-xs) var(--spacing-sm);
   border-radius: var(--border-radius-xs);
   font-size: var(--font-size-xs);
-  border: 1px solid var(--accent-border);
+  border: var(--border-width-thin) solid var(--accent-border);
 }
 
 .order-item__quantity {
@@ -211,7 +211,7 @@
   background: var(--overlay-medium);
   padding: var(--spacing-sm);
   border-radius: var(--btn-radius);
-  border: 1px solid var(--border);
+  border: var(--border-width-thin) solid var(--border);
 }
 
 .order-item__quantity-label {
@@ -254,7 +254,7 @@
 
 .order-item__btn {
   padding: var(--spacing-xs) var(--spacing-sm);
-  border: 1px solid var(--border);
+  border: var(--border-width-thin) solid var(--border);
   background: transparent;
   color: var(--text);
   border-radius: var(--btn-radius);
@@ -285,7 +285,7 @@
 
 .order-summary {
   background: var(--overlay-light);
-  border: 1px solid var(--border);
+  border: var(--border-width-thin) solid var(--border);
   border-radius: var(--card-radius);
   padding: var(--spacing-lg);
   margin-top: var(--spacing-lg);
@@ -313,7 +313,7 @@
 }
 
 .order-summary__row--total {
-  border-top: 1px solid var(--border);
+  border-top: var(--border-width-thin) solid var(--border);
   padding-top: var(--spacing-sm);
   margin-top: var(--spacing-sm);
   font-weight: 600;
@@ -365,7 +365,7 @@
 .order-summary__btn--secondary {
   background: transparent;
   color: var(--accent);
-  border: 1px solid var(--accent);
+  border: var(--border-width-thin) solid var(--accent);
 }
 
 .order-summary__btn--secondary:hover {
@@ -376,7 +376,7 @@
 .order-summary__btn--danger {
   background: transparent;
   color: var(--error-color);
-  border: 1px solid var(--error-color);
+  border: var(--border-width-thin) solid var(--error-color);
 }
 
 .order-summary__btn--danger:hover {
@@ -392,7 +392,7 @@
   margin-top: var(--spacing-md);
   padding: var(--spacing-md);
   border-radius: var(--card-radius);
-  border: 1px solid var(--border);
+  border: var(--border-width-thin) solid var(--border);
 }
 
 .order-validation--success {
@@ -489,7 +489,7 @@
   .order-item__quantity,
   .order-item__price,
   .order-item__actions {
-    width: 100%;
+    width: var(--size-full);
     justify-content: space-between;
   }
   
@@ -498,7 +498,7 @@
   }
   
   .order-summary__btn {
-    width: 100%;
+    width: var(--size-full);
   }
 }
 

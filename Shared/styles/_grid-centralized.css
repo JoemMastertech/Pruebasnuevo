@@ -74,8 +74,8 @@
      ================================================================= */
   
   /* Máximos anchos */
-  --grid-max-width-mobile: 100%;
-  --grid-max-width-tablet: 100%;
+  --grid-max-width-mobile: var(--size-full);
+  --grid-max-width-tablet: var(--size-full);
   --grid-max-width-desktop: 1200px;
   --grid-max-width-large: 1400px;
   
