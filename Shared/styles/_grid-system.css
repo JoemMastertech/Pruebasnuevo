@@ -8,18 +8,18 @@
    ================================================================= */
 
 :root {
-  /* Grid Columns por Breakpoint - Usando variables unificadas */
-  --grid-columns-mobile: 1;
-  --grid-columns-mobile-large: var(--grid-columns-sm, 2);
-  --grid-columns-tablet: var(--grid-columns-sm, 2);
-  --grid-columns-tablet-large: var(--grid-columns-md, 3);
-  --grid-columns-desktop: var(--grid-columns-md, 3);
+  /* Grid Columns por Breakpoint - Valores naturales y coherentes */
+  --grid-columns-mobile: 2;
+  --grid-columns-mobile-large: 2;
+  --grid-columns-tablet: 3;
+  --grid-columns-tablet-large: 3;
+  --grid-columns-desktop: 3;
   --grid-columns-desktop-large: 4;
   
   /* Grid Columns para Categorías */
-  --category-grid-columns-mobile: var(--grid-columns-sm, 2);
-  --category-grid-columns-tablet: var(--grid-columns-md, 3);
-  --category-grid-columns-desktop: var(--grid-columns-lg, 5);
+  --category-grid-columns-mobile: 2;
+  --category-grid-columns-tablet: 3;
+  --category-grid-columns-desktop: 4;
   
   /* Gaps y Padding - Usando variables unificadas */
   --grid-gap-compact: clamp(var(--gap-xs, 10px), 2vw, var(--gap-md, 20px));
@@ -58,6 +58,36 @@
   padding: var(--grid-padding-standard);
 }
 
+/* CONFIGURACIÓN PREFERIDA - Grid con efecto cyan sutil por defecto */
+.product-grid--preferred {
+  border: 1px solid var(--border-accent);
+  box-shadow: 0 0 5px rgba(0, 247, 255, 0.2);
+  border-radius: 3px;
+  transition: all var(--transition-fast);
+}
+
+.product-grid--preferred:hover {
+  border-color: var(--border-accent-hover);
+  box-shadow: 0 0 8px rgba(0, 247, 255, 0.4);
+}
+
+/* GRID CON EFECTO CYAN - Solo contorno, fondo transparente */
+.product-grid--with-cyan {
+  margin: var(--spacing-md, 16px);
+  padding: var(--spacing-lg, 20px);
+  border: 2px solid var(--border-accent);
+  box-shadow: 0 0 8px rgba(0, 247, 255, 0.4);
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.3); /* Fondo negro transparente */
+  transition: all var(--transition-fast);
+}
+
+.product-grid--with-cyan:hover {
+  border-color: var(--border-accent-hover);
+  box-shadow: 0 0 15px rgba(0, 247, 255, 0.6);
+  background: rgba(0, 0, 0, 0.4); /* Fondo negro más visible en hover */
+}
+
 /* GRID PARA CATEGORÍAS */
 .grid--categories,
 .category-grid {
@@ -74,7 +104,7 @@
 /* GRID TYPE 1 - Grid estándar para productos */
 .grid-type-1,
 .product-grid.grid-type-1 {
-  grid-template-columns: repeat(var(--grid-columns), 1fr);
+  grid-template-columns: repeat(1, 1fr); /* 1 columna en móvil */
   gap: var(--grid-gap-standard);
   padding: var(--grid-padding-standard);
 }
@@ -82,7 +112,7 @@
 /* GRID TYPE 2 - Grid compacto para bebidas sin ingredientes */
 .grid-type-2,
 .product-grid.grid-type-2 {
-  grid-template-columns: repeat(var(--grid-columns), 1fr);
+  grid-template-columns: repeat(1, 1fr); /* 1 columna en móvil */
   gap: var(--grid-gap-compact);
   padding: var(--grid-padding-compact);
 }
@@ -132,6 +162,13 @@
     grid-template-columns: repeat(var(--category-grid-columns-tablet), 1fr);
   }
   
+  .grid-type-1,
+  .product-grid.grid-type-1,
+  .grid-type-2,
+  .product-grid.grid-type-2 {
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablet */
+  }
+  
   .grid-type-4 {
     grid-template-columns: repeat(var(--category-grid-columns-tablet), 1fr);
   }
@@ -152,6 +189,13 @@
 @media (min-width: 1200px) {
   .grid {
     --grid-columns: var(--grid-columns-desktop);
+  }
+  
+  .grid-type-1,
+  .product-grid.grid-type-1,
+  .grid-type-2,
+  .product-grid.grid-type-2 {
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas en desktop */
   }
   
   .grid--categories,

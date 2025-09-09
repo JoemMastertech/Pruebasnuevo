@@ -220,24 +220,45 @@ export class ProductGridComponent {
    * Configurar observadores para performance
    */
   private setupObservers(): void {
+    console.log(`[ProductGridComponent] 🔧 SETUP OBSERVERS DEBUG:`);
+    
     // Resize Observer para responsive
     if (window.ResizeObserver) {
+      console.log(`[ProductGridComponent] - ResizeObserver disponible, creando...`);
       this.resizeObserver = new ResizeObserver((entries) => {
         this.handleResize(entries);
       });
       
       if (this.container) {
+        console.log(`[ProductGridComponent] - Container encontrado, observando resize...`);
+        console.log(`[ProductGridComponent] - Container selector: ${this.config.containerSelector}`);
+        console.log(`[ProductGridComponent] - Container classes: ${Array.from(this.container.classList).join(', ')}`);
+        
+        const rect = this.container.getBoundingClientRect();
+        console.log(`[ProductGridComponent] - Dimensiones iniciales: ${rect.width}x${rect.height}px`);
+        
         this.resizeObserver.observe(this.container);
+        console.log(`[ProductGridComponent] - ResizeObserver configurado correctamente`);
+      } else {
+        console.warn(`[ProductGridComponent] - ⚠️ Container no encontrado para ResizeObserver`);
       }
+    } else {
+      console.warn(`[ProductGridComponent] - ⚠️ ResizeObserver no disponible en este navegador`);
     }
 
     // Intersection Observer para lazy loading
     if (this.config.enableLazyLoading && window.IntersectionObserver) {
+      console.log(`[ProductGridComponent] - IntersectionObserver disponible, creando para lazy loading...`);
       this.intersectionObserver = new IntersectionObserver(
         (entries) => this.handleIntersection(entries),
         { rootMargin: '100px' }
       );
+      console.log(`[ProductGridComponent] - IntersectionObserver configurado correctamente`);
+    } else {
+      console.log(`[ProductGridComponent] - IntersectionObserver no configurado (lazy loading: ${this.config.enableLazyLoading})`);
     }
+    
+    console.log(`[ProductGridComponent] 🔧 END SETUP OBSERVERS DEBUG\n`);
   }
 
   /**
@@ -346,38 +367,80 @@ export class ProductGridComponent {
    * Manejar resize
    */
   private handleResize(entries: ResizeObserverEntry[]): void {
-    // Ajustar número de columnas basado en el ancho
-    const entry = entries[0];
-    if (!entry) return;
-    const width = entry.contentRect.width;
-    
-    let columns = 1;
-    if (width > 1200) columns = 4;
-    else if (width > 900) columns = 3;
-    else if (width > 600) columns = 2;
-    
-    if (this.container) {
-      this.container.style.setProperty('--grid-columns', columns.toString());
+        // No sobrescribir --grid-columns, dejar que CSS responsive maneje las columnas
+        const windowWidth = window.innerWidth;
+        
+        console.log(`[ProductGridComponent] 🔍 RESIZE DEBUG:`);
+        console.log(`[ProductGridComponent] - Window width: ${windowWidth}px`);
+        console.log(`[ProductGridComponent] - Entries length: ${entries.length}`);
+        
+        if (entries.length > 0) {
+            const entry = entries[0];
+            console.log(`[ProductGridComponent] - Container width: ${entry.contentRect.width}px`);
+            console.log(`[ProductGridComponent] - Container height: ${entry.contentRect.height}px`);
+        }
+        
+        if (this.container) {
+            // Solo verificar el grid-template-columns computado, no modificar variables
+            const computedStyle = window.getComputedStyle(this.container);
+            const gridTemplateColumns = computedStyle.getPropertyValue('grid-template-columns');
+            const currentGridColumns = this.container.style.getPropertyValue('--grid-columns') || 'CSS default';
+            console.log(`[ProductGridComponent] - CSS Variable --grid-columns: ${currentGridColumns}`);
+            console.log(`[ProductGridComponent] - Grid template columns computado: ${gridTemplateColumns}`);
+        } else {
+            console.warn(`[ProductGridComponent] - ⚠️ Container no encontrado`);
+        }
+        
+        console.log(`[ProductGridComponent] 🔍 END RESIZE DEBUG\n`);
     }
-  }
 
   /**
    * Cambiar vista (grid/list)
    */
   setView(view: 'grid' | 'list'): void {
-    if (this.state.currentView === view) return;
+    console.log(`[ProductGridComponent] 🔄 SET VIEW DEBUG:`);
+    console.log(`[ProductGridComponent] - Vista actual: ${this.state.currentView}`);
+    console.log(`[ProductGridComponent] - Vista solicitada: ${view}`);
+    
+    if (this.state.currentView === view) {
+      console.log(`[ProductGridComponent] - ⚠️ Vista ya está activa, saliendo...`);
+      console.log(`[ProductGridComponent] 🔄 END SET VIEW DEBUG\n`);
+      return;
+    }
 
+    const oldView = this.state.currentView;
     this.state.currentView = view;
+    console.log(`[ProductGridComponent] - Estado actualizado: ${oldView} -> ${view}`);
     
     if (this.container) {
+      const oldClasses = Array.from(this.container.classList);
+      console.log(`[ProductGridComponent] - Clases antes: ${oldClasses.join(', ')}`);
+      
       this.container.classList.remove('product-grid-component--grid', 'product-grid-component--list');
       this.container.classList.add(`product-grid-component--${view}`);
+      
+      const newClasses = Array.from(this.container.classList);
+      console.log(`[ProductGridComponent] - Clases después: ${newClasses.join(', ')}`);
+      
+      // Verificar el grid-template-columns después del cambio de vista
+      const computedStyle = window.getComputedStyle(this.container);
+      const gridTemplateColumns = computedStyle.getPropertyValue('grid-template-columns');
+      const gridColumns = this.container.style.getPropertyValue('--grid-columns');
+      console.log(`[ProductGridComponent] - CSS Variable --grid-columns: ${gridColumns}`);
+      console.log(`[ProductGridComponent] - Grid template columns computado: ${gridTemplateColumns}`);
+      
+      // Verificar dimensiones del contenedor
+      const rect = this.container.getBoundingClientRect();
+      console.log(`[ProductGridComponent] - Dimensiones contenedor: ${rect.width}x${rect.height}px`);
+    } else {
+      console.warn(`[ProductGridComponent] - ⚠️ Container no encontrado`);
     }
 
     // Actualizar botones de vista
     this.updateViewButtons();
     
     this.log(`Vista cambiada a: ${view}`);
+    console.log(`[ProductGridComponent] 🔄 END SET VIEW DEBUG\n`);
   }
 
   /**
